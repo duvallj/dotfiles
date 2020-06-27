@@ -1,0 +1,15 @@
+[submodule ".themes/Windurs10"]
+	path = .themes/Windurs10
+	url = https://github.com/duvallj/Windurs10.git
+[submodule ".vim/pack/lervag/start/vimtex"]
+	path = .vim/pack/lervag/start/vimtex
+	url = https://github.com/lervag/vimtex.git
+[submodule ".vim/pack/sheerun/start/polygot"]
+	path = .vim/pack/sheerun/start/polygot
+	url = https://github.com/sheerun/polygot
+[submodule ".vim/pack/tpope/start/fugitive"]
+	path = .vim/pack/tpope/start/fugitive
+	url = https://github.com/tpope/fugitive
+[submodule ".vim/pack/tpope/start/surround"]
+	path = .vim/pack/tpope/start/surround
+	url = https://github.com/tpope/surround
