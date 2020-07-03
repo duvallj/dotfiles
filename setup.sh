@@ -1,6 +1,7 @@
 #!/bin/bash
 
 REPO_DIR=$(dirname "$0")
+REPO_DIR=$(realpath $REPO_DIR)
 
 link_file () {
   source_file="$REPO_DIR/$1"
@@ -17,6 +18,7 @@ link_file .dmrc
 link_file .gitconfig
 mkdir -p $HOME/.local/bin
 link_file .local/bin/humanlight.sh
+link_file .local/bin/runaswine
 mkdir -p $HOME/.local/etc/rc
 link_file .local/etc/rc/FixScrollPad.sh
 link_file .local/etc/rc/StartNetworking.sh
