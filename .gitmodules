@@ -1,15 +1,24 @@
 [submodule ".themes/Windurs10"]
 	path = .themes/Windurs10
 	url = https://github.com/duvallj/Windurs10.git
-[submodule ".vim/pack/lervag/start/vimtex"]
-	path = .vim/pack/lervag/start/vimtex
-	url = https://github.com/lervag/vimtex.git
-[submodule ".vim/pack/sheerun/start/polygot"]
-	path = .vim/pack/sheerun/start/polygot
+[submodule ".vim/pack/default/start/polygot"]
+	path = .vim/pack/default/start/polygot
 	url = https://github.com/sheerun/vim-polyglot
-[submodule ".vim/pack/tpope/start/fugitive"]
-	path = .vim/pack/tpope/start/fugitive
+[submodule ".vim/pack/default/start/fugitive"]
+	path = .vim/pack/default/start/fugitive
 	url = https://github.com/tpope/vim-fugitive
-[submodule ".vim/pack/tpope/start/surround"]
-	path = .vim/pack/tpope/start/surround
+[submodule ".vim/pack/default/start/surround"]
+	path = .vim/pack/default/start/surround
 	url = https://github.com/tpope/vim-surround
+[submodule ".vim/pack/default/start/synastic"]
+	path = .vim/pack/default/start/synastic
+	url = https://github.com/vim-syntastic/syntastic
+[submodule ".vim/pack/default/start/repeat"]
+	path = .vim/pack/default/start/repeat
+	url = https://github.com/tpope/vim-repeat
+[submodule "base16-vim"]
+	path = base16-vim
+	url = https://github.com/chriskempson/base16-vim.git
+[submodule ".vim/pack/default/start/rust.vim"]
+	path = .vim/pack/default/start/rust.vim
+	url = https://github.com/rust-lang/rust.vim

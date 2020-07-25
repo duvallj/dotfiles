@@ -55,14 +55,25 @@ set clipboard=unnamedplus,unnamed
 " allows use of mouse
 set mouse=a
 
-" makes it so colors shop up correctly in tmux
+" makes it so colors show up correctly in tmux
 set background=dark
+" make it so colors show up correctly in cmd.exe
+set termguicolors
 
-" make vimtex work correctly
+" Set the color scheme
+if !exists('g:colors_name') || g:colors_name != 'base16-solarflare'
+  colorscheme base16-solarflare
+endif
+
+" polygot isn't that great for latex
 let g:polyglot_disabled = ['latex']
-" packadd! vimtex
-" call vimtex#pack_install()
-" use correct latex flavor
-let g:tex_flavor = "latex"
-" use non-firefox pdf viewer
-let g:vimtex_view_general_viewer = 'evince'
+
+" set synastic settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0

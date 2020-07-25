@@ -1,5 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =8
+let g:netrw_dirhistcnt =0
+let g:netrw_dirhist_0='/c/Users/Me/Documents/linux'
+let g:netrw_dirhist_9='/c/Users/Me/Documents/linux/vimfiles'
 let g:netrw_dirhist_8='/home/me/builds/midipix_build/patches'
 let g:netrw_dirhist_7='/home/me/builds/midipix_build'
 let g:netrw_dirhist_6='/home/me/builds'
@@ -8,5 +10,3 @@ let g:netrw_dirhist_4='/home/me/midipix/nt64/release/tmp/htop-native-x86_64-nt64
 let g:netrw_dirhist_3='/home/me/midipix/nt64/release/tmp'
 let g:netrw_dirhist_2='/home/me/midipix/nt64/release/tmp/ncurses-native-x86_64-nt64-midipix'
 let g:netrw_dirhist_1='/home/me/midipix/nt64/release/tmp'
-let g:netrw_dirhist_0='/home/me/midipix/nt64/release'
-let g:netrw_dirhist_9='/home/me/midipix/nt64/release/tmp'

@@ -27,7 +27,6 @@ link_file .themes/Windurs10
 link_file .tmux.conf
 link_file .vim
 link_file .vimrc
-link_file .vimrc_background
 link_file .xbindkeysrc
 link_file .Xmodmap
 link_file .zshrc
