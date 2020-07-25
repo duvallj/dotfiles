@@ -6,10 +6,10 @@
 	url = https://github.com/lervag/vimtex.git
 [submodule ".vim/pack/sheerun/start/polygot"]
 	path = .vim/pack/sheerun/start/polygot
-	url = https://github.com/sheerun/polygot
+	url = https://github.com/sheerun/vim-polyglot
 [submodule ".vim/pack/tpope/start/fugitive"]
 	path = .vim/pack/tpope/start/fugitive
-	url = https://github.com/tpope/fugitive
+	url = https://github.com/tpope/vim-fugitive
 [submodule ".vim/pack/tpope/start/surround"]
 	path = .vim/pack/tpope/start/surround
-	url = https://github.com/tpope/surround
+	url = https://github.com/tpope/vim-surround
