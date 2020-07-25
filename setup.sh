@@ -29,6 +29,7 @@ link_file .vim
 link_file .vimrc
 link_file .xbindkeysrc
 link_file .Xmodmap
+link_file .ycm_global_extra_conf.py
 link_file .zshrc
 mkdir -p $HOME/.config
 link_file xfce4 $HOME/.config/xfce4
