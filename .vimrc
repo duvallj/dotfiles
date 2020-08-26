@@ -89,6 +89,9 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
+" Don't have stupid 'proprietary attribute' stuff in syntastic
+" g:syntastic_html_tidy_ignore_errors = ['proprietary attribute']
+
 " set YouCompleteMe global python settings
 let g:ycm_python_interpreter_path = ''
 let g:ycm_python_sys_path = []
@@ -97,3 +100,11 @@ let g:ycm_extra_conf_vim_data = [
   \  'g:ycm_python_sys_path'
   \]
 let g:ycm_global_ycm_extra_conf = '~/.ycm_global_extra_conf.py'
+let g:ycm_extra_conf_globlist = ['D:\Documents\Windows\*', 'D:\Documents\Tensorflow\*']
+
+" Make it so neovim is able to find python
+let g:python3_host_prog = 'C:\Python38\python.exe'
+
+" editorconfig-vim settinsg
+let g:EditorConfig_exclude_patterns = ['fugitive://.*']
+let g:EditorConfig_max_line_indicator = "line"

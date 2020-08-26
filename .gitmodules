@@ -28,3 +28,6 @@
 [submodule ".vim/pack/default/start/YouCompleteMe"]
 	path = .vim/pack/default/start/YouCompleteMe
 	url = https://github.com/ycm-core/YouCompleteMe
+[submodule ".vim/pack/default/start/editorconfig"]
+	path = .vim/pack/default/start/editorconfig
+	url = https://github.com/editorconfig/editorconfig-vim.git

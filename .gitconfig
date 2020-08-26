@@ -1,2 +1,4 @@
 [core]
-	editor = vim
+	editor = nvim
+	autocrlf = false
+	eol = lf
