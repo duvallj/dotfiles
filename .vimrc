@@ -78,6 +78,8 @@ endif
 
 " polygot isn't that great for latex
 let g:polyglot_disabled = ['latex']
+" Let vimtex know we are LaTeX only
+let g:tex_flavor = 'latex'
 
 " set synastic settings
 set statusline+=%#warningmsg#
@@ -88,6 +90,8 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
+" Use better latex checker than default
+let g:syntastic_tex_checkers = ['chktex']
 
 " Don't have stupid 'proprietary attribute' stuff in syntastic
 " g:syntastic_html_tidy_ignore_errors = ['proprietary attribute']

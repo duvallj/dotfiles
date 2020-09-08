@@ -31,3 +31,6 @@
 [submodule ".vim/pack/default/start/editorconfig"]
 	path = .vim/pack/default/start/editorconfig
 	url = https://github.com/editorconfig/editorconfig-vim.git
+[submodule ".vim/pack/default/start/vimtex"]
+	path = .vim/pack/default/start/vimtex
+	url = https://github.com/lervag/vimtex.git
