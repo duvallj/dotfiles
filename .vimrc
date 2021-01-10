@@ -31,7 +31,7 @@ augroup Racer
     autocmd FileType rust nmap <buffer> gd         <Plug>(rust-def)
     autocmd FileType rust nmap <buffer> gs         <Plug>(rust-def-split)
     autocmd FileType rust nmap <buffer> gx         <Plug>(rust-def-vertical)
-    autocmd FileType rust nmap <buffer> gt         <Plug>(rust-def-tab)
+"    autocmd FileType rust nmap <buffer> gt         <Plug>(rust-def-tab)
     autocmd FileType rust nmap <buffer> <leader>gd <Plug>(rust-doc)
     autocmd FileType rust nmap <buffer> <leader>gD <Plug>(rust-doc-tab)
 augroup END
@@ -64,7 +64,7 @@ tnoremap <Esc> <C-\><C-n>
 " allows interactivity with the system clipboard
 set clipboard=unnamedplus,unnamed
 " allows use of mouse
-set mouse=a
+"set mouse=a
 
 " makes it so colors show up correctly in tmux
 set background=dark
