@@ -1,5 +1,5 @@
 favorites=xfce4-terminal-emulator.desktop,xfce4-file-manager.desktop,xfce4-mail-reader.desktop,xfce4-web-browser.desktop
-recent=xfce-wm-settings.desktop,xfce-ui-settings.desktop,discord.desktop,firefox.desktop,xfce4-file-manager.desktop,xfce-display-settings.desktop,chromium.desktop,kitty.desktop,xfce4-settings-editor.desktop,texstudio.desktop
+recent=chromium.desktop,firefox.desktop,xfce-display-settings.desktop,xfce4-file-manager.desktop,lightdm-settings.desktop,discord.desktop,xfce4-web-browser.desktop,xfce-wm-settings.desktop,xfce-ui-settings.desktop,kitty.desktop
 button-icon=menulibre
 button-single-row=false
 show-button-title=true
