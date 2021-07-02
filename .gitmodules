@@ -34,3 +34,9 @@
 [submodule ".vim/pack/default/start/vimtex"]
 	path = .vim/pack/default/start/vimtex
 	url = https://github.com/lervag/vimtex.git
+[submodule ".vim/pack/default/start/coc.nvim"]
+	path = .vim/pack/default/start/coc.nvim
+	url = https://github.com/neoclide/coc.nvim.git
+[submodule ".vim/pack/default/start/lean.vim"]
+	path = .vim/pack/default/start/lean.vim
+	url = https://github.com/leanprover/lean.vim

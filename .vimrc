@@ -23,19 +23,8 @@ set smarttab
 autocmd Filetype make setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=0
 autocmd Filetype python setlocal tabstop=4 softtabstop=4 shiftwidth=4
 autocmd Filetype tex setlocal spell
-set makeprg=make
-
-" Set rust autocomplete keybinds
-augroup Racer
-    autocmd!
-    autocmd FileType rust nmap <buffer> gd         <Plug>(rust-def)
-    autocmd FileType rust nmap <buffer> gs         <Plug>(rust-def-split)
-    autocmd FileType rust nmap <buffer> gx         <Plug>(rust-def-vertical)
-"    autocmd FileType rust nmap <buffer> gt         <Plug>(rust-def-tab)
-    autocmd FileType rust nmap <buffer> <leader>gd <Plug>(rust-doc)
-    autocmd FileType rust nmap <buffer> <leader>gD <Plug>(rust-doc-tab)
-augroup END
-
+autocmd Filetype markdown setlocal spell
+set makeprg=ninja
 
 " natural backspace, linewrap settings
 set backspace=indent,eol,start
@@ -76,39 +65,70 @@ if !exists('g:colors_name') || g:colors_name != 'base16-solarflare'
   colorscheme base16-solarflare
 endif
 
+" Set the font to something nice
+" set guifont=Cascadia\ Code\ PL:h14
+
 " polygot isn't that great for latex
 let g:polyglot_disabled = ['latex']
 " Let vimtex know we are LaTeX only
 let g:tex_flavor = 'latex'
 
-" set synastic settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" coc.nvim settings start
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-" Use better latex checker than default
-let g:syntastic_tex_checkers = ['chktex']
+" Don't pass messages to |ins-completion-menu|
+set shortmess+=c
 
-" Don't have stupid 'proprietary attribute' stuff in syntastic
-" g:syntastic_html_tidy_ignore_errors = ['proprietary attribute']
+" Always show signcolumn
+set signcolumn=number
 
-" set YouCompleteMe global python settings
-let g:ycm_python_interpreter_path = ''
-let g:ycm_python_sys_path = []
-let g:ycm_extra_conf_vim_data = [
-  \  'g:ycm_python_interpreter_path',
-  \  'g:ycm_python_sys_path'
-  \]
-let g:ycm_global_ycm_extra_conf = '~/.ycm_global_extra_conf.py'
-let g:ycm_extra_conf_globlist = ['D:\Documents\Windows\*', 'D:\Documents\Tensorflow\*']
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd :vsplit<CR><Plug>(coc-definition)
+nmap <silent> gr <Plug>(coc-references)
+
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
+
+" Add `:Fold` command to fold current buffer.
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" Add `:OR` command for organize imports of the current buffer.
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+" coc.nvim settings end
 
 " Make it so neovim is able to find python
 let g:python3_host_prog = 'C:\Python38\python.exe'
 
-" editorconfig-vim settinsg
+" editorconfig-vim settings
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 let g:EditorConfig_max_line_indicator = "line"
