@@ -5,7 +5,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-ZSH_ROOT='/home/me/.zsh_config'
+ZSH_ROOT="${HOME}/.zsh_config"
 
 # Lines configured by zsh-newuser-install
 HISTFILE=$ZSH_ROOT/.zsh_history
@@ -28,7 +28,8 @@ compinit -d ${ZSH_ROOT}/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}
 #export TERM='tmux-256color'
 
 # Get Powerlevel10k
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+# source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+source ${HOME}/powerlevel10k/powerlevel10k.zsh-theme
 
 # Set path
 export PATH=/home/me/builds/Ndless/ndless-sdk/toolchain/install/bin:/home/me/builds/Ndless/ndless-sdk/bin:$PATH

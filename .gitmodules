@@ -40,3 +40,6 @@
 [submodule ".vim/pack/default/start/lean.vim"]
 	path = .vim/pack/default/start/lean.vim
 	url = https://github.com/leanprover/lean.vim
+[submodule "powerlevel10k"]
+	path = powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k.git

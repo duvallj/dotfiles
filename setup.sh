@@ -3,35 +3,49 @@
 REPO_DIR=$(dirname "$0")
 REPO_DIR=$(realpath $REPO_DIR)
 
-link_file () {
-  source_file="$REPO_DIR/$1"
-  dest_file="${2:-$HOME/$1}"
-  if [[ -e $dest_file ]]
+make_link () {
+  link_type="$1"
+  if [[ $link_type != "file" && $link_type != "directory" ]]
   then
-    echo "Not replacing $dest_file; back up yourself and re-run the script"
+    return
+  fi
+
+  source_file="$REPO_DIR/$2"
+  dest_file="${3:-$HOME/$2}"
+
+  # Check if link has already been created
+  if [[ -h $dest_file ]]
+  then
+    echo "\"$dest_file\" is already linked, not linking again."
   else
+    if [[ ($link_type == "file" && -f $dest_file) || ($link_type == "directory" && -d $dest_file) ]]
+    then
+      dest_file_backup="$dest_file.backup"
+      echo "Backing up \"$dest_file\" ..."
+      mv "$dest_file" "$dest_file.backup"
+    fi
+    mkdir -p $(dirname $dest_file)
     ln -sf $source_file $dest_file
   fi
 }
 
-link_file .dmrc
-link_file .gitconfig
-mkdir -p $HOME/.local/bin
-link_file .local/bin/humanlight.sh
-link_file .local/bin/runaswine
-mkdir -p $HOME/.local/etc/rc
-link_file .local/etc/rc/FixScrollPad.sh
-link_file .local/etc/rc/StartNetworking.sh
-link_file .p10k.zsh
-link_file .themes/Windurs10
-link_file .tmux.conf
-link_file .vim
-link_file .vimrc
-link_file .xbindkeysrc
-link_file .Xmodmap
-link_file .ycm_global_extra_conf.py
-link_file .zshrc
-mkdir -p $HOME/.config
-link_file xfce4 $HOME/.config/xfce4
-mkdir -p $HOME/.config/kitty
-link_file kitty.conf $HOME/.config/kitty/kitty.conf
+make_link file .gitconfig
+make_link file .local/bin/humanlight.sh
+make_link file .local/bin/runaswine
+make_link file .local/etc/rc/FixScrollPad.sh
+make_link file .local/etc/rc/StartNetworking.sh
+make_link file .zshrc
+mkdir -p "$HOME/.zsh_config"
+make_link file .p10k.zsh
+make_link directory powerlevel10k
+make_link directory .themes/Windurs10
+make_link file .tmux.conf
+make_link file .vimrc
+make_link file .vimrc "$HOME/.config/nvim/init.vim"
+make_link file coc-settings.json "$HOME/.config/nvim/coc-settings.json"
+make_link directory .vim
+make_link file .xbindkeysrc
+make_link file .Xmodmap
+make_link file .dmrc
+make_link directory xfce4 "$HOME/.config/xfce4"
+make_link file kitty.conf "$HOME/.config/kitty/kitty.conf"

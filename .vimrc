@@ -110,7 +110,11 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
 nmap <silent> gd :vsplit<CR><Plug>(coc-definition)
+nmap <silent> gy :vsplit<CR><Plug>(coc-type-definition)
 nmap <silent> gr <Plug>(coc-references)
+
+" gh == get hint
+nmap <silent> gh :call CocAction('doHover')<CR>
 
 " Formatting selected code.
 xmap <leader>f  <Plug>(coc-format-selected)
