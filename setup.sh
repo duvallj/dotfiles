@@ -37,6 +37,7 @@ make_link file .local/etc/rc/StartNetworking.sh
 make_link file .zshrc
 mkdir -p "$HOME/.zsh_config"
 make_link file .p10k.zsh
+make_link file .extra-msys2.zsh
 make_link directory powerlevel10k
 make_link directory .themes/Windurs10
 make_link file .tmux.conf

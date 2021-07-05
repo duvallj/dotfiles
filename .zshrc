@@ -32,7 +32,6 @@ compinit -d ${ZSH_ROOT}/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}
 source ${HOME}/powerlevel10k/powerlevel10k.zsh-theme
 
 # Set path
-export PATH=/home/me/builds/Ndless/ndless-sdk/toolchain/install/bin:/home/me/builds/Ndless/ndless-sdk/bin:$PATH
 export PATH=/home/me/.local/bin:$PATH
 
 
@@ -42,6 +41,9 @@ alias la="ls -la"
 alias net="/usr/bin/bash /home/me/.local/etc/rc/StartNetworking.sh"
 alias o="xdg-open"
 alias icat="kitty +kitten icat"
+
+# Source system-specific environment variables
+source ${HOME}/.extra-msys2.zsh
 
 #End on lines added by me, the user
  
