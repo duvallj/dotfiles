@@ -68,11 +68,6 @@ endif
 " Set the font to something nice
 " set guifont=Cascadia\ Code\ PL:h14
 
-" polygot isn't that great for latex
-let g:polyglot_disabled = ['latex']
-" Let vimtex know we are LaTeX only
-let g:tex_flavor = 'latex'
-
 " coc.nvim settings start
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
