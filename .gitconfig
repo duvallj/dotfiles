@@ -1,8 +1,8 @@
 [core]
 	editor = nvim
-	autocrlf = true
+	autocrlf = false
 	eol = lf
-	safecrlf = false
+	safecrlf = true
 [pull]
 	rebase = true
 [filter "lfs"]
@@ -15,16 +15,6 @@
 [user]
 	name = Jack Duvall
 	email = 10897431+duvallj@users.noreply.github.com
-[diff]
-	guitool = kdiff3
-[difftool "kdiff3"]
-	path = D:/Program Files/KDiff3/bin/kdiff3.exe
-	cmd = \"D:/Program Files/KDiff3/bin/kdiff3.exe\" \"$LOCAL\" \"$REMOTE\"
-[merge]
-	guitool = kdiff3
-[mergetool "kdiff3"]
-	path = D:/Program Files/KDiff3/bin/kdiff3.exe
-	cmd = \"D:/Program Files/KDiff3/bin/kdiff3.exe\" \"$BASE\" \"$LOCAL\" \"$REMOTE\" -o \"$MERGED\"
 [fetch]
 	prune = false
 [rebase]

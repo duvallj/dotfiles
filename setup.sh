@@ -42,7 +42,7 @@ make_link directory powerlevel10k
 make_link directory .themes/Windurs10
 make_link file .tmux.conf
 make_link file .vimrc
-make_link file .vimrc "$HOME/.config/nvim/init.vim"
+make_link file init.vim "$HOME/.config/nvim/init.vim"
 make_link file coc-settings.json "$HOME/.config/nvim/coc-settings.json"
 make_link directory .vim
 make_link file .xbindkeysrc
