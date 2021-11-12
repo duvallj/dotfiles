@@ -135,3 +135,17 @@ let g:python3_host_prog = 'C:\Python38\python.exe'
 " editorconfig-vim settings
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 let g:EditorConfig_max_line_indicator = "line"
+
+" vimtex settings
+let g:vimtex_compiler_method = 'latexmk'
+let g:vimtex_view_general_viewer = 'C:\Users\Me\AppData\Local\SumatraPDF\SumatraPDF.exe'
+let g:vimtex_view_general_options 
+      \ = '-reuse-instance -forward-search @tex @line @pdf'
+let g:vimtex_view_general_options_latexmk = '-reuse-instance'
+
+" tex keybindings (up arrow goes into wrap)
+autocmd Filetype tex noremap  <silent> <Up>   gk
+autocmd Filetype tex noremap  <silent> <Down> gj
+autocmd Filetype tex inoremap <silent> <Up>   <C-o>gk
+autocmd Filetype tex inoremap <silent> <Down> <C-o>gj
+autocmd Filetype tex call vimtex#init()

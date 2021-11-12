@@ -10,9 +10,6 @@
 [submodule ".vim/pack/default/start/surround"]
 	path = .vim/pack/default/start/surround
 	url = https://github.com/tpope/vim-surround
-[submodule ".vim/pack/default/start/synastic"]
-	path = .vim/pack/default/start/synastic
-	url = https://github.com/vim-syntastic/syntastic
 [submodule ".vim/pack/default/start/repeat"]
 	path = .vim/pack/default/start/repeat
 	url = https://github.com/tpope/vim-repeat
@@ -22,18 +19,9 @@
 [submodule ".vim/pack/default/start/rust.vim"]
 	path = .vim/pack/default/start/rust.vim
 	url = https://github.com/rust-lang/rust.vim
-[submodule ".vim/pack/default/start/vim-racer"]
-	path = .vim/pack/default/start/vim-racer
-	url = https://github.com/racer-rust/vim-racer
-[submodule ".vim/pack/default/start/YouCompleteMe"]
-	path = .vim/pack/default/start/YouCompleteMe
-	url = https://github.com/ycm-core/YouCompleteMe
 [submodule ".vim/pack/default/start/editorconfig"]
 	path = .vim/pack/default/start/editorconfig
 	url = https://github.com/editorconfig/editorconfig-vim.git
-[submodule ".vim/pack/default/start/vimtex"]
-	path = .vim/pack/default/start/vimtex
-	url = https://github.com/lervag/vimtex.git
 [submodule ".vim/pack/default/start/coc.nvim"]
 	path = .vim/pack/default/start/coc.nvim
 	url = https://github.com/neoclide/coc.nvim.git
@@ -43,3 +31,6 @@
 [submodule "powerlevel10k"]
 	path = powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git
+[submodule ".vim/pack/default/start/vimtex"]
+	path = .vim/pack/default/start/vimtex
+	url = https://github.com/lervag/vimtex.git

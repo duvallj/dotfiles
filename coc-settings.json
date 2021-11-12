@@ -1,5 +1,11 @@
 {
     "languageserver": {
+        "elmLS": {
+            "command": "elm-language-server.cmd",
+            "args": ["--stdio"],
+            "filetypes": ["elm"],
+            "rootPatterns": ["elm.json"]
+        },
         "haskell": {
             "command": "haskell-language-server-wrapper",
             "args": ["--lsp"],
