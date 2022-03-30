@@ -1,6 +1,10 @@
 [xfdesktop-version-4.10.3+-rcfile_format]
 4.10.3+=true
 
+[BA5E06945E064A19]
+row=3
+col=0
+
 [84dff862-f083-4b7d-abe8-7e4f8d702640]
 row=0
 col=0
@@ -11,10 +15,6 @@ col=0
 
 [1AD8CD00D8CCDAE1]
 row=2
-col=0
-
-[BA5E06945E064A19]
-row=3
 col=0
 
 [/]

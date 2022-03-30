@@ -1,5 +1,5 @@
 favorites=xfce4-web-browser.desktop,xfce4-mail-reader.desktop,xfce4-file-manager.desktop,xfce4-terminal-emulator.desktop
-recent=discord.desktop,google-chrome.desktop,org.ksnip.ksnip.desktop,xfce-ui-settings.desktop,xfce-settings-manager.desktop,pavucontrol.desktop,firefox.desktop,blueman-manager.desktop,xfce-wm-settings.desktop,xfce4-settings-editor.desktop
+recent=discord.desktop,blueman-manager.desktop,xfce-wm-settings.desktop,org.ksnip.ksnip.desktop,xfce-settings-manager.desktop,liketaskmanager.desktop,pavucontrol.desktop,google-chrome.desktop,xfce-ui-settings.desktop,firefox.desktop
 button-icon=org.xfce.panel.whiskermenu
 button-single-row=false
 show-button-title=false

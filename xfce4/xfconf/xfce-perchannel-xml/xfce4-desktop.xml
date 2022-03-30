@@ -29,7 +29,7 @@
         <property name="workspace0" type="empty">
           <property name="color-style" type="int" value="0"/>
           <property name="image-style" type="int" value="5"/>
-          <property name="last-image" type="string" value="/c/Users/Me/Pictures/posething6-desktopbg.png"/>
+          <property name="last-image" type="string" value="/c/Users/Me/Pictures/polywolf-comm1-desktopbg.png"/>
         </property>
         <property name="workspace1" type="empty">
           <property name="color-style" type="int" value="0"/>
@@ -55,5 +55,6 @@
   </property>
   <property name="desktop-icons" type="empty">
     <property name="icon-size" type="uint" value="60"/>
+    <property name="primary" type="bool" value="true"/>
   </property>
 </channel>
