@@ -13,11 +13,12 @@
       <property name="plugin-ids" type="array">
         <value type="int" value="1"/>
         <value type="int" value="3"/>
+        <value type="int" value="18"/>
         <value type="int" value="8"/>
         <value type="int" value="15"/>
         <value type="int" value="16"/>
+        <value type="int" value="20"/>
         <value type="int" value="17"/>
-        <value type="int" value="18"/>
         <value type="int" value="2"/>
         <value type="int" value="7"/>
         <value type="int" value="4"/>
@@ -124,8 +125,13 @@
     </property>
     <property name="plugin-19" type="string" value="pulseaudio">
       <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
-      <property name="mpris-players" type="string" value="chromium.instance1071;firefox.instance1031;firefox.instance1071;firefox.instance1466;firefox.instance5351"/>
+      <property name="mpris-players" type="string" value="chromium.instance1071;firefox.instance1031;firefox.instance1071;firefox.instance1084;firefox.instance1107;firefox.instance1466;firefox.instance5351;firefox.instance6390;firefox.instance894"/>
     </property>
     <property name="plugin-9" type="string" value="power-manager-plugin"/>
+    <property name="plugin-20" type="string" value="launcher">
+      <property name="items" type="array">
+        <value type="string" value="16486779781.desktop"/>
+      </property>
+    </property>
   </property>
 </channel>

@@ -1,27 +1,11 @@
 [xfdesktop-version-4.10.3+-rcfile_format]
 4.10.3+=true
 
-[84dff862-f083-4b7d-abe8-7e4f8d702640]
+[/]
 row=0
 col=0
 
-[88CB-3E0E]
-row=1
-col=0
-
-[1AD8CD00D8CCDAE1]
-row=3
-col=0
-
-[BA5E06945E064A19]
-row=4
-col=0
-
-[/]
-row=2
-col=0
-
 [/home/polywolf]
-row=5
+row=1
 col=0
 

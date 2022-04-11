@@ -20,7 +20,7 @@
         <property name="Y" type="double" value="1.000000"/>
       </property>
     </property>
-    <property name="HDMI-1" type="string" value="Goldstar Company Ltd 27&quot;">
+    <property name="HDMI-1" type="string" value="LG Electronics 27&quot;">
       <property name="Active" type="bool" value="true"/>
       <property name="EDID" type="string" value="2efc2309e809518347c6ec4e97ee6289527e718c"/>
       <property name="Resolution" type="string" value="1920x1080"/>
@@ -56,7 +56,7 @@
         <property name="Y" type="int" value="0"/>
       </property>
     </property>
-    <property name="HDMI-1" type="string" value="Goldstar Company Ltd 27&quot;">
+    <property name="HDMI-1" type="string" value="LG Electronics 27&quot;">
       <property name="Active" type="bool" value="true"/>
       <property name="EDID" type="string" value="2efc2309e809518347c6ec4e97ee6289527e718c"/>
       <property name="Resolution" type="string" value="1920x1080"/>

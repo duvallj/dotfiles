@@ -14,14 +14,14 @@ interface_list=$(ip link show | \
 # black magic from https://stackoverflow.com/a/8063398
 if [[ $interface_list =~ (^|[[:space:]])"$WIRED_INTERFACE"($|[[:space:]]) ]]; then
     echo "Stopping wireless..."
-    /usr/bin/sudo /usr/bin/systemctl stop dhcpcd@${WIRELESS_INTERFACE}
+    # /usr/bin/sudo /usr/bin/systemctl stop dhcpcd@${WIRELESS_INTERFACE}
     /usr/bin/sudo /usr/bin/systemctl stop wpa_supplicant@${WIRELESS_INTERFACE}
-    echo "Starting wired..."
-    /usr/bin/sudo /usr/bin/systemctl restart dhcpcd@${WIRED_INTERFACE}
+    # echo "Starting wired..."
+    # /usr/bin/sudo /usr/bin/systemctl restart dhcpcd@${WIRED_INTERFACE}
 else
-    echo "Stopping wired..."
-    /usr/bin/sudo /usr/bin/systemctl stop dhcpcd@${WIRED_INTERFACE}
+    # echo "Stopping wired..."
+    # /usr/bin/sudo /usr/bin/systemctl stop dhcpcd@${WIRED_INTERFACE}
     echo "Starting wireless..."
     /usr/bin/sudo /usr/bin/systemctl restart wpa_supplicant@${WIRELESS_INTERFACE}
-    /usr/bin/sudo /usr/bin/systemctl restart dhcpcd@${WIRELESS_INTERFACE}
+    # /usr/bin/sudo /usr/bin/systemctl restart dhcpcd@${WIRELESS_INTERFACE}
 fi

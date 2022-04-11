@@ -24,11 +24,6 @@ compinit -d "${ZSH_ROOT}/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
 # End of lines added by compinstall
 # Lines configured by me, the user
 
-source "${HOME}/.extra-archlinux.zsh"
-
-# Get 256 color
-#export TERM='tmux-256color'
-
 # Get Powerlevel10k
 # source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 source "${HOME}/powerlevel10k/powerlevel10k.zsh-theme"
@@ -40,8 +35,9 @@ export PATH=/home/me/.local/bin:$PATH
 alias ls="ls --color=auto"
 alias la="ls -la"
 
+source "${HOME}/.extra-archlinux.zsh"
+
 #End on lines added by me, the user
- 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
