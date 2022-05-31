@@ -50,4 +50,4 @@ make_link file .xbindkeysrc
 make_link file .Xmodmap
 make_link file .dmrc
 make_link directory xfce4 "$HOME/.config/xfce4"
-make_link file kitty.conf "$HOME/.config/kitty/kitty.conf"
+make_link directory kitty "$HOME/.config/kitty"

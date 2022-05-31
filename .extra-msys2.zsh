@@ -1,19 +1,19 @@
 # Utilities
-export PATH=$PATH:/usr/local/x64/mingw/bin:/d/bin
+export PATH=$PATH:/usr/local/x64/mingw/bin:/d/bin:/d/Neovim/bin
 # SML implementations
-export PATH=$PATH:$HOME/sml/bin:$HOME/sml/mpl/bin:$HOME/sml/smlnj/bin
+export PATH=$PATH:$HOME/sml/bin:$HOME/sml/smlnj/bin
 # Ndless
 export PATH=$PATH:$HOME/builds/Ndless/ndless-sdk/toolchain/install/bin:$HOME/builds/Ndless/ndless-sdk/bin
 # NGSpice
 export PATH=$PATH:/d/linux/builds/ngspice-32-build/bin
-# MSMPI
-export PATH=$PATH:/c/Program\ Files/Microsoft\ MPI/Bin
 # Rust
 export PATH=$PATH:/c/Users/Me/.cargo/bin
 # GPG, Virtualbox
 export PATH=/d/Program\ Files/GnuPG/bin:/c/Program\ Files/Oracle/VirtualBox:$PATH
 # NodeJS
 export PATH=$PATH:/d/Program\ Files/nodejs
+# LaTeX
+export PATH=/d/texlive/2020/bin/win32:$PATH
 
 # Ansible
 ANSIBLE=/opt/ansible
@@ -23,8 +23,8 @@ export ANSIBLE_LIBRARY=$ANSIBLE/library
 export ANSIBLE_VAULT_PASSWORD_FILE=~/vault.py
 
 # Custom compilers
-export CC=/mingw64/bin/x86_64-w64-mingw32-gcc
-export CXX=/mingw64/bin/x86_64-w64-mingw32-g++
+export CC=/ucrt64/bin/x86_64-w64-mingw32-gcc
+export CXX=/ucrt64/bin/x86_64-w64-mingw32-g++
 #export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig
 
 # VcXsrv

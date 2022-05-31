@@ -19,3 +19,12 @@
 	prune = false
 [rebase]
 	autoStash = true
+	autoSquash = true
+	forkPoint = false
+[merge]
+	ff = true
+	conflictStyle = diff3
+[safe]
+	directory = D:\\Documents\\Windows\\openafs
+	directory = D:/Documents/Windows/openafs
+	directory = D:/Documents/GitHub/blog

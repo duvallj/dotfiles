@@ -34,3 +34,18 @@
 [submodule ".vim/pack/default/start/vimtex"]
 	path = .vim/pack/default/start/vimtex
 	url = https://github.com/lervag/vimtex.git
+[submodule ".vim/pack/default/start/lean.nvim"]
+	path = .vim/pack/default/start/lean.nvim
+	url = https://github.com/Julian/lean.nvim
+[submodule ".vim/pack/default/start/nvim-cmp"]
+	path = .vim/pack/default/start/nvim-cmp
+	url = https://github.com/hrsh7th/nvim-cmp
+[submodule ".vim/pack/default/start/plenary.nvim"]
+	path = .vim/pack/default/start/plenary.nvim
+	url = https://github.com/nvim-lua/plenary.nvim
+[submodule ".vim/pack/default/start/nvim-lspconfig"]
+	path = .vim/pack/default/start/nvim-lspconfig
+	url = https://github.com/neovim/nvim-lspconfig
+[submodule ".vim/pack/default/start/nvim-compe"]
+	path = .vim/pack/default/start/nvim-compe
+	url = https://github.com/hrsh7th/nvim-compe

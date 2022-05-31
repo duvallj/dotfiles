@@ -34,9 +34,15 @@
             "filetypes": ["python"]
         },
         "rust": {
-            "command": "rust-analyzer-x86_64-pc-windows-msvc",
+            "command": "rust-analyzer",
             "filetypes": ["rust"],
             "rootPatterns": ["Cargo.toml"]
+        },
+        "typescript": {
+            "command": "typescript-language-server.cmd",
+            "args": ["--stdio"],
+            "rootPatterns": ["package.json"],
+            "filetypes": ["javascript", "typescript"]
         }
     }
 }
