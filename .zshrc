@@ -28,14 +28,11 @@ compinit -d "${ZSH_ROOT}/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
 # source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 source "${HOME}/powerlevel10k/powerlevel10k.zsh-theme"
 
-# Set path
-export PATH=/home/me/.local/bin:$PATH
-
 # Configure aliases 
 alias ls="ls --color=auto"
 alias la="ls -la"
 
-source "${HOME}/.extra-archlinux.zsh"
+source "${HOME}/.extra-msys2.zsh"
 
 #End on lines added by me, the user
 

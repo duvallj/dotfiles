@@ -1,3 +1,5 @@
+# Homedir distro
+export PATH=$PATH:$HOME/.local/bin
 # Utilities
 export PATH=$PATH:/usr/local/x64/mingw/bin:/d/bin:/d/Neovim/bin
 # SML implementations
@@ -23,8 +25,8 @@ export ANSIBLE_LIBRARY=$ANSIBLE/library
 export ANSIBLE_VAULT_PASSWORD_FILE=~/vault.py
 
 # Custom compilers
-export CC=/ucrt64/bin/x86_64-w64-mingw32-gcc
-export CXX=/ucrt64/bin/x86_64-w64-mingw32-g++
+export CC=/mingw64/bin/x86_64-w64-mingw32-gcc
+export CXX=/mingw64/bin/x86_64-w64-mingw32-g++
 #export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig
 
 # VcXsrv

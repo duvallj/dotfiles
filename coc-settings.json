@@ -1,4 +1,5 @@
 {
+    "rust-analyzer.updates.channel": "nightly",
     "languageserver": {
         "elmLS": {
             "command": "elm-language-server.cmd",
@@ -30,13 +31,8 @@
             }
         },
         "python": {
-            "command": "jedi-language-server",
+            "command": "pylsp",
             "filetypes": ["python"]
-        },
-        "rust": {
-            "command": "rust-analyzer",
-            "filetypes": ["rust"],
-            "rootPatterns": ["Cargo.toml"]
         },
         "typescript": {
             "command": "typescript-language-server.cmd",

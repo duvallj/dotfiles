@@ -26,6 +26,10 @@ autocmd Filetype tex setlocal spell
 autocmd Filetype markdown setlocal spell
 set makeprg=ninja
 
+" extra highlighting
+autocmd BufRead *.{c,h} set filetype=c.doxygen
+autocmd BufRead *.{cpp,hpp} set filetype=cpp.doxygen
+
 " natural backspace, linewrap settings
 set backspace=indent,eol,start
 set whichwrap=<,>,[,]
@@ -130,7 +134,7 @@ endif
 " coc.nvim settings end
 
 " Make it so neovim is able to find python
-let g:python3_host_prog = 'C:\Python38\python.exe'
+let g:python3_host_prog = 'C:\Python310\python.exe'
 
 " editorconfig-vim settings
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
@@ -139,9 +143,8 @@ let g:EditorConfig_max_line_indicator = "line"
 " vimtex settings
 let g:vimtex_compiler_method = 'latexmk'
 let g:vimtex_view_general_viewer = 'C:\Users\Me\AppData\Local\SumatraPDF\SumatraPDF.exe'
-let g:vimtex_view_general_options 
-      \ = '-reuse-instance -forward-search @tex @line @pdf'
-let g:vimtex_view_general_options_latexmk = '-reuse-instance'
+let g:vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
+" let g:vimtex_view_general_options_latexmk = '-reuse-instance'
 
 " tex keybindings (up arrow goes into wrap)
 autocmd Filetype tex noremap  <silent> <Up>   gk
@@ -149,3 +152,11 @@ autocmd Filetype tex noremap  <silent> <Down> gj
 autocmd Filetype tex inoremap <silent> <Up>   <C-o>gk
 autocmd Filetype tex inoremap <silent> <Down> <C-o>gj
 autocmd Filetype tex call vimtex#init()
+
+" automatically format on save
+autocmd BufWritePost *.{c,h}{,pp} Format
+autocmd BufWritePost *.rs Format
+
+let g:coc_global_extensions = [
+      \ "coc-rust-analyzer"
+      \ ]

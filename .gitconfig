@@ -3,6 +3,7 @@
 	autocrlf = false
 	eol = lf
 	safecrlf = true
+	fsmonitor = true
 [pull]
 	rebase = true
 [filter "lfs"]
@@ -28,3 +29,5 @@
 	directory = D:\\Documents\\Windows\\openafs
 	directory = D:/Documents/Windows/openafs
 	directory = D:/Documents/GitHub/blog
+[credential]
+	helper = store
