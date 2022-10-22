@@ -75,6 +75,7 @@
         <value type="string" value="blueman-tray"/>
       </property>
       <property name="known-items" type="array">
+        <value type="string" value="blueman"/>
         <value type="string" value="openrgb"/>
         <value type="string" value="ksnip"/>
         <value type="string" value="vlc"/>
@@ -125,7 +126,7 @@
     </property>
     <property name="plugin-19" type="string" value="pulseaudio">
       <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
-      <property name="mpris-players" type="string" value="chromium.instance1071;firefox.instance1031;firefox.instance1071;firefox.instance1084;firefox.instance1107;firefox.instance1466;firefox.instance5351;firefox.instance6390;firefox.instance894"/>
+      <property name="mpris-players" type="string" value="chromium.instance1003;chromium.instance1010;chromium.instance1043;chromium.instance1054;chromium.instance1055;chromium.instance1071;chromium.instance1442;chromium.instance1595;chromium.instance1599;chromium.instance1710;chromium.instance1931;chromium.instance2472;chromium.instance2938;chromium.instance4429;chromium.instance8593;chromium.instance931;chromium.instance943;chromium.instance954;chromium.instance970;firefox.instance10155;firefox.instance1031;firefox.instance1071;firefox.instance1084;firefox.instance1094;firefox.instance1107;firefox.instance1466;firefox.instance15410;firefox.instance42306;firefox.instance5351;firefox.instance5570;firefox.instance6390;firefox.instance894;firefox.instance926;firefox.instance956;firefox.instance959;firefox.instance966"/>
     </property>
     <property name="plugin-9" type="string" value="power-manager-plugin"/>
     <property name="plugin-20" type="string" value="launcher">

@@ -1,5 +1,5 @@
-favorites=xfce4-web-browser.desktop,xfce4-mail-reader.desktop,xfce4-file-manager.desktop,xfce4-terminal-emulator.desktop
-recent=xfce-settings-manager.desktop,xfce-display-settings.desktop,discord.desktop,liketaskmanager.desktop,blueman-manager.desktop,xfce-wm-settings.desktop,org.ksnip.ksnip.desktop,pavucontrol.desktop,google-chrome.desktop,xfce-ui-settings.desktop
+favorites=xfce4-web-browser.desktop,xfce4-mail-reader.desktop,xfce4-file-manager.desktop,xfce4-terminal-emulator.desktop,discord.desktop
+recent=discord.desktop,xfce-display-settings.desktop,xfce-settings-manager.desktop,liketaskmanager.desktop,chrome-pjibgclleladliembfgfagdaldikeohf-Default.desktop,org.ksnip.ksnip.desktop,OpenRGB.desktop,xfce4-terminal-emulator.desktop,kitty.desktop,thunar-settings.desktop
 button-icon=org.xfce.panel.whiskermenu
 button-single-row=false
 show-button-title=false

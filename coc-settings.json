@@ -39,6 +39,35 @@
             "args": ["--stdio"],
             "rootPatterns": ["package.json"],
             "filetypes": ["javascript", "typescript"]
+        },
+        "ccls": {
+            "command": "ccls",
+            "filetypes": [
+                "c",
+                "c.doxygen",
+                "cpp",
+                "cpp.doxygen",
+                "objc",
+                "objcpp"
+            ],
+            "rootPatterns": [
+                ".ccls",
+                "compile_commands.json",
+                ".vim/",
+                ".git/",
+                ".hg/"
+            ],
+            "initializationOptions": {
+                "cache": {
+                    "directory": "/tmp/ccls"
+                },
+                "clang": {
+                    "resourceDir": "/usr/lib/clang/14.0.6"
+                },
+                "highlight": {
+                    "lsRanges": true
+                }
+            }
         }
     }
 }

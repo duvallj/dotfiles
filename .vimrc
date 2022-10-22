@@ -57,7 +57,7 @@ tnoremap <Esc> <C-\><C-n>
 " allows interactivity with the system clipboard
 set clipboard=unnamedplus,unnamed
 " allows use of mouse
-"set mouse=a
+set mouse=a
 
 " makes it so colors show up correctly in tmux
 set background=dark
@@ -73,6 +73,12 @@ endif
 " set guifont=Cascadia\ Code\ PL:h14
 
 " coc.nvim settings start
+" all plugins to install
+let g:coc_global_plugins = [
+      \ "coc-json",
+      \ "coc-rust-analyzer"
+      \ ]
+" statusline
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Don't pass messages to |ins-completion-menu|

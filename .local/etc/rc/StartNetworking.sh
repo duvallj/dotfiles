@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/zsh
 
-WIRED_INTERFACE="enp0s20f0u4"
+WIRED_INTERFACE="ethusb[0-9]+"
 WIRELESS_INTERFACE="wlo1"
 
 # You can read sed, right?
@@ -12,7 +12,7 @@ interface_list=$(ip link show | \
 
 # Then, we need to check if the interface is in the list, using
 # black magic from https://stackoverflow.com/a/8063398
-if [[ $interface_list =~ (^|[[:space:]])"$WIRED_INTERFACE"($|[[:space:]]) ]]; then
+if [[ $interface_list =~ (^|[[:space:]])$WIRED_INTERFACE($|[[:space:]]) ]]; then
     echo "Stopping wireless..."
     # /usr/bin/sudo /usr/bin/systemctl stop dhcpcd@${WIRELESS_INTERFACE}
     /usr/bin/sudo /usr/bin/systemctl stop wpa_supplicant@${WIRELESS_INTERFACE}

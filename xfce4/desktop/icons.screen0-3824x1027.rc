@@ -1,8 +1,24 @@
 [xfdesktop-version-4.10.3+-rcfile_format]
 4.10.3+=true
 
-[/]
+[/home/polywolf/Desktop/Discord.desktop]
+row=4
+col=0
+
+[/home/polywolf/Desktop/chrome-pjibgclleladliembfgfagdaldikeohf-Default.desktop]
+row=3
+col=0
+
+[2702-1974]
+row=5
+col=0
+
+[Trash]
 row=0
+col=0
+
+[/]
+row=2
 col=0
 
 [/home/polywolf]
