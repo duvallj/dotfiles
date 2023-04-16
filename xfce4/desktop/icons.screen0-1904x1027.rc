@@ -2,11 +2,15 @@
 4.10.3+=true
 
 [/home/polywolf/Desktop/Discord.desktop]
-row=2
+row=3
+col=0
+
+[/home/polywolf/Desktop/Krita.desktop]
+row=1
 col=0
 
 [/home/polywolf/Desktop/chrome-pjibgclleladliembfgfagdaldikeohf-Default.desktop]
-row=1
+row=2
 col=0
 
 [Trash]

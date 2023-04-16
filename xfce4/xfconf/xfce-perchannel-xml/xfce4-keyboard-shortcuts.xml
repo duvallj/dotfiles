@@ -29,6 +29,7 @@
       <property name="&lt;Super&gt;r" type="empty">
         <property name="startup-notify" type="empty"/>
       </property>
+      <property name="&lt;Alt&gt;&lt;Super&gt;s" type="empty"/>
     </property>
     <property name="custom" type="empty">
       <property name="&lt;Primary&gt;Escape" type="string" value="xfdesktop --menu"/>
@@ -45,16 +46,15 @@
       <property name="XF86Mail" type="string" value="exo-open --launch MailReader"/>
       <property name="Print" type="string" value="xfce4-screenshooter"/>
       <property name="XF86WWW" type="string" value="exo-open --launch WebBrowser"/>
-      <property name="&lt;Primary&gt;&lt;Alt&gt;t" type="string" value="exo-open --launch TerminalEmulator"/>
       <property name="&lt;Super&gt;p" type="string" value="xfce4-display-settings --minimal"/>
       <property name="override" type="bool" value="true"/>
       <property name="AudioPlay" type="string" value="playerctl play-pause"/>
       <property name="AudioNext" type="string" value="playerctl next"/>
       <property name="AudioPrev" type="string" value="playerctl previous"/>
-      <property name="&lt;Super&gt;F7" type="string" value="/home/me/.local/bin/humanlight.sh -S"/>
-      <property name="&lt;Super&gt;F8" type="string" value="/home/me/.local/bin/humanlight.sh -A"/>
       <property name="&lt;Super&gt;s" type="string" value="xfce4-popup-whiskermenu"/>
-      <property name="&lt;Shift&gt;&lt;Alt&gt;Return" type="string" value="kitty"/>
+      <property name="&lt;Primary&gt;&lt;Super&gt;t" type="string" value="exo-open --launch TerminalEmulator"/>
+      <property name="&lt;Primary&gt;&lt;Super&gt;Return" type="string" value="kitty"/>
+      <property name="&lt;Super&gt;period" type="string" value="emoji-picker"/>
     </property>
   </property>
   <property name="xfwm4" type="empty">
@@ -113,8 +113,8 @@
       <property name="&lt;Primary&gt;F12" type="empty"/>
       <property name="&lt;Super&gt;KP_Left" type="empty"/>
       <property name="&lt;Super&gt;KP_Right" type="empty"/>
-      <property name="&lt;Super&gt;KP_Up" type="empty"/>
       <property name="&lt;Super&gt;KP_Down" type="empty"/>
+      <property name="&lt;Super&gt;KP_Up" type="empty"/>
       <property name="&lt;Super&gt;KP_Page_Up" type="empty"/>
       <property name="&lt;Super&gt;KP_Home" type="empty"/>
       <property name="&lt;Super&gt;KP_End" type="empty"/>

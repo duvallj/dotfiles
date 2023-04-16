@@ -32,7 +32,7 @@ source "${HOME}/powerlevel10k/powerlevel10k.zsh-theme"
 alias ls="ls --color=auto"
 alias la="ls -la"
 
-source "${HOME}/.extra-msys2.zsh"
+source "${HOME}/.extra-archlinux.zsh"
 
 #End on lines added by me, the user
 

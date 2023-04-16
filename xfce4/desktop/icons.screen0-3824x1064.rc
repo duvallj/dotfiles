@@ -1,67 +1,31 @@
 [xfdesktop-version-4.10.3+-rcfile_format]
 4.10.3+=true
 
-[/home/me/Desktop/Thunderbird.desktop]
+[/home/polywolf/Desktop/Discord.desktop]
+row=3
+col=0
+
+[/home/polywolf/Desktop/Krita.desktop]
 row=1
-col=1
-
-[/home/me/Desktop/Oracle VM VirtualBox.desktop]
-row=5
-col=1
-
-[/home/me/Desktop/ksnip.desktop]
-row=5
 col=0
 
-[/home/me/Desktop/chrome-ejhkdoiecgkmdpomoahkdihbcldkgjci-Default.desktop]
-row=7
-col=1
-
-[/home/me/Desktop/Google Chrome.desktop]
-row=6
-col=1
-
-[/home/me/Desktop/Firefox.desktop]
-row=0
-col=1
-
-[/home/me/Desktop/Slack.desktop]
+[/home/polywolf/Desktop/chrome-pjibgclleladliembfgfagdaldikeohf-Default.desktop]
 row=2
-col=1
-
-[/home/me/Desktop/kitty.desktop]
-row=0
 col=0
 
-[/home/me/Desktop/Chromium.desktop]
-row=7
+[2017-08-01-12-22-51-00]
+row=5
 col=0
-
-[/home/me/Desktop/TeXstudio.desktop]
-row=6
-col=0
-
-[/home/me/Desktop/LibreOffice Calc.desktop]
-row=4
-col=0
-
-[/home/me/Desktop/Discord.desktop]
-row=3
-col=0
-
-[/home/me/Desktop/VLC media player.desktop]
-row=3
-col=1
 
 [Trash]
-row=4
+row=3
 col=1
 
 [/]
-row=2
+row=4
 col=0
 
-[/home/me]
-row=1
+[/home/polywolf]
+row=0
 col=0
 

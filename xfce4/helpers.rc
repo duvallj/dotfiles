@@ -1,4 +1,3 @@
-MailReader=sylpheed
 TerminalEmulator=custom-TerminalEmulator
-
 WebBrowser=chromium
+

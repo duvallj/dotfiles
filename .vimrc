@@ -19,11 +19,11 @@ set expandtab
 set shiftwidth=2
 set smarttab
 
-" language-specific tab settings
+" language-specific settings
 autocmd Filetype make setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=0
 autocmd Filetype python setlocal tabstop=4 softtabstop=4 shiftwidth=4
 autocmd Filetype tex setlocal spell
-autocmd Filetype markdown setlocal spell
+autocmd Filetype markdown setlocal spell textwidth=79
 set makeprg=ninja
 
 " extra highlighting
@@ -55,7 +55,7 @@ set hidden
 " allows using <Esc> when in terminal windows
 tnoremap <Esc> <C-\><C-n>
 " allows interactivity with the system clipboard
-set clipboard=unnamedplus,unnamed
+" set clipboard=unnamedplus,unnamed
 " allows use of mouse
 set mouse=a
 
@@ -76,7 +76,8 @@ endif
 " all plugins to install
 let g:coc_global_plugins = [
       \ "coc-json",
-      \ "coc-rust-analyzer"
+      \ "coc-rust-analyzer",
+      \ "coc-clangd"
       \ ]
 " statusline
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
@@ -91,15 +92,26 @@ set signcolumn=number
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
-function! s:check_back_space() abort
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+" Use <c-space> to trigger completion
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -139,9 +151,6 @@ if has('nvim-0.4.0') || has('patch-8.2.0750')
 endif
 " coc.nvim settings end
 
-" Make it so neovim is able to find python
-let g:python3_host_prog = 'C:\Python310\python.exe'
-
 " editorconfig-vim settings
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 let g:EditorConfig_max_line_indicator = "line"
@@ -163,6 +172,5 @@ autocmd Filetype tex call vimtex#init()
 autocmd BufWritePost *.{c,h}{,pp} Format
 autocmd BufWritePost *.rs Format
 
-let g:coc_global_extensions = [
-      \ "coc-rust-analyzer"
-      \ ]
+" ocamlformat wanted this??
+set rtp^="$HOME/.opam/default/share/ocp-indent/vim"

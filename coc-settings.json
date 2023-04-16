@@ -1,73 +1,25 @@
 {
-    "rust-analyzer.updates.channel": "nightly",
+    "rust-analyzer.updates.channel": "stable",
+    "clangd.enabled": true,
+    "inlayHint.enable": false,
     "languageserver": {
-        "elmLS": {
-            "command": "elm-language-server.cmd",
-            "args": ["--stdio"],
-            "filetypes": ["elm"],
-            "rootPatterns": ["elm.json"]
-        },
-        "haskell": {
-            "command": "haskell-language-server-wrapper",
-            "args": ["--lsp"],
-            "rootPatterns": [
-                "*.cabal",
-                "stack.yaml",
-                "cabal.project",
-                "package.yaml",
-                "hie.yaml"
-            ],
-            "filetypes": ["haskell", "lhaskell"]
-        },
-        "lean": {
-            "command": "lean-language-server.cmd",
-            "args": ["--stdio"],
-            "filetypes": ["lean"],
-            "trace.server": "verbose",
-            "initializationOptions": {
-            },
-            "settings": {
-                "validate": true
-            }
-        },
         "python": {
             "command": "pylsp",
-            "filetypes": ["python"]
-        },
-        "typescript": {
-            "command": "typescript-language-server.cmd",
-            "args": ["--stdio"],
-            "rootPatterns": ["package.json"],
-            "filetypes": ["javascript", "typescript"]
-        },
-        "ccls": {
-            "command": "ccls",
             "filetypes": [
-                "c",
-                "c.doxygen",
-                "cpp",
-                "cpp.doxygen",
-                "objc",
-                "objcpp"
+                "python"
+            ]
+        },
+        "ocaml-lsp": {
+            "command": "opam",
+            "args": [
+                "exec",
+                "--",
+                "ocamllsp"
             ],
-            "rootPatterns": [
-                ".ccls",
-                "compile_commands.json",
-                ".vim/",
-                ".git/",
-                ".hg/"
-            ],
-            "initializationOptions": {
-                "cache": {
-                    "directory": "/tmp/ccls"
-                },
-                "clang": {
-                    "resourceDir": "/usr/lib/clang/14.0.6"
-                },
-                "highlight": {
-                    "lsRanges": true
-                }
-            }
+            "filetypes": [
+                "ocaml",
+                "reason"
+            ]
         }
     }
 }

@@ -17,7 +17,6 @@
         <value type="int" value="8"/>
         <value type="int" value="15"/>
         <value type="int" value="16"/>
-        <value type="int" value="20"/>
         <value type="int" value="17"/>
         <value type="int" value="2"/>
         <value type="int" value="7"/>
@@ -70,11 +69,15 @@
         <value type="string" value="discord"/>
       </property>
       <property name="known-legacy-items" type="array">
+        <value type="string" value="thunar"/>
         <value type="string" value="blueman"/>
         <value type="string" value="discord"/>
         <value type="string" value="blueman-tray"/>
       </property>
       <property name="known-items" type="array">
+        <value type="string" value="chrome_status_icon_1"/>
+        <value type="string" value="tao application"/>
+        <value type="string" value="obs"/>
         <value type="string" value="blueman"/>
         <value type="string" value="openrgb"/>
         <value type="string" value="ksnip"/>
@@ -88,6 +91,9 @@
     <property name="plugin-12" type="string" value="clock">
       <property name="mode" type="uint" value="2"/>
       <property name="digital-format" type="string" value="%a %d %b, %I:%M %p"/>
+      <property name="digital-time-format" type="string" value="%a %d %b, %I:%M %p"/>
+      <property name="digital-layout" type="uint" value="3"/>
+      <property name="digital-time-font" type="string" value="FiraCode Nerd Font Mono 12"/>
     </property>
     <property name="plugin-13" type="string" value="separator">
       <property name="style" type="uint" value="1"/>
@@ -126,13 +132,8 @@
     </property>
     <property name="plugin-19" type="string" value="pulseaudio">
       <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
-      <property name="mpris-players" type="string" value="chromium.instance1003;chromium.instance1010;chromium.instance1043;chromium.instance1054;chromium.instance1055;chromium.instance1071;chromium.instance1442;chromium.instance1595;chromium.instance1599;chromium.instance1710;chromium.instance1931;chromium.instance2472;chromium.instance2938;chromium.instance4429;chromium.instance8593;chromium.instance931;chromium.instance943;chromium.instance954;chromium.instance970;firefox.instance10155;firefox.instance1031;firefox.instance1071;firefox.instance1084;firefox.instance1094;firefox.instance1107;firefox.instance1466;firefox.instance15410;firefox.instance42306;firefox.instance5351;firefox.instance5570;firefox.instance6390;firefox.instance894;firefox.instance926;firefox.instance956;firefox.instance959;firefox.instance966"/>
+      <property name="mpris-players" type="string" value="chromium.instance100097;chromium.instance1003;chromium.instance1007;chromium.instance1010;chromium.instance1013;chromium.instance1015;chromium.instance1017;chromium.instance1023;chromium.instance1027;chromium.instance1031;chromium.instance1042;chromium.instance1043;chromium.instance1050;chromium.instance1051;chromium.instance1052;chromium.instance1054;chromium.instance1055;chromium.instance1058;chromium.instance1063;chromium.instance1071;chromium.instance1074;chromium.instance1080;chromium.instance1086;chromium.instance1087;chromium.instance1091;chromium.instance1103;chromium.instance1113;chromium.instance1121;chromium.instance11342;chromium.instance1146;chromium.instance1148;chromium.instance1155;chromium.instance1186;chromium.instance1219;chromium.instance1220;chromium.instance1233;chromium.instance1235;chromium.instance1237;chromium.instance12397;chromium.instance1255;chromium.instance13525;chromium.instance13526;chromium.instance1410;chromium.instance14147;chromium.instance1442;chromium.instance1443;chromium.instance1473;chromium.instance1489;chromium.instance1503;chromium.instance1518;chromium.instance1551;chromium.instance157671;chromium.instance1577;chromium.instance1595;chromium.instance1599;chromium.instance1710;chromium.instance1799;chromium.instance1804;chromium.instance1810;chromium.instance1836;chromium.instance1862;chromium.instance1931;chromium.instance19603;chromium.instance1993;chromium.instance20192;chromium.instance2028;chromium.instance2053;chromium.instance2066;chromium.instance2095;chromium.instance2146;chromium.instance2148;chromium.instance2200;chromium.instance2214;chromium.instance2226;chromium.instance2374;chromium.instance2472;chromium.instance2504;chromium.instance2643;chromium.instance2690;chromium.instance2725;chromium.instance2783;chromium.instance2884;chromium.instance2938;chromium.instance2943;chromium.instance3537;chromium.instance35794;chromium.instance3855;chromium.instance4429;chromium.instance5100;chromium.instance5543;chromium.instance5682;chromium.instance6071;chromium.instance6200;chromium.instance6407;chromium.instance7060;chromium.instance7872;chromium.instance8129;chromium.instance8430;chromium.instance8593;chromium.instance931;chromium.instance935;chromium.instance936;chromium.instance940;chromium.instance9408;chromium.instance9416;chromium.instance943;chromium.instance944;chromium.instance945;chromium.instance951;chromium.instance953;chromium.instance954;chromium.instance955;chromium.instance961;chromium.instance963;chromium.instance965;chromium.instance966;chromium.instance967;chromium.instance968;chromium.instance970;chromium.instance971;chromium.instance972;chromium.instance978;chromium.instance986;chromium.instance990;firefox.instance1001;firefox.instance10155;firefox.instance1031;firefox.instance1071;firefox.instance1084;firefox.instance1094;firefox.instance1107;firefox.instance1466;firefox.instance15410;firefox.instance42306;firefox.instance4449;firefox.instance5351;firefox.instance5570;firefox.instance6390;firefox.instance894;firefox.instance926;firefox.instance956;firefox.instance959;firefox.instance960;firefox.instance966"/>
     </property>
     <property name="plugin-9" type="string" value="power-manager-plugin"/>
-    <property name="plugin-20" type="string" value="launcher">
-      <property name="items" type="array">
-        <value type="string" value="16486779781.desktop"/>
-      </property>
-    </property>
   </property>
 </channel>

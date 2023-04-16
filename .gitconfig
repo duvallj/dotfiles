@@ -31,3 +31,5 @@
 	directory = D:/Documents/GitHub/blog
 [credential]
 	helper = store
+[init]
+	defaultBranch = main
