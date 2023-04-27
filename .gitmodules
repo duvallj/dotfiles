@@ -1,51 +1,21 @@
-[submodule ".themes/Windurs10"]
-	path = .themes/Windurs10
-	url = https://github.com/duvallj/Windurs10.git
-[submodule ".vim/pack/default/start/polygot"]
-	path = .vim/pack/default/start/polygot
-	url = https://github.com/sheerun/vim-polyglot
-[submodule ".vim/pack/default/start/fugitive"]
-	path = .vim/pack/default/start/fugitive
-	url = https://github.com/tpope/vim-fugitive
-[submodule ".vim/pack/default/start/surround"]
-	path = .vim/pack/default/start/surround
-	url = https://github.com/tpope/vim-surround
-[submodule ".vim/pack/default/start/repeat"]
-	path = .vim/pack/default/start/repeat
-	url = https://github.com/tpope/vim-repeat
 [submodule "base16-vim"]
 	path = base16-vim
 	url = https://github.com/chriskempson/base16-vim.git
-[submodule ".vim/pack/default/start/rust.vim"]
-	path = .vim/pack/default/start/rust.vim
-	url = https://github.com/rust-lang/rust.vim
-[submodule ".vim/pack/default/start/editorconfig"]
-	path = .vim/pack/default/start/editorconfig
-	url = https://github.com/editorconfig/editorconfig-vim.git
-[submodule ".vim/pack/default/start/coc.nvim"]
-	path = .vim/pack/default/start/coc.nvim
-	url = https://github.com/neoclide/coc.nvim.git
-[submodule ".vim/pack/default/start/lean.vim"]
-	path = .vim/pack/default/start/lean.vim
-	url = https://github.com/leanprover/lean.vim
 [submodule "powerlevel10k"]
 	path = powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git
+[submodule ".themes/Windurs10"]
+	path = .themes/Windurs10
+	url = https://github.com/duvallj/Windurs10.git
+[submodule ".vim/pack/default/start/coc.nvim"]
+	path = .vim/pack/default/start/coc.nvim
+	url = https://github.com/neoclide/coc.nvim.git
+[submodule ".vim/pack/default/start/polygot"]
+	path = .vim/pack/default/start/polygot
+	url = https://github.com/sheerun/vim-polyglot
+[submodule ".vim/pack/default/start/editorconfig"]
+	path = .vim/pack/default/start/editorconfig
+	url = https://github.com/editorconfig/editorconfig-vim.git
 [submodule ".vim/pack/default/start/vimtex"]
 	path = .vim/pack/default/start/vimtex
 	url = https://github.com/lervag/vimtex.git
-[submodule ".vim/pack/default/start/lean.nvim"]
-	path = .vim/pack/default/start/lean.nvim
-	url = https://github.com/Julian/lean.nvim
-[submodule ".vim/pack/default/start/nvim-cmp"]
-	path = .vim/pack/default/start/nvim-cmp
-	url = https://github.com/hrsh7th/nvim-cmp
-[submodule ".vim/pack/default/start/plenary.nvim"]
-	path = .vim/pack/default/start/plenary.nvim
-	url = https://github.com/nvim-lua/plenary.nvim
-[submodule ".vim/pack/default/start/nvim-lspconfig"]
-	path = .vim/pack/default/start/nvim-lspconfig
-	url = https://github.com/neovim/nvim-lspconfig
-[submodule ".vim/pack/default/start/nvim-compe"]
-	path = .vim/pack/default/start/nvim-compe
-	url = https://github.com/hrsh7th/nvim-compe
