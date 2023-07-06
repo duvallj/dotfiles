@@ -19,3 +19,6 @@
 [submodule ".vim/pack/default/start/vimtex"]
 	path = .vim/pack/default/start/vimtex
 	url = https://github.com/lervag/vimtex.git
+[submodule ".vim/pack/default/start/vim-airline"]
+	path = .vim/pack/default/start/vim-airline
+	url = https://github.com/vim-airline/vim-airline
