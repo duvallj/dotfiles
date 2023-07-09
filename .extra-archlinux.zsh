@@ -20,6 +20,8 @@ spectre() {
 }
 
 export PATH="$HOME/.local/bin:$PATH"
-export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$HOME/CMU/410-TA/simics6/simics-6-packages/simics-6.0.157/linux64/sys/lib"
+# export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$HOME/CMU/410-TA/simics6/simics-6-packages/simics-6.0.157/linux64/sys/lib"
 # because simics wants an older libcrypt and python's cryptography library isn't happy with that
-export CRYPTOGRAPHY_OPENSSL_NO_LEGACY=1
+# export CRYPTOGRAPHY_OPENSSL_NO_LEGACY=1
+
+[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
