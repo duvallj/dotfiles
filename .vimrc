@@ -77,7 +77,8 @@ endif
 let g:coc_global_plugins = [
       \ "coc-json",
       \ "coc-rust-analyzer",
-      \ "coc-clangd"
+      \ "coc-clangd",
+      \ "coc-tsserver"
       \ ]
 " statusline
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
@@ -119,8 +120,9 @@ nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
-nmap <silent> gd :vsplit<CR><Plug>(coc-definition)
-nmap <silent> gy :vsplit<CR><Plug>(coc-type-definition)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gm <Plug>(coc-implementation)
+nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gr <Plug>(coc-references)
 
 " gh == get hint
@@ -169,8 +171,8 @@ autocmd Filetype tex inoremap <silent> <Down> <C-o>gj
 autocmd Filetype tex call vimtex#init()
 
 " automatically format on save
-autocmd BufWritePost *.{c,h}{,pp} Format
-autocmd BufWritePost *.rs Format
+" autocmd BufWritePost *.{c,h}{,pp} Format
+" autocmd BufWritePost *.rs Format
 
 " ocamlformat wanted this??
 set rtp^="$HOME/.opam/default/share/ocp-indent/vim"

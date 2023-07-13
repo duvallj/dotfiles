@@ -1,4 +1,5 @@
 {
+    "coc.preferences.jumpCommand": "tabe",
     "rust-analyzer.updates.channel": "stable",
     "clangd.enabled": true,
     "inlayHint.enable": false,
