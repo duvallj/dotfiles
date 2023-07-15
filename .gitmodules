@@ -7,18 +7,12 @@
 [submodule ".themes/Windurs10"]
 	path = .themes/Windurs10
 	url = https://github.com/duvallj/Windurs10.git
-[submodule ".vim/pack/default/start/coc.nvim"]
-	path = .vim/pack/default/start/coc.nvim
-	url = https://github.com/neoclide/coc.nvim.git
 [submodule ".vim/pack/default/start/polygot"]
 	path = .vim/pack/default/start/polygot
 	url = https://github.com/sheerun/vim-polyglot
-[submodule ".vim/pack/default/start/editorconfig"]
-	path = .vim/pack/default/start/editorconfig
-	url = https://github.com/editorconfig/editorconfig-vim.git
-[submodule ".vim/pack/default/start/vimtex"]
-	path = .vim/pack/default/start/vimtex
-	url = https://github.com/lervag/vimtex.git
 [submodule ".vim/pack/default/start/vim-airline"]
 	path = .vim/pack/default/start/vim-airline
 	url = https://github.com/vim-airline/vim-airline
+[submodule ".vim/pack/default/opt/coc.nvim"]
+	path = .vim/pack/default/start/coc.nvim
+	url = https://github.com/neoclide/coc.nvim.git

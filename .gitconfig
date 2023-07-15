@@ -25,10 +25,6 @@
 [merge]
 	ff = true
 	conflictStyle = diff3
-[safe]
-	directory = D:\\Documents\\Windows\\openafs
-	directory = D:/Documents/Windows/openafs
-	directory = D:/Documents/GitHub/blog
 [credential]
 	helper = store
 [init]

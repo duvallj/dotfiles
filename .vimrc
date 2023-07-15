@@ -1,11 +1,9 @@
+" become ~*~modern~*~
 set nocompatible
 set t_Co=256
 set encoding=utf-8
 set exrc
 set secure
-
-" enable spellcheck
-set spelllang=en
 
 " file highlighting
 syntax enable
@@ -24,11 +22,17 @@ autocmd Filetype make setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=0
 autocmd Filetype python setlocal tabstop=4 softtabstop=4 shiftwidth=4
 autocmd Filetype tex setlocal spell
 autocmd Filetype markdown setlocal spell textwidth=79
+
+" have :make call Ninja instead
 set makeprg=ninja
+
+" enable spellcheck
+set spelllang=en
 
 " extra highlighting
 autocmd BufRead *.{c,h} set filetype=c.doxygen
 autocmd BufRead *.{cpp,hpp} set filetype=cpp.doxygen
+autocmd BufRead *.asm set filetype=nasm
 
 " natural backspace, linewrap settings
 set backspace=indent,eol,start
@@ -40,7 +44,6 @@ highlight ColorColumn ctermbg=darkgray
 
 " lots of cool stuff to enable
 set wildmenu
-" set nowrap
 set autoindent
 set copyindent
 set hlsearch
@@ -48,14 +51,14 @@ set incsearch
 set showmatch
 set smartcase
 set number
+set signcolumn=number
 set relativenumber
 set ruler
 set hidden
 
 " allows using <Esc> when in terminal windows
 tnoremap <Esc> <C-\><C-n>
-" allows interactivity with the system clipboard
-" set clipboard=unnamedplus,unnamed
+
 " allows use of mouse
 set mouse=a
 
@@ -70,24 +73,19 @@ if !exists('g:colors_name') || g:colors_name != 'base16-solarflare'
 endif
 
 " Set the font to something nice
-" set guifont=Cascadia\ Code\ PL:h14
-
-" coc.nvim settings start
-" all plugins to install
-let g:coc_global_plugins = [
-      \ "coc-json",
-      \ "coc-rust-analyzer",
-      \ "coc-clangd",
-      \ "coc-tsserver"
-      \ ]
-" statusline
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+set guifont=Cascadia\ Code\ PL:h12
 
 " Don't pass messages to |ins-completion-menu|
 set shortmess+=c
 
-" Always show signcolumn
-set signcolumn=number
+" coc.nvim settings start
+" all plugins to install
+let g:coc_global_plugins = [
+  \ "coc-json",
+  \ "coc-rust-analyzer",
+  \ "coc-clangd",
+  \ "coc-tsserver"
+  \ ]
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -151,17 +149,27 @@ if has('nvim-0.4.0') || has('patch-8.2.0750')
   vnoremap <silent><nowait><expr> <S-Down> coc#float#has_scroll() ? coc#float#scroll(1) : "\<S-Down>"
   vnoremap <silent><nowait><expr> <S-Up> coc#float#has_scroll() ? coc#float#scroll(0) : "\<S-Up>"
 endif
+
+" Don't start coc.nvim on startup
+let g:coc_start_at_startup = 0
+
+" Use a function to toggle Coc's enabled status
+" See https://stackoverflow.com/q/64507845
+let s:coc_enabled = 0
+function! ToggleCoc()
+   if s:coc_enabled == 0
+      let s:coc_enabled = 1
+      CocStart
+      echo 'COC on'
+   else
+      let s:coc_enabled = 0
+      echo 'COC off'
+      call coc#rpc#stop()
+   endif
+endfunction
+nnoremap <silent> <leader>c :call ToggleCoc()<cr>
+
 " coc.nvim settings end
-
-" editorconfig-vim settings
-let g:EditorConfig_exclude_patterns = ['fugitive://.*']
-let g:EditorConfig_max_line_indicator = "line"
-
-" vimtex settings
-let g:vimtex_compiler_method = 'latexmk'
-let g:vimtex_view_general_viewer = 'C:\Users\Me\AppData\Local\SumatraPDF\SumatraPDF.exe'
-let g:vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
-" let g:vimtex_view_general_options_latexmk = '-reuse-instance'
 
 " tex keybindings (up arrow goes into wrap)
 autocmd Filetype tex noremap  <silent> <Up>   gk
@@ -169,10 +177,6 @@ autocmd Filetype tex noremap  <silent> <Down> gj
 autocmd Filetype tex inoremap <silent> <Up>   <C-o>gk
 autocmd Filetype tex inoremap <silent> <Down> <C-o>gj
 autocmd Filetype tex call vimtex#init()
-
-" automatically format on save
-" autocmd BufWritePost *.{c,h}{,pp} Format
-" autocmd BufWritePost *.rs Format
 
 " ocamlformat wanted this??
 set rtp^="$HOME/.opam/default/share/ocp-indent/vim"
