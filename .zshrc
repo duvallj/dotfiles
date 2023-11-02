@@ -32,9 +32,11 @@ source "${HOME}/powerlevel10k/powerlevel10k.zsh-theme"
 alias ls="ls --color=auto"
 alias la="ls -la"
 
-source "${HOME}/.extra-archlinux.zsh"
+source "${HOME}/.extra-macos.zsh"
 
 #End on lines added by me, the user
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f "${HOME}/.p10k.zsh" ]] || source "${HOME}/.p10k.zsh"
+
+. /usr/local/opt/asdf/libexec/asdf.sh

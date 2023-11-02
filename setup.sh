@@ -30,24 +30,24 @@ make_link () {
 }
 
 make_link file .gitconfig
-make_link file .local/bin/humanlight.sh
-make_link file .local/bin/runaswine
-make_link file .local/etc/rc/FixScrollPad.sh
-make_link file .local/etc/rc/StartNetworking.sh
+# make_link file .local/bin/humanlight.sh
+# make_link file .local/bin/runaswine
+# make_link file .local/etc/rc/FixScrollPad.sh
+# make_link file .local/etc/rc/StartNetworking.sh
 make_link file .zshrc
 mkdir -p "$HOME/.zsh_config"
 make_link file .p10k.zsh
-make_link file .extra-msys2.zsh
-make_link file .extra-archlinux.zsh
+# make_link file .extra-msys2.zsh
+# make_link file .extra-archlinux.zsh
 make_link directory powerlevel10k
-make_link directory .themes/Windurs10
+# make_link directory .themes/Windurs10
 make_link file .tmux.conf
 make_link file .vimrc
-make_link file init.vim "$HOME/.config/nvim/init.vim"
+make_link file init.lua "$HOME/.config/nvim/init.lua"
 make_link file coc-settings.json "$HOME/.config/nvim/coc-settings.json"
 make_link directory .vim
-make_link file .xbindkeysrc
-make_link file .Xmodmap
-make_link file .dmrc
-make_link directory xfce4 "$HOME/.config/xfce4"
+# make_link file .xbindkeysrc
+# make_link file .Xmodmap
+# make_link file .dmrc
+# make_link directory xfce4 "$HOME/.config/xfce4"
 make_link directory kitty "$HOME/.config/kitty"

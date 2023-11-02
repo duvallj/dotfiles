@@ -9,8 +9,11 @@ set secure
 syntax enable
 " file-specific indenting
 filetype plugin indent on
-" more tab settings, use 2 spaces by default (C style)
-" other languages taken care of by Vim's default
+" enable spellcheck
+set spelllang=en
+
+" tab settings, use 2 spaces by default (C style)
+" this is for new files, most are autodetected
 set tabstop=2
 set softtabstop=2
 set expandtab
@@ -20,14 +23,14 @@ set smarttab
 " language-specific settings
 autocmd Filetype make setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=0
 autocmd Filetype python setlocal tabstop=4 softtabstop=4 shiftwidth=4
-autocmd Filetype tex setlocal spell
 autocmd Filetype markdown setlocal spell textwidth=79
 
-" have :make call Ninja instead
-set makeprg=ninja
-
-" enable spellcheck
-set spelllang=en
+autocmd Filetype tex setlocal spell
+" tex keybindings (up arrow goes into wrap)
+autocmd Filetype tex noremap  <silent> <Up>   gk
+autocmd Filetype tex noremap  <silent> <Down> gj
+autocmd Filetype tex inoremap <silent> <Up>   <C-o>gk
+autocmd Filetype tex inoremap <silent> <Down> <C-o>gj
 
 " extra highlighting
 autocmd BufRead *.{c,h} set filetype=c.doxygen
@@ -130,12 +133,14 @@ nmap <silent> gh :call CocAction('doHover')<CR>
 " Formats the entire buffer.
 command! -nargs=0 Format :call CocAction('format')
 
+command! -nargs=0 Prettier :w | !npx prettier -w %:p
+
 " Add `:Fold` command to fold current buffer.
 " folds a certain block of code awaw from view
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+command! -nargs=? Fold :call CocAction('fold', <f-args>)
 
 " Add `:OR` command for organize imports of the current buffer.
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
 
 " Add `:Diag` command to get current list of diagnostics
 command! -nargs=0 Diag :CocList diagnostics
@@ -168,15 +173,15 @@ function! ToggleCoc()
    endif
 endfunction
 nnoremap <silent> <leader>c :call ToggleCoc()<cr>
-
 " coc.nvim settings end
 
-" tex keybindings (up arrow goes into wrap)
-autocmd Filetype tex noremap  <silent> <Up>   gk
-autocmd Filetype tex noremap  <silent> <Down> gj
-autocmd Filetype tex inoremap <silent> <Up>   <C-o>gk
-autocmd Filetype tex inoremap <silent> <Down> <C-o>gj
-autocmd Filetype tex call vimtex#init()
-
-" ocamlformat wanted this??
+" ocamlformat
 set rtp^="$HOME/.opam/default/share/ocp-indent/vim"
+
+" telescope.nvim settings start
+nnoremap <leader>ff <cmd>Telescope git_files<cr>
+nnoremap <leader>fF <cmd>Telescope git_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+" telescope.nvim settings end

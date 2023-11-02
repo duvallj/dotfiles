@@ -29,3 +29,9 @@
 	helper = store
 [init]
 	defaultBranch = main
+[scalar]
+	repo = /Users/jackduvall/wonder/src
+[maintenance]
+	repo = /Users/jackduvall/wonder/src
+[push]
+	autoSetupRemote = true
