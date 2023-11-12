@@ -180,7 +180,7 @@ set rtp^="$HOME/.opam/default/share/ocp-indent/vim"
 
 " telescope.nvim settings start
 nnoremap <leader>ff <cmd>Telescope git_files<cr>
-nnoremap <leader>fF <cmd>Telescope git_files<cr>
+nnoremap <leader>fd <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
