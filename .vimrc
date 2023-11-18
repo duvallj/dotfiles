@@ -20,6 +20,10 @@ set expandtab
 set shiftwidth=2
 set smarttab
 
+" On Windows, use Unix line endings
+set fileformats=unix,dos
+set fileformat=unix
+
 " language-specific settings
 autocmd Filetype make setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=0
 autocmd Filetype python setlocal tabstop=4 softtabstop=4 shiftwidth=4
