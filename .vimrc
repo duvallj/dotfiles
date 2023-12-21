@@ -91,7 +91,8 @@ let g:coc_global_plugins = [
   \ "coc-json",
   \ "coc-rust-analyzer",
   \ "coc-clangd",
-  \ "coc-tsserver"
+  \ "coc-tsserver",
+  \ "coc-spell-checker"
   \ ]
 
 " Use tab for trigger completion with characters ahead and navigate.
@@ -133,6 +134,13 @@ nmap <silent> gr <Plug>(coc-references)
 " gh == get hint
 nmap <silent> gh :call CocAction('doHover')<CR>
 
+" codeaction
+nmap <silent> <leader>a <Plug>(coc-codeaction-selected)
+vmap <silent> <leader>a <Plug>(coc-codeaction-selected)
+
+" rename things
+nmap <leader>rn <Plug>(coc-rename)
+
 " Add `:Format` command to format current buffer.
 " Formats the entire buffer.
 command! -nargs=0 Format :call CocAction('format')
@@ -160,11 +168,11 @@ if has('nvim-0.4.0') || has('patch-8.2.0750')
 endif
 
 " Don't start coc.nvim on startup
-let g:coc_start_at_startup = 0
+let g:coc_start_at_startup = 1
 
 " Use a function to toggle Coc's enabled status
 " See https://stackoverflow.com/q/64507845
-let s:coc_enabled = 0
+let s:coc_enabled = g:coc_start_at_startup
 function! ToggleCoc()
    if s:coc_enabled == 0
       let s:coc_enabled = 1

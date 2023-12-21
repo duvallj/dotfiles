@@ -32,6 +32,14 @@ require('lazy').setup({
     dependencies = {
       'nvim-lua/plenary.nvim'
     }
+  },
+  {
+    'tpope/vim-repeat',
+    branch = 'master',
+  },
+  {
+    'tpope/vim-surround',
+    branch = 'master',
   }
 })
 
