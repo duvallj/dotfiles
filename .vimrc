@@ -40,6 +40,7 @@ autocmd Filetype tex inoremap <silent> <Down> <C-o>gj
 autocmd BufRead *.{c,h} set filetype=c.doxygen
 autocmd BufRead *.{cpp,hpp} set filetype=cpp.doxygen
 autocmd BufRead *.asm set filetype=nasm
+autocmd BufRead *.gohtml set filetype=html
 
 " natural backspace, linewrap settings
 set backspace=indent,eol,start
@@ -62,6 +63,10 @@ set signcolumn=number
 set relativenumber
 set ruler
 set hidden
+
+" see tabs
+set list
+set listchars=tab:▶·
 
 " allows using <Esc> when in terminal windows
 tnoremap <Esc> <C-\><C-n>
@@ -92,7 +97,9 @@ let g:coc_global_plugins = [
   \ "coc-rust-analyzer",
   \ "coc-clangd",
   \ "coc-tsserver",
-  \ "coc-spell-checker"
+  \ "coc-spell-checker",
+  \ "coc-tsserver",
+  \ "coc-go"
   \ ]
 
 " Use tab for trigger completion with characters ahead and navigate.
@@ -134,12 +141,26 @@ nmap <silent> gr <Plug>(coc-references)
 " gh == get hint
 nmap <silent> gh :call CocAction('doHover')<CR>
 
-" codeaction
-nmap <silent> <leader>a <Plug>(coc-codeaction-selected)
-vmap <silent> <leader>a <Plug>(coc-codeaction-selected)
+" \a == do code action
+xmap <leader>a <Plug>(coc-codeaction-selected)
+nmap <leader>a <Plug>(coc-codeaction-selected)
+" \ac == code action at cursor
+nmap <leader>ac <Plug>(coc-codeaction-cursor)
+" \as == code action for source
+nmap <leader>as <Plug>(coc-codeaction-source)
 
-" rename things
+" \f == format code
+xmap <leader>f <Plug>(coc-format-selected)
+nmap <leader>f <Plug>(coc-format-selected)
+
+" \rn == rename symbol
 nmap <leader>rn <Plug>(coc-rename)
+
+" faster time for CursorHold
+set updatetime=500
+
+" Highlight symbol and references when holding the cursor
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Add `:Format` command to format current buffer.
 " Formats the entire buffer.
@@ -184,6 +205,7 @@ function! ToggleCoc()
       call coc#rpc#stop()
    endif
 endfunction
+" \c == enable/disable coc
 nnoremap <silent> <leader>c :call ToggleCoc()<cr>
 " coc.nvim settings end
 
