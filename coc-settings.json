@@ -1,27 +1,24 @@
 {
-    "coc.preferences.jumpCommand": "tabe",
-    "rust-analyzer.updates.channel": "stable",
-    "rust-analyzer.checkOnSave.allTargets": false,
-    "clangd.enabled": true,
-    "inlayHint.enable": false,
-    "languageserver": {
-        "python": {
-            "command": "pylsp",
-            "filetypes": [
-                "python"
-            ]
-        },
-        "ocaml-lsp": {
-            "command": "opam",
-            "args": [
-                "exec",
-                "--",
-                "ocamllsp"
-            ],
-            "filetypes": [
-                "ocaml",
-                "reason"
-            ]
-        }
+  "coc.preferences.jumpCommand": "tabe",
+  "coc.preferences.formatOnSave": [
+    "typescript",
+    "typescriptreact",
+    "javascript",
+    "javascriptreact"
+  ],
+  "rust-analyzer.updates.channel": "stable",
+  "rust-analyzer.checkOnSave.allTargets": false,
+  "clangd.enabled": true,
+  "inlayHint.enable": false,
+  "languageserver": {
+    "python": {
+      "command": "pylsp",
+      "filetypes": ["python"]
+    },
+    "ocaml-lsp": {
+      "command": "opam",
+      "args": ["exec", "--", "ocamllsp"],
+      "filetypes": ["ocaml", "reason"]
     }
+  }
 }

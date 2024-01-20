@@ -92,14 +92,13 @@ set shortmess+=c
 
 " coc.nvim settings start
 " all plugins to install
-let g:coc_global_plugins = [
+let g:coc_global_extensions = [
   \ "coc-json",
   \ "coc-rust-analyzer",
   \ "coc-clangd",
   \ "coc-tsserver",
+  \ "coc-prettier",
   \ "coc-spell-checker",
-  \ "coc-tsserver",
-  \ "coc-go"
   \ ]
 
 " Use tab for trigger completion with characters ahead and navigate.
@@ -166,7 +165,7 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 " Formats the entire buffer.
 command! -nargs=0 Format :call CocAction('format')
 
-command! -nargs=0 Prettier :w | !npx prettier -w %:p
+command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 
 " Add `:Fold` command to fold current buffer.
 " folds a certain block of code awaw from view
