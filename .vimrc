@@ -37,10 +37,11 @@ autocmd Filetype tex inoremap <silent> <Up>   <C-o>gk
 autocmd Filetype tex inoremap <silent> <Down> <C-o>gj
 
 " extra highlighting
+autocmd BufRead *.asm set filetype=nasm
 autocmd BufRead *.{c,h} set filetype=c.doxygen
 autocmd BufRead *.{cpp,hpp} set filetype=cpp.doxygen
-autocmd BufRead *.asm set filetype=nasm
 autocmd BufRead *.gohtml set filetype=html
+autocmd BufRead *.mts set filetype=typescript
 
 " natural backspace, linewrap settings
 set backspace=indent,eol,start
