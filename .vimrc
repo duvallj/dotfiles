@@ -155,12 +155,6 @@ nmap <leader>f <Plug>(coc-format-selected)
 " \rn == rename symbol
 nmap <leader>rn <Plug>(coc-rename)
 
-" faster time for CursorHold
-set updatetime=500
-
-" Highlight symbol and references when holding the cursor
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
 " Add `:Format` command to format current buffer.
 " Formats the entire buffer.
 command! -nargs=0 Format :call CocAction('format')
