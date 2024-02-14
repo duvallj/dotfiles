@@ -14,7 +14,7 @@ set spelllang=en
 
 " tab settings, use 2 spaces by default (C style)
 " this is for new files, most are autodetected
-set tabstop=2
+set tabstop=8
 set softtabstop=2
 set expandtab
 set shiftwidth=2
@@ -92,6 +92,28 @@ set guifont=Cascadia\ Code\ PL:h12
 set shortmess+=c
 
 " coc.nvim settings start
+
+" Don't start coc.nvim on startup
+let g:coc_start_at_startup = 1
+
+" Use a function to toggle Coc's enabled status
+" See https://stackoverflow.com/q/64507845
+let g:dotfiles_coc_enabled = g:coc_start_at_startup
+function! ToggleCoc()
+   if g:dotfiles_coc_enabled == 0
+      let g:dotfiles_coc_enabled = 1
+      CocStart
+      echo 'COC on'
+   else
+      let g:dotfiles_coc_enabled = 0
+      echo 'COC off'
+      call coc#rpc#stop()
+   endif
+endfunction
+
+" \c == enable/disable coc
+nnoremap <silent> <leader>c :call ToggleCoc()<cr>
+
 " all plugins to install
 let g:coc_global_extensions = [
   \ "coc-json",
@@ -106,15 +128,22 @@ let g:coc_global_extensions = [
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
+      \ g:dotfiles_coc_enabled == 0 ? "\<Tab>" :
       \ coc#pum#visible() ? coc#pum#next(1) :
       \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+inoremap <expr><S-TAB>
+      \ g:dotfiles_coc_enabled == 0 ? "\<C-h>" :
+      \ coc#pum#visible() ? coc#pum#prev(1) :
+      \ "\<C-h>"
 
 " Make <CR> to accept selected completion item or notify coc.nvim to format
 " <C-g>u breaks current undo, please make your own choice
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <CR>
+      \ g:dotfiles_coc_enabled == 0 ? "\<CR>" :
+      \ coc#pum#visible() ? coc#pum#confirm() :
+      \ "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
 function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
@@ -181,26 +210,6 @@ if has('nvim-0.4.0') || has('patch-8.2.0750')
   vnoremap <silent><nowait><expr> <S-Down> coc#float#has_scroll() ? coc#float#scroll(1) : "\<S-Down>"
   vnoremap <silent><nowait><expr> <S-Up> coc#float#has_scroll() ? coc#float#scroll(0) : "\<S-Up>"
 endif
-
-" Don't start coc.nvim on startup
-let g:coc_start_at_startup = 1
-
-" Use a function to toggle Coc's enabled status
-" See https://stackoverflow.com/q/64507845
-let s:coc_enabled = g:coc_start_at_startup
-function! ToggleCoc()
-   if s:coc_enabled == 0
-      let s:coc_enabled = 1
-      CocStart
-      echo 'COC on'
-   else
-      let s:coc_enabled = 0
-      echo 'COC off'
-      call coc#rpc#stop()
-   endif
-endfunction
-" \c == enable/disable coc
-nnoremap <silent> <leader>c :call ToggleCoc()<cr>
 " coc.nvim settings end
 
 " ocamlformat
