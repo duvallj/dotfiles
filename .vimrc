@@ -210,6 +210,10 @@ if has('nvim-0.4.0') || has('patch-8.2.0750')
   vnoremap <silent><nowait><expr> <S-Down> coc#float#has_scroll() ? coc#float#scroll(1) : "\<S-Down>"
   vnoremap <silent><nowait><expr> <S-Up> coc#float#has_scroll() ? coc#float#scroll(0) : "\<S-Up>"
 endif
+
+" So that the status bar actually redraws when coc has a spinner in it
+autocmd User CocStatusChange redrawstatus
+
 " coc.nvim settings end
 
 " ocamlformat
@@ -224,4 +228,5 @@ nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>fc <cmd>Telescope command_history<cr>
 nnoremap <leader>fs <cmd>Telescope search_history<cr>
+nnoremap <leader>fr <cmd>Telescope resume<cr>
 " telescope.nvim settings end
