@@ -93,12 +93,12 @@ set shortmess+=c
 
 " coc.nvim settings start
 
-" Don't start coc.nvim on startup
-let g:coc_start_at_startup = 1
+" Only start coc.nvim at startup if an environment variable is set
+let g:dotfiles_coc_enabled = $DOTFILES_ENABLE_COC_NVIM == "" ? 0 : 1
 
 " Use a function to toggle Coc's enabled status
 " See https://stackoverflow.com/q/64507845
-let g:dotfiles_coc_enabled = g:coc_start_at_startup
+let g:coc_start_at_startup = g:dotfiles_coc_enabled
 function! ToggleCoc()
    if g:dotfiles_coc_enabled == 0
       let g:dotfiles_coc_enabled = 1
@@ -108,6 +108,7 @@ function! ToggleCoc()
       let g:dotfiles_coc_enabled = 0
       echo 'COC off'
       call coc#rpc#stop()
+      call coc#pum#stop()
    endif
 endfunction
 
