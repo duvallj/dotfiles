@@ -9,7 +9,7 @@ if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then . "$HOME/.nix-profile/
 test -r /home/me/.opam/opam-init/init.zsh && . /home/me/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
 # extra programs
-export PATH="${PATH}:/usr/lib/cargo/bin:${HOME}/.local/bin:/opt/nvim-linux64/bin"
+export PATH="${PATH}:/usr/lib/cargo/bin:${HOME}/.local/bin"
 
 alias ls="ls --color=auto"
 alias la="ls -la"
