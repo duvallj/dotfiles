@@ -95,6 +95,11 @@ set shortmess+=c
 
 " Only start coc.nvim at startup if an environment variable is set
 let g:dotfiles_coc_enabled = $DOTFILES_ENABLE_COC_NVIM == "" ? 0 : 1
+if g:dotfiles_coc_enabled == 0
+   " For some reason, coc still handles events and shows the popup menu even
+   " though it hasn't started?? it's weird
+   CocDisable
+endif
 
 " Use a function to toggle Coc's enabled status
 " See https://stackoverflow.com/q/64507845
@@ -103,12 +108,12 @@ function! ToggleCoc()
    if g:dotfiles_coc_enabled == 0
       let g:dotfiles_coc_enabled = 1
       CocStart
+      CocEnable
       echo 'COC on'
    else
       let g:dotfiles_coc_enabled = 0
       echo 'COC off'
       call coc#rpc#stop()
-      call coc#pum#stop()
    endif
 endfunction
 

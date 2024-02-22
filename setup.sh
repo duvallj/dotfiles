@@ -52,3 +52,4 @@ make_link directory .vim
 # make_link file .dmrc
 # make_link directory xfce4 "$HOME/.config/xfce4"
 make_link directory kitty "$HOME/.config/kitty"
+make_link directory nix "$HOME/.config/nix"
