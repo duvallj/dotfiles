@@ -7,6 +7,8 @@
 [alias]
 	diffc = diff --stat -w
 	showc = show --stat -w
+	difft = difftool
+	showt = "!f() { GIT_EXTERNAL_DIFF=difft git show --ext-diff $@; }; f"
 	cam = commit -a -m
 [pull]
 	rebase = true
@@ -29,6 +31,14 @@
 [merge]
 	ff = true
 	conflictStyle = diff3
+[diff]
+	tool = difftastic
+[difftool]
+	prompt = false
+[difftool "difftastic"]
+	cmd = difft "$LOCAL" "$REMOTE"
+[pager]
+	difftool = true
 [credential]
 	helper = store
 [init]
