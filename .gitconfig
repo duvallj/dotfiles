@@ -4,6 +4,10 @@
 	eol = lf
 	safecrlf = true
 	fsmonitor = true
+[alias]
+	diffc = diff --stat -w
+	showc = show --stat -w
+	cam = commit -a -m
 [pull]
 	rebase = true
 [filter "lfs"]
