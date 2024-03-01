@@ -18,6 +18,7 @@ require('lazy').setup({
     tag = 'v4.17.1'
   },
   'vim-airline/vim-airline',
+  'tinted-theming/base16-vim',
   {
     'neoclide/coc.nvim',
     branch = 'release',

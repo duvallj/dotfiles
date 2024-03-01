@@ -1,6 +1,5 @@
 " become ~*~modern~*~
 set nocompatible
-set t_Co=256
 set encoding=utf-8
 set exrc
 set secure
@@ -81,8 +80,11 @@ set background=dark
 set termguicolors
 
 " Set the color scheme
-if !exists('g:colors_name') || g:colors_name != 'base16-solarflare'
-  colorscheme base16-solarflare
+if !exists('g:colors_name')
+  " colorscheme base16-solarflare
+  " colorscheme base16-gruvbox-dark-pale
+  colorscheme base16-helios
+  " colorscheme base16-standardized-dark
 endif
 
 " Set the font to something nice
