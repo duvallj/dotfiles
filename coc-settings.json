@@ -1,24 +1,24 @@
 {
   "coc.preferences.jumpCommand": "tabe",
-  "coc.preferences.formatOnSave": [
-    "typescript",
-    "typescriptreact",
-    "javascript",
-    "javascriptreact"
-  ],
+  "coc.preferences.formatOnSave": true,
   "rust-analyzer.updates.channel": "stable",
-  "rust-analyzer.checkOnSave.allTargets": false,
+  "rust-analyzer.checkOnSave": false,
+  "rust-analyzer.cargo.features": "all",
   "clangd.enabled": true,
   "inlayHint.enable": false,
   "languageserver": {
-    "python": {
-      "command": "pylsp",
-      "filetypes": ["python"]
-    },
     "ocaml-lsp": {
       "command": "opam",
-      "args": ["exec", "--", "ocamllsp"],
-      "filetypes": ["ocaml", "reason"]
+      "args": [
+        "exec",
+        "--",
+        "ocamllsp"
+      ],
+      "filetypes": [
+        "ocaml",
+        "reason"
+      ]
     }
-  }
+  },
+  "prettier.formatterPriority": -1,
 }

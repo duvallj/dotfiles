@@ -36,11 +36,11 @@ autocmd Filetype tex inoremap <silent> <Up>   <C-o>gk
 autocmd Filetype tex inoremap <silent> <Down> <C-o>gj
 
 " extra highlighting
-autocmd BufRead *.asm set filetype=nasm
-autocmd BufRead *.{c,h} set filetype=c.doxygen
-autocmd BufRead *.{cpp,hpp} set filetype=cpp.doxygen
-autocmd BufRead *.gohtml set filetype=html
-autocmd BufRead *.mts set filetype=typescript
+autocmd BufRead,BufWrite *.asm set filetype=nasm
+autocmd BufRead,BufWrite *.{c,h} set filetype=c.doxygen
+autocmd BufRead,BufWrite *.{cpp,hpp} set filetype=cpp.doxygen
+autocmd BufRead,BufWrite *.gohtml set filetype=html
+autocmd BufRead,BufWrite *.mts set filetype=typescript
 
 " natural backspace, linewrap settings
 set backspace=indent,eol,start
@@ -129,7 +129,6 @@ let g:coc_global_extensions = [
   \ "coc-clangd",
   \ "coc-tsserver",
   \ "coc-prettier",
-  \ "coc-spell-checker",
   \ ]
 
 " Use tab for trigger completion with characters ahead and navigate.

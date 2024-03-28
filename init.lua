@@ -13,10 +13,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-  {
-    'sheerun/vim-polyglot',
-    tag = 'v4.17.1'
-  },
   'vim-airline/vim-airline',
   'tinted-theming/base16-vim',
   {
@@ -25,7 +21,7 @@ require('lazy').setup({
   },
   {
     'nvim-telescope/telescope-fzf-native.nvim',
-    build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
+    build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release'
   },
   {
     'nvim-telescope/telescope.nvim',
