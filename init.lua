@@ -41,6 +41,16 @@ require('lazy').setup({
 })
 
 require('telescope').setup {
+  defaults = {
+    mappings = {
+      i = {
+        ["<CR>"] = "select_tab",
+      },
+      n = {
+        ["<CR>"] = "select_tab",
+      },
+    },
+  },
   extensions = {
     fzf = {
       fuzzy = true,

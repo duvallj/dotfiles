@@ -10,6 +10,7 @@
 	difft = difftool
 	showt = "!f() { GIT_EXTERNAL_DIFF=difft git show --ext-diff $@; }; f"
 	cam = commit -a -m
+	conflicts = diff --name-only --diff-filter=U --relative
 [pull]
 	rebase = true
 [filter "lfs"]
