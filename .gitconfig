@@ -25,6 +25,7 @@
 	email = 10897431+duvallj@users.noreply.github.com
 [fetch]
 	prune = false
+	showForcedUpdates = true
 [rebase]
 	autoStash = true
 	autoSquash = true
