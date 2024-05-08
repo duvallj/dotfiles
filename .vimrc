@@ -59,8 +59,6 @@ set incsearch
 set showmatch
 set smartcase
 set number
-set signcolumn=number
-set relativenumber
 set ruler
 set hidden
 

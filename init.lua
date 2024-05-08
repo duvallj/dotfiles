@@ -37,6 +37,14 @@ require('lazy').setup({
   {
     'tpope/vim-surround',
     branch = 'master',
+  },
+  {
+    'tpope/vim-fugitive',
+    tag = 'v3.7',
+  },
+  {
+    'lewis6991/gitsigns.nvim',
+    tag = 'v0.8.1',
   }
 })
 
@@ -62,6 +70,8 @@ require('telescope').setup {
 }
 
 require('telescope').load_extension('fzf')
+
+require('gitsigns').setup()
 
 
 vim.cmd([[
