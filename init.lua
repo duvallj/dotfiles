@@ -45,7 +45,20 @@ require('lazy').setup({
   {
     'lewis6991/gitsigns.nvim',
     tag = 'v0.8.1',
-  }
+  },
+  {
+    'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate',
+    config = function()
+      local configs = require("nvim-treesitter.configs")
+      configs.setup({
+        ensure_installed = { "lua", "vim", "vimdoc", "javascript", "html", "css", "typescript", "tsx", "c" },
+        sync_install = true,
+        highlight = { enable = true },
+        indent = { enable = true },
+      })
+    end,
+  },
 })
 
 require('telescope').setup {
