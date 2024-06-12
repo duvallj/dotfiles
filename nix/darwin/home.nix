@@ -1,6 +1,6 @@
-{ pkgs, ... }: {
+{ ... }: {
   imports = [
-    ./neovim.nix
+    ../common/neovim.nix
   ];
 
   home.stateVersion = "24.05";
