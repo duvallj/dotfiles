@@ -28,6 +28,5 @@
         "reason"
       ]
     }
-  },
-  "prettier.formatterPriority": -1
+  }
 }
