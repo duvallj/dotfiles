@@ -27,6 +27,7 @@ set fileformat=unix
 autocmd Filetype make setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=0
 autocmd Filetype python setlocal tabstop=4 softtabstop=4 shiftwidth=4
 autocmd Filetype markdown setlocal spell textwidth=79
+autocmd Filetype go setlocal noexpandtab tabstop=8 shiftwidth=8 softtabstop=0
 
 autocmd Filetype tex setlocal spell
 " tex keybindings (up arrow goes into wrap)
@@ -79,9 +80,9 @@ set termguicolors
 
 " Set the color scheme
 if !exists('g:colors_name')
-  " colorscheme base16-solarflare
+  colorscheme base16-solarflare
   " colorscheme base16-gruvbox-dark-pale
-  colorscheme base16-helios
+  " colorscheme base16-helios
   " colorscheme base16-standardized-dark
 endif
 
