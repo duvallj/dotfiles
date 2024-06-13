@@ -3,6 +3,7 @@ let
   configuration = { pkgs, ... }: {
     imports = [
       ../common/default.nix
+      ./work.nix
     ];
 
     # Set Git commit hash for darwin-version.
