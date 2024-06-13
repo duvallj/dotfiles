@@ -23,4 +23,6 @@
   ];
 
   programs.zsh.enable = true;
+  # Completions for system packages as well
+  environment.pathsToLink = [ "/usr/share/zsh" ];
 }
