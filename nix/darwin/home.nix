@@ -1,5 +1,6 @@
 { ... }: {
   imports = [
+    ../common/git.nix
     ../common/neovim.nix
   ];
 
