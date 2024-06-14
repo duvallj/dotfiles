@@ -1,10 +1,17 @@
 { self, home-manager, lix-module, nix-darwin, ... }:
 let
+  username = "jackduvall";
+  hostname = "Seans-MacBook-Pro";
+
   configuration = { pkgs, ... }: {
     imports = [
       ../common/default.nix
       ./work.nix
     ];
+
+    # Auto upgrade nix package and the daemon service.
+    services.nix-daemon.enable = true;
+    # nix.package = pkgs.nix;
 
     # Set Git commit hash for darwin-version.
     system.configurationRevision = self.rev or self.dirtyRev or null;
@@ -16,16 +23,16 @@ let
     # The platform the configuration will be used on.
     nixpkgs.hostPlatform = "x86_64-darwin";
 
-    users.users."jackduvall" = {
-      name = "jackduvall";
-      home = "/Users/jackduvall";
+    users.users.${username} = {
+      name = username;
+      home = "/Users/${username}";
     };
   };
 in
 {
   # Build darwin flake using:
   # $ darwin-rebuild build --flake .#Seans-MacBook-Pro
-  darwinConfigurations."Seans-MacBook-Pro" = nix-darwin.lib.darwinSystem {
+  darwinConfigurations.${hostname} = nix-darwin.lib.darwinSystem {
     modules =
       [
         configuration
@@ -33,12 +40,12 @@ in
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users."jackduvall" = import ./home.nix;
+          home-manager.users.${username} = import ./home.nix;
         }
         lix-module.nixosModules.default
       ];
   };
 
   # Expose the package set, including overlays, for convenience.
-  darwinPackages = self.darwinConfigurations."Seans-MacBook-Pro".pkgs;
+  darwinPackages = self.darwinConfigurations.${hostname}.pkgs;
 }

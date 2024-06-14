@@ -9,12 +9,8 @@
       ripgrep
     ];
 
-  # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
-  # nix.package = pkgs.nix;
-
   # Necessary for using flakes on this system.
-  nix.settings.experimental-features = "nix-command flakes";
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Necessary for using the Lix binary cache
   nix.settings.substituters = [
@@ -26,6 +22,7 @@
   ];
 
   programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
   # Completions for system packages as well
   environment.pathsToLink = [ "/usr/share/zsh" ];
 }

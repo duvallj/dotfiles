@@ -27,6 +27,7 @@
     importSubmodule = path: import path inputs;
     submodules = [
       ./nix/darwin/default.nix
+      ./nix/wsl/default.nix
     ];
   in
     builtins.foldl' (a: b: a // b) {} (builtins.map importSubmodule submodules);

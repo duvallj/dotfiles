@@ -1,1 +1,1 @@
-alias rbs="pushd /etc/nixos; nix flake update; sudo nixos-rebuild switch; popd"
+alias rbs="sudo nixos-rebuild --flake /home/nixos/dotfiles switch"
