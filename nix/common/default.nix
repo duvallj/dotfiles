@@ -22,7 +22,6 @@
   ];
 
   programs.zsh.enable = true;
-  users.defaultUserShell = pkgs.zsh;
   # Completions for system packages as well
   environment.pathsToLink = [ "/usr/share/zsh" ];
 }
