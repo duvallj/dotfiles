@@ -1,8 +1,13 @@
-{ ... }: {
+{ pkgs, ... }: {
   imports = [
     ../common/git.nix
     ../common/neovim.nix
     ../common/zsh.nix
+  ];
+
+  # For options in .extra-darwin.zsh
+  home.packages = [
+    pkgs.eza
   ];
 
   home.stateVersion = "24.05";

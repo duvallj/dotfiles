@@ -6,8 +6,9 @@
       "asdf"
       "coreutils"
       "curl"
-      "git"
-      "git-lfs"
+      # Taken care of by ../common/git.nix
+      # "git"
+      # "git-lfs"
       "gpg"
       "hivemind"
       "jenv"
