@@ -33,6 +33,8 @@
 [merge]
 	ff = true
 	conflictStyle = diff3
+[branch]
+	sort = committerdate
 [diff]
 	tool = difftastic
 [difftool]
