@@ -1,5 +1,9 @@
 { pkgs, ... }:
 {
+  environment.systemPackages = with pkgs; [
+    htop
+  ];
+
   homebrew = {
     enable = true;
     brews = [
