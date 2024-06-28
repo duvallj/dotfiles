@@ -1,9 +1,8 @@
 alias ls="eza"
 alias my="mysql -u root -h 127.0.0.1"
-alias prune="git remote prune origin | sed -n -E '/jack/ s/.*(jack.*)/\1/p' | xargs git branch -D"
 
 eval "$(/usr/local/bin/brew shellenv)"
-export PATH="/usr/local/opt/mysql-client/bin:$PATH"
+export PATH="/usr/local/opt/mysql-client/bin:${PATH}"
 
 export WONDER_ROOT="${HOME}/wonder/src"
 export CROAM_ENV="local"
@@ -20,12 +19,29 @@ function replace {
   rg -l $3 "$1" | xargs sed -i '' "s/$1/$2/g"
 }
 
+function xim {
+  $@ | xargs nvim -p
+}
+
 function fdim {
-  fd $@ | xargs nvim -p
+  xim fd $@
 }
 
 function rgim {
-  rg -l $@ | xargs nvim -p
+  xim rg -l $@
 }
 
-alias drs="darwin-rebuild switch --flake ~/dotfiles"
+function conflicts {
+  xim git conflicts
+}
+
+function cam {
+  git a && git cm $@
+}
+
+function prune {
+  header="${1:-jack}"
+  git remote prune origin | sed -n -E "/${header}/ s/.*(${header}.*)/\\1/p" | xargs git branch -D
+}
+
+alias drs="darwin-rebuild switch --flake \"${HOME}/dotfiles\""
