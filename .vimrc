@@ -29,13 +29,8 @@ autocmd Filetype python setlocal tabstop=4 softtabstop=4 shiftwidth=4
 autocmd Filetype markdown setlocal spell textwidth=79
 autocmd Filetype go setlocal noexpandtab tabstop=8 shiftwidth=8 softtabstop=0
 
-function! Tabs()
-  setlocal tabstop=8 softtabstop=0 noexpandtab shiftwidth=8 nosmarttab
-endfunction
-
-function! Spaces()
-  setlocal tabstop=8 softtabstop=2 expandtab shiftwidth=2 smarttab
-endfunction
+command! -nargs=0 Tabs   :setlocal tabstop=8 softtabstop=0 noexpandtab shiftwidth=8 nosmarttab
+command! -nargs=0 Spaces :setlocal tabstop=8 softtabstop=2   expandtab shiftwidth=2   smarttab
 
 autocmd Filetype tex setlocal spell
 " tex keybindings (up arrow goes into wrap)
