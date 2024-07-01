@@ -1,4 +1,5 @@
 alias ls="eza"
+alias rg="command rg --hidden"
 alias my="mysql -u root -h 127.0.0.1"
 
 eval "$(/usr/local/bin/brew shellenv)"
