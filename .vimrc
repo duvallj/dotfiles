@@ -23,16 +23,17 @@ set smarttab
 set fileformats=unix,dos
 set fileformat=unix
 
+" NOTE: smarttab is global, don't set it in these.
+command! -nargs=0 Tabs   :setlocal tabstop=8 softtabstop=0 noexpandtab shiftwidth=8
+command! -nargs=0 Spaces :setlocal tabstop=8 softtabstop=2   expandtab shiftwidth=2
+
 " language-specific settings
-autocmd Filetype make setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=0
-autocmd Filetype python setlocal tabstop=4 softtabstop=4 shiftwidth=4
+autocmd Filetype make     setlocal tabstop=4 softtabstop=0 noexpandtab shiftwidth=4
+autocmd Filetype python   setlocal tabstop=4 softtabstop=4   expandtab shiftwidth=4
 autocmd Filetype markdown setlocal spell textwidth=79
-autocmd Filetype go setlocal noexpandtab tabstop=8 shiftwidth=8 softtabstop=0
+autocmd Filetype go       :Tabs
+autocmd Filetype tex      setlocal spell
 
-command! -nargs=0 Tabs   :setlocal tabstop=8 softtabstop=0 noexpandtab shiftwidth=8 nosmarttab
-command! -nargs=0 Spaces :setlocal tabstop=8 softtabstop=2   expandtab shiftwidth=2   smarttab
-
-autocmd Filetype tex setlocal spell
 " tex keybindings (up arrow goes into wrap)
 autocmd Filetype tex noremap  <silent> <Up>   gk
 autocmd Filetype tex noremap  <silent> <Down> gj
