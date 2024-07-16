@@ -4,6 +4,7 @@
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
+    withNodeJs = true;
 
     # Doesn't work, since it needs to go at the end instead
     # extraConfig = builtins.readFile ../../.vimrc;
