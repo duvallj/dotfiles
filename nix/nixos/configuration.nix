@@ -8,6 +8,7 @@
   imports =
     [
       ./hardware-configuration.nix
+      ./networking.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -21,45 +22,19 @@
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
     font = "Lat2-Terminus16";
-  #   keyMap = "us";
+    keyMap = lib.mkDefault "us";
     useXkbConfig = true; # use xkb.options in tty.
   };
 
-  # Enable the X11 windowing system.
-  # services.xserver.enable = true;
-
-
-  
-
-  # Configure keymap in X11
-  # services.xserver.xkb.layout = "us";
-  # services.xserver.xkb.options = "eurosign:e,caps:escape";
-
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
-
-  # Enable sound.
-  # hardware.pulseaudio.enable = true;
-  # OR
-  # services.pipewire = {
-  #   enable = true;
-  #   pulse.enable = true;
-  # };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     git
   ];
 
-  # List services that you want to enable:
+  programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
+
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;

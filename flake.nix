@@ -26,5 +26,5 @@
       ./nix/wsl/default.nix
     ];
   in
-    builtins.foldl' (a: b: a // b) {} (builtins.map importSubmodule submodules);
+    builtins.foldl' (inputs.nixpkgs.lib.recursiveUpdate) {} (builtins.map importSubmodule submodules);
 }
