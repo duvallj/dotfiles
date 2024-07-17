@@ -1,9 +1,8 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
     cmake
     htop
-    sdkmanager
   ];
 
   homebrew = {
