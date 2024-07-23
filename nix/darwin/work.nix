@@ -39,6 +39,7 @@
       }
     ];
     taps = [
+      "homebrew/services"
       "skeema/tap"
     ];
 
