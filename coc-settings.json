@@ -11,22 +11,13 @@
   "tsserver.maxTsServerMemory": 10240,
   "tsserver.useLocalTsdk": true,
   "typescript.inlayHints.enumMemberValues.enabled": true,
-  "typescript.inlayHints.parameterNames.enabled": "literals",
-  "eslint.execArgv": [
-    "--max-old-space-size=10240"
-  ],
+  "typescript.inlayHints.parameterNames.enabled": "all",
+  "eslint.execArgv": ["--max-old-space-size=10240"],
   "languageserver": {
     "ocaml-lsp": {
       "command": "opam",
-      "args": [
-        "exec",
-        "--",
-        "ocamllsp"
-      ],
-      "filetypes": [
-        "ocaml",
-        "reason"
-      ]
+      "args": ["exec", "--", "ocamllsp"],
+      "filetypes": ["ocaml", "reason"]
     }
   }
 }
