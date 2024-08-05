@@ -26,8 +26,8 @@
       # For services. TODO: split these out into something separate ?
       "consul"
       "kafka"
-      "mysql"
-      "mysql-client"
+      "mysql@8.0"
+      "mysql-client@8.0"
       "redis"
     ];
     casks = [

@@ -3,7 +3,7 @@ alias rg="command rg --hidden"
 alias my="mysql -u root -h 127.0.0.1"
 
 eval "$(/usr/local/bin/brew shellenv)"
-export PATH="/usr/local/opt/mysql-client/bin:${PATH}"
+export PATH="/usr/local/opt/mysql-client@8.0/bin:${PATH}"
 
 export WONDER_ROOT="${HOME}/wonder/src"
 export CROAM_ENV="local"
@@ -13,8 +13,6 @@ source "${HOME}/wonder-aliases.sh"
 localbin="${HOME}/.local/bin"
 export GOBIN="${localbin}/go"
 export PATH="${localbin}:${GOBIN}:${PATH}"
-
-export DOTFILES_ENABLE_COC_NVIM=1
 
 function replace {
   rg -l $3 "$1" | xargs sed -i '' "s/$1/$2/g"
