@@ -3,7 +3,7 @@ alias rg="command rg --hidden"
 alias my="mysql -u root -h 127.0.0.1"
 
 eval "$(/usr/local/bin/brew shellenv)"
-export PATH="/usr/local/opt/mysql-client@8.0/bin:${PATH}"
+export PATH="/usr/local/opt/mysql-client/bin:${PATH}"
 
 export WONDER_ROOT="${HOME}/wonder/src"
 export CROAM_ENV="local"
