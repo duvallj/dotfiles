@@ -13,6 +13,11 @@ let
     wsl.defaultUser = username;
     networking.hostName = hostname;
 
+    wsl.wslConf = {
+      interop.enabled = false;
+      interop.appendWindowsPath = false;
+    };
+
 
     # This value determines the NixOS release from which the default
     # settings for stateful data, like file locations and database versions
