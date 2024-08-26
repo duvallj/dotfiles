@@ -11,8 +11,7 @@ source "${HOME}/wonder-aliases.sh"
 
 . /usr/local/opt/asdf/libexec/asdf.sh
 localbin="${HOME}/.local/bin"
-export GOBIN="${localbin}/go"
-export PATH="${localbin}:${GOBIN}:${PATH}"
+export PATH="${localbin}:${PATH}"
 
 function replace {
   rg -l $3 "$1" | xargs sed -i '' "s/$1/$2/g"
