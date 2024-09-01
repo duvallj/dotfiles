@@ -14,9 +14,10 @@ let
     networking.hostName = hostname;
 
     wsl.wslConf = {
-      interop.enabled = false;
+      interop.enabled = true;
       interop.appendWindowsPath = false;
     };
+    wsl.usbip.enable = true;
 
 
     # This value determines the NixOS release from which the default
@@ -40,7 +41,7 @@ in
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
-        home-manager.users.${username} = import ../nixos/home.nix;
+        home-manager.users.${username} = (import ./home.nix);
       }
       lix-module.nixosModules.default
     ];

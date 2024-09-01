@@ -5,5 +5,6 @@
     clang
     htop
     nodejs_20
+    usbutils
   ];
 }
