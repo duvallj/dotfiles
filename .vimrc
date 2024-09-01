@@ -96,6 +96,22 @@ set guifont=Cascadia\ Code\ PL:h12
 " Don't pass messages to |ins-completion-menu|
 set shortmess+=c
 
+" Allow pasting in WSL
+if $DOTFILES_WSL != ""
+  let g:clipboard = {
+  \   'name': 'WslClipboard',
+  \   'copy': {
+  \      '+': 'clip.exe',
+  \      '*': 'clip.exe',
+  \    },
+  \   'paste': {
+  \      '+': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+  \      '*': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+  \   },
+  \   'cache_enabled': 0,
+  \ }
+endif
+
 " coc.nvim settings start
 
 " Only start coc.nvim at startup if an environment variable is set
