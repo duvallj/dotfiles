@@ -10,8 +10,7 @@ export CROAM_ENV="local"
 source "${HOME}/wonder-aliases.sh"
 
 . /usr/local/opt/asdf/libexec/asdf.sh
-localbin="${HOME}/.local/bin"
-export PATH="${localbin}:${PATH}"
+export PATH="${HOME}/.local/bin:$(go env GOPATH)/bin:${PATH}"
 
 function replace {
   rg -l $3 "$1" | xargs sed -i '' "s/$1/$2/g"
