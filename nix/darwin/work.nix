@@ -1,6 +1,15 @@
 { config, pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
+    # For ~/wonder
+    curlFull
+    gnupg
+    hivemind
+    jq
+    pkg-config
+    skeema
+
+    # For ~/node-webrtc
     cmake
     htop
     ninja
@@ -10,25 +19,14 @@
     enable = true;
     brews = [
       "asdf"
-      "coreutils"
-      "curl"
-      # Taken care of by ../common/git.nix
-      # "git"
-      # "git-lfs"
-      "gpg"
-      "hivemind"
       "jenv"
-      "jq"
-      "pkg-config"
-      "skeema/tap/skeema"
       "swift-format"
       "swift-protobuf"
 
-      # For services. TODO: split these out into something separate ?
       "consul"
       "kafka"
-      "mysql"
-      "mysql-client"
+      "mysql@8.0"
+      "mysql-client@8.0"
       "redis"
     ];
     casks = [
@@ -41,7 +39,6 @@
     ];
     taps = [
       "homebrew/services"
-      "skeema/tap"
     ];
 
     # Don't really care about idempotency for these. If I eventually do, will

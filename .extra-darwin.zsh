@@ -1,15 +1,14 @@
 alias ls="eza"
-alias rg="command rg --hidden"
 alias my="mysql -u root -h 127.0.0.1"
 
-eval "$(/usr/local/bin/brew shellenv)"
-export PATH="/usr/local/opt/mysql-client/bin:${PATH}"
+eval "$(brew shellenv)"
+export PATH="$(brew --prefix)/opt/mysql-client@8.0/bin:${PATH}"
 
 export WONDER_ROOT="${HOME}/wonder/src"
 export CROAM_ENV="local"
 source "${HOME}/wonder-aliases.sh"
 
-. /usr/local/opt/asdf/libexec/asdf.sh
+source "$(brew --prefix)/opt/asdf/libexec/asdf.sh"
 export PATH="${HOME}/.local/bin:$(go env GOPATH)/bin:${PATH}"
 
 function replace {
@@ -41,4 +40,4 @@ function prune {
   git remote prune origin | sed -n -E "/${header}/ s/.*(${header}.*)/\\1/p" | xargs git branch -D
 }
 
-alias drs="darwin-rebuild switch --flake \"${HOME}/dotfiles\""
+alias rbs="darwin-rebuild switch --flake \"${HOME}/dotfiles\""
