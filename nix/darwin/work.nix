@@ -2,6 +2,7 @@
 {
   environment.systemPackages = with pkgs; [
     # For ~/wonder
+    awscli2
     curlFull
     gnupg
     hivemind
