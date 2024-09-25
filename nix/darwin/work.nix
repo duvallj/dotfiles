@@ -7,6 +7,7 @@
     gnupg
     hivemind
     jq
+    nats-server
     pkg-config
     skeema
 
