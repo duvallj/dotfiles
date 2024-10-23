@@ -5,6 +5,7 @@
   environment.systemPackages = with pkgs;
     [
       fd
+      magic-wormhole
       neovim
       ripgrep
     ];
