@@ -22,6 +22,7 @@
     importSubmodule = path: import path inputs;
     submodules = [
       ./nix/darwin/default.nix
+      ./nix/work/darwin/default.nix
       ./nix/nixos/default.nix
       ./nix/wsl/default.nix
     ];

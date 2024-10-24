@@ -3,10 +3,8 @@
     ../common/git.nix
     ../common/neovim.nix
     ../common/zsh.nix
-    ./android.nix
   ];
 
-  # For options in .extra-darwin.zsh
   home.packages = [
     pkgs.eza
   ];
