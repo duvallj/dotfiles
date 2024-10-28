@@ -18,6 +18,8 @@
 	ca = commit --amend
 	c = checkout
 	conflicts = diff --name-only --diff-filter=U --relative
+	ignore = update-index --assume-unchanged
+	unignore = update-index --no-assume-unchanged
 [pull]
 	rebase = true
 [filter "lfs"]
