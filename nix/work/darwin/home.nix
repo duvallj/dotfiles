@@ -1,5 +1,6 @@
 { pkgs, ... }: {
   imports = [
+    ../../common/direnv.nix
     ../../common/git.nix
     ../../common/neovim.nix
     ../../common/zsh.nix
