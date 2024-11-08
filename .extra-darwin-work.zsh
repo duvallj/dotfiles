@@ -1,5 +1,9 @@
 alias my="mysql -u root -h 127.0.0.1"
 
+if [[ -d /opt/homebrew ]]; then
+  export PATH="${PATH}:/opt/homebrew/bin"
+fi
+
 eval "$(brew shellenv)"
 export PATH="$(brew --prefix)/opt/mysql-client@8.0/bin:${PATH}"
 

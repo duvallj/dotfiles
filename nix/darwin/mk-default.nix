@@ -1,4 +1,4 @@
-{ username, hostname, nix-darwin-imports, home-manager-import }:
+{ username, hostname, hostPlatform, nix-darwin-imports, home-manager-import }:
 { self, home-manager, lix-module, nix-darwin, ... }:
 let
   configuration = { pkgs, ... }: {
@@ -16,7 +16,7 @@ let
     system.stateVersion = 4;
 
     # The platform the configuration will be used on.
-    nixpkgs.hostPlatform = "x86_64-darwin";
+    nixpkgs.hostPlatform = hostPlatform;
 
     users.users.${username} = {
       name = username;

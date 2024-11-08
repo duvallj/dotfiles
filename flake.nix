@@ -3,14 +3,14 @@
 
   inputs = {
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.0.tar.gz";
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,7 +22,8 @@
     importSubmodule = path: import path inputs;
     submodules = [
       ./nix/darwin/default.nix
-      ./nix/work/darwin/default.nix
+      ./nix/work/darwin/default-jack.nix
+      ./nix/work/darwin/default-sean.nix
       ./nix/nixos/default.nix
       ./nix/wsl/default.nix
     ];
