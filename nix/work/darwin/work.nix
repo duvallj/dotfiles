@@ -30,6 +30,8 @@
       "mysql@8.0"
       "mysql-client@8.0"
       "redis"
+
+      "xcodesorg/made/xcodes"
     ];
     casks = [
       "keybase"
@@ -41,6 +43,7 @@
     ];
     taps = [
       "homebrew/services"
+      "xcodesorg/made"
     ];
 
     # Don't really care about idempotency for these. If I eventually do, will
