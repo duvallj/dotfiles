@@ -9,7 +9,9 @@
     jq
     nats-server
     pkg-config
+    python310
     skeema
+    sops
 
     # For ~/node-webrtc
     cmake
