@@ -1,7 +1,7 @@
 let
   nixos-wsl = builtins.fetchTarball {
-    url = "https://github.com/nix-community/NixOS-WSL/archive/refs/tags/2405.5.4.tar.gz";
-    sha256 = "sha256:1hj3lbrykzqp88wvxv86b8lm41dyqhid71vhms1g89svx54nrcj6";
+    url = "https://github.com/nix-community/NixOS-WSL/archive/dee4425dcee3149475ead0cb6a616b8a028c5888.tar.gz";
+    sha256 = "sha256:1gfaibh7yhpisd2vxw7vawhgzy51l9yc28n1apmbh1cqg0g8dnib";
   };
 in
   import "${nixos-wsl}/modules"
