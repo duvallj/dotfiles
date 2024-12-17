@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
+    htop
+
     # For ~/wonder
     awscli2
     curlFull
@@ -12,11 +14,6 @@
     python310
     skeema
     sops
-
-    # For ~/node-webrtc
-    cmake
-    htop
-    ninja
   ];
 
   homebrew = {
@@ -33,6 +30,7 @@
       "mysql-client@8.0"
       "redis"
 
+      "aria2"
       "xcodesorg/made/xcodes"
     ];
     casks = [
