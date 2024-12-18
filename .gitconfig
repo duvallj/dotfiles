@@ -20,6 +20,7 @@
 	conflicts = diff --name-only --diff-filter=U --relative
 	ignore = update-index --assume-unchanged
 	unignore = update-index --no-assume-unchanged
+	ignored = !git ls-files -v | grep "^[[:lower:]]"
 [pull]
 	rebase = true
 [filter "lfs"]
