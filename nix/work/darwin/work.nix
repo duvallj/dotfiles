@@ -1,7 +1,11 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
     htop
+
+    # For telescope-fzf-native
+    cmake
+    # Don't use clang, because that will mess up the global install we have
 
     # For ~/wonder
     awscli2

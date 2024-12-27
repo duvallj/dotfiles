@@ -21,12 +21,6 @@ in
 
   config = lib.mkMerge [
     {
-      home.packages = with pkgs; [
-        # For telescope-fzf-native
-        clang
-        cmake
-      ];
-
       programs.neovim = {
         enable = true;
         viAlias = true;
