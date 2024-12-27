@@ -38,7 +38,10 @@
       "ngrok"
       {
         name = "tunnelblick";
-        args = { appdir = "/Applications"; require_sha = true; };
+        args = {
+          appdir = "/Applications";
+          require_sha = true;
+        };
       }
     ];
     taps = [

@@ -1,16 +1,24 @@
 # Nix module for a flakes-enabled NixOS install
-{ self, home-manager, lix-module, nixpkgs, ... }:
+{
+  self,
+  home-manager,
+  lix-module,
+  nixpkgs,
+  ...
+}:
 let
   username = "me";
   hostname = "nixos";
 
-  configuration = { ... }: {
-    users.users.${username} = {
-      isNormalUser = true;
-      extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+  configuration =
+    { ... }:
+    {
+      users.users.${username} = {
+        isNormalUser = true;
+        extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+      };
+      networking.hostName = hostname;
     };
-    networking.hostName = hostname;
-  };
 in
 {
   nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {

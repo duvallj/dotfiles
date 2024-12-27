@@ -17,16 +17,17 @@
     };
   };
 
-  outputs = inputs:
-  let
-    importSubmodule = path: import path inputs;
-    submodules = [
-      ./nix/darwin/default.nix
-      ./nix/work/darwin/default-jack.nix
-      ./nix/work/darwin/default-sean.nix
-      ./nix/nixos/default.nix
-      ./nix/wsl/default.nix
-    ];
-  in
-    builtins.foldl' (inputs.nixpkgs.lib.recursiveUpdate) {} (builtins.map importSubmodule submodules);
+  outputs =
+    inputs:
+    let
+      importSubmodule = path: import path inputs;
+      submodules = [
+        ./nix/darwin/default.nix
+        ./nix/work/darwin/default-jack.nix
+        ./nix/work/darwin/default-sean.nix
+        ./nix/nixos/default.nix
+        ./nix/wsl/default.nix
+      ];
+    in
+    builtins.foldl' (inputs.nixpkgs.lib.recursiveUpdate) { } (builtins.map importSubmodule submodules);
 }
