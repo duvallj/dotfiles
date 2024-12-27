@@ -16,6 +16,10 @@
       "command": "opam",
       "args": ["exec", "--", "ocamllsp"],
       "filetypes": ["ocaml", "reason"]
+    },
+    "nixd": {
+      "command": "nixd",
+      "filetypes": ["nix"]
     }
   }
 }

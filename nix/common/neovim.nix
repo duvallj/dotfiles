@@ -1,7 +1,6 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 let
   cfg = config.programs.neovim;
-  serverPipe = "\"\${HOME}/.config/nvim/server.pipe\"";
 in
 {
   options = {
@@ -13,6 +12,12 @@ in
 
   config = lib.mkMerge [
     {
+      home.packages = with pkgs; [
+        # For telescope-fzf-native
+        clang
+        cmake
+      ];
+
       programs.neovim = {
         enable = true;
         viAlias = true;
@@ -31,6 +36,10 @@ in
       };
     }
     (lib.mkIf cfg.cocLite.enable {
+      home.packages = with pkgs; [
+        nixd
+        nixfmt-rfc-style
+      ];
       home.sessionVariables = {
         DOTFILES_ENABLE_COC_NVIM = 1;
       };
@@ -39,7 +48,10 @@ in
       };
     })
     (lib.mkIf cfg.serverAliases {
-      home.shellAliases = {
+      home.shellAliases = let
+        serverPipe = "\"\${HOME}/.config/nvim/server.pipe\"";
+      in
+      {
         rvim = "nvim --server ${serverPipe}";
         svim = "nvim --listen ${serverPipe}";
       };

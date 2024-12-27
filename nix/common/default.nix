@@ -7,7 +7,6 @@
       fd
       jq
       magic-wormhole
-      neovim
       ripgrep
     ];
 
