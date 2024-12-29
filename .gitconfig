@@ -1,9 +1,3 @@
-[core]
-	editor = nvim
-	autocrlf = false
-	eol = lf
-	safecrlf = true
-	fsmonitor = true
 [alias]
 	diffc = diff --stat -w
 	diffcs = diff --stat -w --staged
@@ -21,8 +15,25 @@
 	ignore = update-index --assume-unchanged
 	unignore = update-index --no-assume-unchanged
 	ignored = !git ls-files -v | grep "^[[:lower:]]"
-[pull]
-	rebase = true
+[branch]
+	sort = committerdate
+[core]
+	editor = nvim
+	autocrlf = false
+	eol = lf
+	safecrlf = true
+	fsmonitor = true
+[credential]
+	helper = store
+[diff]
+	tool = difftastic
+[difftool]
+	prompt = false
+[difftool "difftastic"]
+	cmd = difft "$LOCAL" "$REMOTE"
+[fetch]
+	prune = false
+	showForcedUpdates = true
 [filter "lfs"]
 	process = git-lfs filter-process
 	required = true
@@ -30,34 +41,25 @@
 	smudge = git-lfs smudge -- %f
 [i18n]
 	filesEncoding = utf-8
-[user]
-	name = Jack Duvall
-	email = 10897431+duvallj@users.noreply.github.com
-[fetch]
-	prune = false
-	showForcedUpdates = true
+[init]
+	defaultBranch = main
+[log]
+	date = local
+[merge]
+	ff = true
+	conflictStyle = diff3
+[pager]
+	difftool = true
+[pull]
+	rebase = true
+[push]
+	autoSetupRemote = true
 [rebase]
 	autoStash = true
 	autoSquash = true
 	forkPoint = false
-[merge]
-	ff = true
-	conflictStyle = diff3
-[branch]
-	sort = committerdate
-[diff]
-	tool = difftastic
-[difftool]
-	prompt = false
-[difftool "difftastic"]
-	cmd = difft "$LOCAL" "$REMOTE"
-[pager]
-	difftool = true
-[credential]
-	helper = store
-[init]
-	defaultBranch = main
-[push]
-	autoSetupRemote = true
 [safe]
 	directory = *
+[user]
+	name = Jack Duvall
+	email = 10897431+duvallj@users.noreply.github.com
