@@ -32,7 +32,6 @@
       "kafka"
       "mysql@8.0"
       "mysql-client@8.0"
-      "opensearch"
       "redis"
 
       "aria2"
