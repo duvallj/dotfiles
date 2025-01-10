@@ -13,14 +13,21 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-  'vim-airline/vim-airline',
-  'tinted-theming/base16-vim',
+  {
+    'vim-airline/vim-airline',
+    branch = 'master',
+  },
+  {
+    'tinted-theming/tinted-vim',
+    branch = 'main',
+  },
   {
     'neoclide/coc.nvim',
     branch = 'release',
   },
   {
     'nvim-telescope/telescope-fzf-native.nvim',
+    branch = 'main',
     build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release'
   },
   {
@@ -43,11 +50,22 @@ require('lazy').setup({
     tag = 'v3.7',
   },
   {
+    'tpope/vim-rhubarb',
+    branch = 'master',
+  },
+  {
     'lewis6991/gitsigns.nvim',
     tag = 'v0.8.1',
   },
   {
+    'rbong/vim-flog',
+    branch = 'master',
+    lazy = true,
+    cmd = { 'Flog', 'Flogsplit', 'Floggit' },
+  },
+  {
     'nvim-treesitter/nvim-treesitter',
+    branch = 'master',
     build = ':TSUpdate',
     config = function()
       local configs = require("nvim-treesitter.configs")
