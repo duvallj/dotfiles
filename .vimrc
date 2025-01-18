@@ -30,8 +30,8 @@ command! -nargs=0 Spaces :setlocal tabstop=8 softtabstop=2   expandtab shiftwidt
 " language-specific settings
 autocmd Filetype make     setlocal tabstop=4 softtabstop=0 noexpandtab shiftwidth=4
 autocmd Filetype python   setlocal tabstop=4 softtabstop=4   expandtab shiftwidth=4
+autocmd Filetype go       setlocal tabstop=8 softtabstop=0 noexpandtab shiftwidth=8
 autocmd Filetype markdown setlocal spell textwidth=79
-autocmd Filetype go       :Tabs
 autocmd Filetype tex      setlocal spell
 
 " tex keybindings (up arrow goes into wrap)
@@ -44,7 +44,7 @@ autocmd Filetype tex inoremap <silent> <Down> <C-o>gj
 autocmd BufRead,BufWrite *.asm set filetype=nasm
 autocmd BufRead,BufWrite *.mts set filetype=typescript
 autocmd BufRead,BufWrite *.{c,h} set filetype=c.doxygen
-autocmd BufRead,BufWrite *.{cpp,hpp} set filetype=cpp.doxygen
+autocmd BufRead,BufWrite *.{cc,cpp,hh,hpp} set filetype=cpp.doxygen
 autocmd BufRead,BufWrite *.{gohtml,html.jinja} set filetype=html
 
 " natural backspace, linewrap settings
@@ -256,3 +256,8 @@ nnoremap <leader>fc <cmd>Telescope command_history<cr>
 nnoremap <leader>fs <cmd>Telescope search_history<cr>
 nnoremap <leader>fr <cmd>Telescope resume<cr>
 " telescope.nvim settings end
+
+" fugitive settings start
+nnoremap <leader>gg :GBrowse<cr>
+vnoremap <leader>gg :GBrowse<cr>
+" fugitive settings end
