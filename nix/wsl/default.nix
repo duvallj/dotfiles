@@ -37,6 +37,9 @@ let
 
       programs.zsh.enable = true;
       users.defaultUserShell = pkgs.zsh;
+
+      virtualisation.docker.enable = true;
+      users.users.${username}.extraGroups = [ "docker" ];
     };
 in
 {
