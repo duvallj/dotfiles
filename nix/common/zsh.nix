@@ -24,6 +24,7 @@ in
           unsetopt beep
           bindkey -e
         '';
+        initExtra = builtins.readFile ../../.extra.zsh;
       };
     }
     (lib.mkIf cfg.powerlevel10k.enable {

@@ -1,8 +1,8 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    cmake
     clang
+    cmake
     htop
     nodejs_20
     usbutils

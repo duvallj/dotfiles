@@ -1,13 +1,9 @@
-{ pkgs, ... }:
+{ ... }:
 {
   imports = [
     ../common/git.nix
     ../common/neovim.nix
     ../common/zsh.nix
-  ];
-
-  home.packages = [
-    pkgs.eza
   ];
 
   home.stateVersion = "24.05";
