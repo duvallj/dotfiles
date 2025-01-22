@@ -1,7 +1,7 @@
 alias ls="eza"
 
 function replace {
-  rg -l $3 "$1" | xargs sd "$1" "$2"
+  rg -l "$1" $3 | xargs sd "$1" "$2"
 }
 
 function xim {
