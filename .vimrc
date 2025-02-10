@@ -112,6 +112,12 @@ if $DOTFILES_WSL != ""
   \ }
 endif
 
+" Allow copy with Ctrl+C
+vnoremap <C-c> "+y
+" Allow paste with default OS paste support. At least in Kitty on MacOS, this
+" seems to happen automatically already?
+" set pastetoggle
+
 " coc.nvim settings start
 
 " Only start coc.nvim at startup if an environment variable is set
@@ -139,7 +145,7 @@ function! ToggleCoc()
 endfunction
 
 " \c == enable/disable coc
-nnoremap <silent> <leader>c :call ToggleCoc()<cr>
+nnoremap <silent> <leader>c <cmd>call ToggleCoc()<cr>
 
 " all plugins to install
 let g:coc_global_extensions = [
@@ -194,7 +200,7 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gr <Plug>(coc-references)
 
 " gh == get hint
-nmap <silent> gh :call CocAction('doHover')<CR>
+nmap <silent> gh <CMD>call CocAction('doHover')<CR>
 
 " \a == do code action
 xmap <leader>a <Plug>(coc-codeaction-selected)
@@ -258,6 +264,6 @@ nnoremap <leader>fr <cmd>Telescope resume<cr>
 " telescope.nvim settings end
 
 " fugitive settings start
-nnoremap <leader>gg :GBrowse<cr>
-vnoremap <leader>gg :GBrowse<cr>
+nnoremap <leader>gg <cmd>GBrowse<cr>
+vnoremap <leader>gg <cmd>GBrowse<cr>
 " fugitive settings end

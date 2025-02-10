@@ -14,3 +14,7 @@ export PATH="${HOME}/.local/bin:$(go env GOPATH)/bin:${PATH}"
 export WONDER_ROOT="${HOME}/wonder/src"
 export CROAM_ENV="local"
 source "${HOME}/wonder-aliases.sh"
+
+export TERRAGRUNT_FETCH_DEPENDENCY_OUTPUT_FROM_STATE=true
+export TERRAGRUNT_PROVIDER_CACHE=true
+export TERRAGRUNT_STRICT_CONTROL=skip-dependencies-inputs
