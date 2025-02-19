@@ -3,8 +3,9 @@
   home.packages = with pkgs; [
     clang
     cmake
+    corepack
     htop
-    nodejs_20
+    nodejs_22
     usbutils
   ];
 }
