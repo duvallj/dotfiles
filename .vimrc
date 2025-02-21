@@ -112,11 +112,12 @@ if $DOTFILES_WSL != ""
   \ }
 endif
 
-" Allow copy with Ctrl+C
-vnoremap <C-c> "+y
-" Allow paste with default OS paste support. At least in Kitty on MacOS, this
-" seems to happen automatically already?
-" set pastetoggle
+" Allow copy with Ctrl+Shift+C
+vnoremap <C-S-c> "+y
+" Allow copy with Super+C
+vnoremap <D-c> "+y
+" Default OS paste support (at least for Kitty) includes Ctrl+Shift+V and
+" Super+V. Configure these in the terminal, and they _should_ "just work" here.
 
 " coc.nvim settings start
 
