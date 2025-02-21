@@ -5,19 +5,21 @@ function replace {
 }
 
 function xim {
-  $@ | xargs nvim -p
+  xargs nvim -p
 }
 
 function fdim {
-  xim fd $@
+  fd $@ | xim
 }
 
 function rgim {
-  xim rg -l $@
+  # List all files with that search, and also search for that pattern within nvim
+  # Assumes the pattern is the first argument
+  rg -l $@ | xim "+/$1"
 }
 
 function conflicts {
-  xim git conflicts
+  git conflicts | xim
 }
 
 function cam {
