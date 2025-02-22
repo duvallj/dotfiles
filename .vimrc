@@ -96,8 +96,16 @@ set guifont=Cascadia\ Code\ PL:h12
 " Don't pass messages to |ins-completion-menu|
 set shortmess+=c
 
-" Allow pasting in WSL
+" Allow copy with Ctrl+Shift+C
+vnoremap <C-S-c> "+y
+" Allow copy with Super+C
+vnoremap <D-c> "+y
+" Default OS paste support (at least for Kitty) includes Ctrl+Shift+V and
+" Super+V. Configure these in the terminal, and they _should_ "just work" here.
+
+" Pasting in WSL is a bit trickier, however:
 if $DOTFILES_WSL != ""
+  " First, we have to set up the correct keyboard handlers
   let g:clipboard = {
   \   'name': 'WslClipboard',
   \   'copy': {
@@ -110,14 +118,14 @@ if $DOTFILES_WSL != ""
   \   },
   \   'cache_enabled': 0,
   \ }
-endif
 
-" Allow copy with Ctrl+Shift+C
-vnoremap <C-S-c> "+y
-" Allow copy with Super+C
-vnoremap <D-c> "+y
-" Default OS paste support (at least for Kitty) includes Ctrl+Shift+V and
-" Super+V. Configure these in the terminal, and they _should_ "just work" here.
+  " Then, because the above shortcuts are incompatible, we need to use others:
+  " Allow copy with Alt+Shift+C
+  vnoremap <M-C> "+y
+  " Allow paste with Alt+Shift+V
+  noremap <M-V> "+p
+  inoremap <M-V> "+p
+endif
 
 " coc.nvim settings start
 
