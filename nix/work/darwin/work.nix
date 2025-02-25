@@ -28,7 +28,6 @@
       "swift-format"
       "swift-protobuf"
 
-      "consul"
       "kafka"
       "mysql@8.0"
       "mysql-client@8.0"

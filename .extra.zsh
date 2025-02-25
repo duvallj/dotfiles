@@ -5,7 +5,7 @@ function replace {
 }
 
 function xim {
-  xargs nvim -p
+  xargs nvim -p $@
 }
 
 function fdim {
