@@ -274,5 +274,11 @@ nnoremap <leader>fr <cmd>Telescope resume<cr>
 
 " fugitive settings start
 nnoremap <leader>gg <cmd>GBrowse<cr>
-vnoremap <leader>gg <cmd>GBrowse<cr>
+vnoremap <leader>gg <cmd>'<,'>GBrowse<cr>
 " fugitive settings end
+
+" conflict-marker.vim settings start
+let g:conflict_marker_enable_mappings = 0
+nmap <buffer>]x <Plug>(conflict-marker-next-hunk)
+nmap <buffer>[x <Plug>(conflict-marker-prev-hunk)
+" conflict-marker.vim settings end

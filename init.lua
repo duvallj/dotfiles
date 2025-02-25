@@ -119,6 +119,10 @@ require('lazy').setup({
     }
   },
   {
+    'rhysd/conflict-marker.vim',
+    branch = 'master',
+  },
+  {
     'rbong/vim-flog',
     branch = 'master',
     lazy = true,
