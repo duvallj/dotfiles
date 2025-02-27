@@ -127,6 +127,12 @@ if $DOTFILES_WSL != ""
   inoremap <M-V> <cmd>norm "+p<cr>
 endif
 
+" Open file from OS clipboard. Only works in normal mode due to restrictions
+" of <cmd>
+nnoremap <leader>po :tabedit <C-r>+<cr>
+" Open file from default clipboard
+nnoremap <leader>pp :tabedit <C-r>"<cr>
+
 " coc.nvim settings start
 
 " Only start coc.nvim at startup if an environment variable is set
