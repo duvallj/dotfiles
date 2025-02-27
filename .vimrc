@@ -123,8 +123,8 @@ if $DOTFILES_WSL != ""
   " Allow copy with Alt+Shift+C
   vnoremap <M-C> "+y
   " Allow paste with Alt+Shift+V
-  noremap <M-V> "+p
-  inoremap <M-V> "+p
+  noremap <M-V> <cmd>norm "+p<cr>
+  inoremap <M-V> <cmd>norm "+p<cr>
 endif
 
 " coc.nvim settings start
