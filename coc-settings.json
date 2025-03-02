@@ -2,7 +2,6 @@
   "coc.preferences.jumpCommand": "tabe",
   "coc.preferences.formatOnSave": true,
   "rust-analyzer.updates.channel": "stable",
-  "rust-analyzer.checkOnSave": false,
   "rust-analyzer.cargo.features": "all",
   "clangd.enabled": true,
   "inlayHint.enable": true,
