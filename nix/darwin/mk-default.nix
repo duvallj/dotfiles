@@ -14,7 +14,7 @@
 }:
 let
   configuration =
-    { pkgs, ... }:
+    { ... }:
     {
       imports = nix-darwin-imports;
 

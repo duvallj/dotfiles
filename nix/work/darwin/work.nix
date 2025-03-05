@@ -5,7 +5,7 @@
 
     # For telescope-fzf-native
     cmake
-    # Don't use clang, because that will mess up the global install we have
+    # Don't use clang, because that will mess up the global install we have thru xcode
 
     # For ~/wonder
     awscli2
@@ -13,6 +13,7 @@
     gnupg
     hivemind
     jq
+    localstack
     nats-server
     pkg-config
     python310
