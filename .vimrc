@@ -165,10 +165,9 @@ nnoremap <silent> <leader>c <cmd>call ToggleCoc()<cr>
 " all plugins to install
 let g:coc_global_extensions = [
   \ "coc-json",
-  \ "coc-rust-analyzer",
-  \ "coc-clangd",
   \ "coc-tsserver",
   \ "coc-prettier",
+  \ "coc-snippets",
   \ ]
 
 " Use tab for trigger completion with characters ahead and navigate.
@@ -177,11 +176,13 @@ let g:coc_global_extensions = [
 inoremap <silent><expr> <TAB>
       \ g:dotfiles_coc_enabled == 0 ? "\<Tab>" :
       \ coc#pum#visible() ? coc#pum#next(1) :
+      \ coc#jumpable() ? "\<C-j>" :
       \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
 inoremap <expr><S-TAB>
       \ g:dotfiles_coc_enabled == 0 ? "\<C-h>" :
       \ coc#pum#visible() ? coc#pum#prev(1) :
+      \ coc#jumpable() ? "\<C-k>" :
       \ "\<C-h>"
 
 " Make <CR> to accept selected completion item or notify coc.nvim to format
@@ -189,12 +190,17 @@ inoremap <expr><S-TAB>
 inoremap <silent><expr> <CR>
       \ g:dotfiles_coc_enabled == 0 ? "\<CR>" :
       \ coc#pum#visible() ? coc#pum#confirm() :
+      \ coc#expandable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand',''])\<CR>" :
       \ "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+" Also have unambiguous mappings for next/prev snippet placeholder
+let g:coc_snippet_next = '<C-j>'
+let g:coc_snippet_prev = '<C-k>'
 
 " Use <c-space> to trigger completion
 if has('nvim')
