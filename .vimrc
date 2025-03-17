@@ -77,6 +77,12 @@ tnoremap <Esc> <C-\><C-n>
 " allows use of mouse
 set mouse=a
 
+" Don't need to move from home row for movement
+nnoremap j h
+nnoremap k j
+nnoremap l k
+nnoremap ; l
+
 " makes it so colors show up correctly in tmux
 set background=dark
 " make it so colors show up correctly in cmd.exe
