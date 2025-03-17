@@ -77,6 +77,9 @@ tnoremap <Esc> <C-\><C-n>
 " allows use of mouse
 set mouse=a
 
+" Make scrolling not go so far
+set scroll=3
+
 " Don't need to move from home row for movement
 nnoremap j h
 nnoremap k j
