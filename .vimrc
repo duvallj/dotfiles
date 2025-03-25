@@ -78,13 +78,7 @@ tnoremap <Esc> <C-\><C-n>
 set mouse=a
 
 " Make scrolling not go so far
-set scroll=3
-
-" Don't need to move from home row for movement
-nnoremap j h
-nnoremap k j
-nnoremap l k
-nnoremap ; l
+set scroll=4
 
 " makes it so colors show up correctly in tmux
 set background=dark
@@ -100,7 +94,6 @@ if !exists('g:colors_name')
 endif
 
 " Set the font to something nice
-set guifont=Cascadia\ Code\ PL:h12
 
 " Don't pass messages to |ins-completion-menu|
 set shortmess+=c
