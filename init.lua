@@ -217,6 +217,7 @@ autocmd User CocStatusChange redrawstatus
   {
     'tpope/vim-fugitive',
     tag = 'v3.7',
+    lazy = false,
     keys = {
       { "<leader>gg", "<cmd>GBrowse<cr>", mode = "n", desc = "GBrowse", },
       { "<leader>gg", "<cmd>'<,'>GBrowse<cr>", mode = "v", desc = "GBrowse (visual)", },
