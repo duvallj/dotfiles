@@ -32,9 +32,8 @@ augroup vimrc
 
   " extra filetype detection
   autocmd BufNewFile,BufRead *.asm set filetype=nasm
-  autocmd BufNewFile,BufRead *.mts set filetype=typescript
-  autocmd BufNewFile,BufRead *.{c,h} set filetype=c.doxygen
-  autocmd BufNewFile,BufRead *.{cc,cpp,hh,hpp} set filetype=cpp.doxygen
+  autocmd BufNewFile,BufRead *.{mjs,cjs} set filetype=javascript
+  autocmd BufNewFile,BufRead *.{mts,cts} set filetype=typescript
   autocmd BufNewFile,BufRead *.{gohtml,html.jinja} set filetype=html
 
   " language-specific settings
