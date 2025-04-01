@@ -1,0 +1,65 @@
+[alias]
+	diffc = diff --stat -w
+	diffcs = diff --stat -w --staged
+	showc = show --stat -w
+	showcs = show --stat -w --staged
+	difft = difftool
+	diffts = difftool --staged
+	showt = "!f() { GIT_EXTERNAL_DIFF=difft git show --ext-diff $@; }; f"
+	showts = "!f() { GIT_EXTERNAL_DIFF=difft git show --ext-diff --staged $@; }; f"
+	a = add .
+	cm = commit -m
+	ca = commit --amend
+	c = checkout
+	conflicts = diff --name-only --diff-filter=U --relative
+	ignore = update-index --assume-unchanged
+	unignore = update-index --no-assume-unchanged
+	ignored = !git ls-files -v | grep "^[[:lower:]]"
+[branch]
+	sort = committerdate
+[core]
+	editor = nvim
+	autocrlf = false
+	eol = lf
+	safecrlf = true
+	fsmonitor = true
+[credential]
+	helper = store
+[diff]
+	tool = difftastic
+[difftool]
+	prompt = false
+[difftool "difftastic"]
+	cmd = difft "$LOCAL" "$REMOTE"
+[fetch]
+	prune = false
+	showForcedUpdates = true
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[i18n]
+	filesEncoding = utf-8
+[init]
+	defaultBranch = main
+[log]
+	date = local
+[merge]
+	ff = true
+	conflictStyle = diff3
+[pager]
+	difftool = true
+[pull]
+	rebase = true
+[push]
+	autoSetupRemote = true
+[rebase]
+	autoStash = true
+	autoSquash = true
+	forkPoint = false
+[safe]
+	directory = *
+[user]
+	name = Jack Duvall
+	email = 10897431+duvallj@users.noreply.github.com

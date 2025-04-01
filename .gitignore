@@ -1,0 +1,4 @@
+# ignore vim swap files
+*.swp
+# ignore vim spellcheck files
+.vim/spell
