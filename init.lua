@@ -51,7 +51,10 @@ require("lazy").setup({
   {
     "neovim/nvim-lspconfig",
     tag = "v1.7.0",
-    dependencies = { "saghen/blink.cmp", },
+    dependencies = {
+      "saghen/blink.cmp",
+      "nvim-telescope/telescope.nvim",
+    },
     opts = {
       servers = {
         gopls = {},
@@ -62,10 +65,52 @@ require("lazy").setup({
     },
     config = function(_, opts)
       local lspconfig = require("lspconfig")
+      local builtin = require("telescope.builtin")
       for server, config in pairs(opts.servers) do
         config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
         lspconfig[server].setup(config)
       end
+
+      vim.api.nvim_create_autocmd("LspAttach", {
+        callback = function(args)
+          local bufnr = args.buf
+          local client = vim.lsp.get_client_by_id(args.data.client_id)
+          local function map(mode, l, r, opts)
+            opts = opts or {}
+            opts.buffer = bufnr
+            vim.keymap.set(mode, l, r, opts)
+          end
+
+          if client.server_capabilities.definitionProvider then
+            map("n", "grd", function() builtin.lsp_definitions { jump_type = "tab" } end)
+          end
+
+          if client.server_capabilities.typeDefinitionProvider then
+            map("n", "gry", function() builtin.lsp_type_definitions { jump_type = "tab" } end)
+          end
+
+          if client.server_capabilities.implementationProvider then
+            map("n", "gri", function() builtin.lsp_implementations { jump_type = "tab" } end)
+          end
+
+          if client.server_capabilities.referencesProvider then
+            map("n", "grr", builtin.lsp_references)
+          end
+
+          if client.server_capabilities.renameProvider then
+            map("n", "grn", vim.lsp.buf.rename)
+          end
+
+          if client.server_capabilities.codeActionProvider then
+            map("n", "gra", vim.lsp.buf.code_action)
+          end
+        end,
+      })
+
+      vim.api.nvim_create_autocmd("LspProgress", {
+        pattern = "*",
+        command = "redrawstatus",
+      })
     end,
   },
   {
