@@ -10,7 +10,6 @@ in
 {
   options = {
     programs.neovim = {
-      cocLite.enable = lib.mkEnableOption "Whether to enable COC (but not as heavyweight as thru Nix)";
       serverAliases = lib.mkOption {
         default = true;
         description = "Whether to enable RPC aliases";
@@ -38,19 +37,12 @@ in
         ".vim".source = ../../.vim;
         ".vimrc".source = ../../.vimrc;
       };
-    }
-    (lib.mkIf cfg.cocLite.enable {
+
       home.packages = with pkgs; [
         nixd
         nixfmt-rfc-style
       ];
-      home.sessionVariables = {
-        DOTFILES_ENABLE_COC_NVIM = 1;
-      };
-      home.file = {
-        ".config/nvim/coc-settings.json".source = ../../coc-settings.json;
-      };
-    })
+    }
     (lib.mkIf cfg.serverAliases {
       home.shellAliases =
         let

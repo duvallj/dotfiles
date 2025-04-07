@@ -7,9 +7,9 @@ fi
 eval "$(brew shellenv)"
 export PATH="$(brew --prefix)/opt/mysql-client@8.0/bin:${PATH}"
 
-export ASDF_DATA_DIR="${HOME}/.asdf"
-export PATH="${ASDF_DATA_DIR}/shims:${PATH}"
-export PATH="${HOME}/.local/bin:$(go env GOPATH)/bin:${PATH}"
+eval "$(mise activate zsh)"
+export PATH="${HOME}/.local/bin:${PATH}"
+# go path automatically managed by mise
 
 export WONDER_ROOT="${HOME}/wonder/src"
 export CROAM_ENV="local"

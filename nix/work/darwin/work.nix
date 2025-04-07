@@ -24,8 +24,8 @@
   homebrew = {
     enable = true;
     brews = [
-      "asdf"
       "jenv"
+      "mise"
       "swift-format"
       "swift-protobuf"
 

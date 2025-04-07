@@ -12,7 +12,6 @@
 
   kitty.enable = true;
 
-  programs.neovim.cocLite.enable = true;
   programs.neovim.serverAliases = true;
 
   programs.zsh.powerlevel10k.enable = true;

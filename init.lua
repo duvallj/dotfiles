@@ -58,6 +58,7 @@ require("lazy").setup({
     opts = {
       servers = {
         gopls = {},
+        nixd = {},
         ts_ls = {
           cmd = { "npx", "typescript-language-server", "--stdio" },
         },
