@@ -12,159 +12,139 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup({
+require("lazy").setup({
   {
-    'vim-airline/vim-airline',
-    branch = 'master',
+    "vim-airline/vim-airline",
+    branch = "master",
   },
   {
-    'tinted-theming/tinted-vim',
-    branch = 'main',
+    "tinted-theming/tinted-vim",
+    branch = "main",
   },
   {
-    'neoclide/coc.nvim',
-    branch = 'release',
+    "nvim-treesitter/nvim-treesitter",
+    branch = "master",
+    build = ":TSUpdate",
     config = function()
-      vim.cmd([[
-" Only start coc.nvim at startup if an environment variable is set
-let g:dotfiles_coc_enabled = $DOTFILES_ENABLE_COC_NVIM == "" ? 0 : 1
-if g:dotfiles_coc_enabled == 0
-   " For some reason, coc still handles events and shows the popup menu even
-   " though it hasn't started?? it's weird
-   CocDisable
-endif
-
-" Use a function to toggle Coc's enabled status
-" See https://stackoverflow.com/q/64507845
-let g:coc_start_at_startup = g:dotfiles_coc_enabled
-function! ToggleCoc()
-   if g:dotfiles_coc_enabled == 0
-      let g:dotfiles_coc_enabled = 1
-      CocStart
-      CocEnable
-      echo 'COC on'
-   else
-      let g:dotfiles_coc_enabled = 0
-      echo 'COC off'
-      call coc#rpc#stop()
-   endif
-endfunction
-
-" \c == enable/disable coc
-nnoremap <silent> <leader>c <cmd>call ToggleCoc()<cr>
-
-" all plugins to install
-let g:coc_global_extensions = [
-  \ "coc-json",
-  \ "coc-tsserver",
-  \ "coc-prettier",
-  \ "coc-snippets",
-  \ ]
-
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ g:dotfiles_coc_enabled == 0 ? "\<Tab>" :
-      \ coc#pum#visible() ? coc#pum#next(1) :
-      \ coc#jumpable() ? "\<C-j>" :
-      \ CheckBackspace() ? "\<Tab>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB>
-      \ g:dotfiles_coc_enabled == 0 ? "\<C-h>" :
-      \ coc#pum#visible() ? coc#pum#prev(1) :
-      \ coc#jumpable() ? "\<C-k>" :
-      \ "\<C-h>"
-
-" Make <CR> to accept selected completion item or notify coc.nvim to format
-" <C-g>u breaks current undo, please make your own choice
-inoremap <silent><expr> <CR>
-      \ g:dotfiles_coc_enabled == 0 ? "\<CR>" :
-      \ coc#pum#visible() ? coc#pum#confirm() :
-      \ coc#expandable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand',''])\<CR>" :
-      \ "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-function! CheckBackspace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Also have unambiguous mappings for next/prev snippet placeholder
-let g:coc_snippet_next = '<C-j>'
-let g:coc_snippet_prev = '<C-k>'
-
-" Use <c-space> to trigger completion
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
-
-" Use `[g` and `]g` to navigate diagnostics
-" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gm <Plug>(coc-implementation)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gr <Plug>(coc-references)
-
-" gh == get hint
-nmap <silent> gh <CMD>call CocAction('doHover')<CR>
-
-" \a == do code action
-xmap <leader>a <Plug>(coc-codeaction-selected)
-nmap <leader>a <Plug>(coc-codeaction-selected)
-" \ac == code action at cursor
-nmap <leader>ac <Plug>(coc-codeaction-cursor)
-" \as == code action for source
-nmap <leader>as <Plug>(coc-codeaction-source)
-
-" \f == format code
-xmap <leader>f <Plug>(coc-format-selected)
-nmap <leader>f <Plug>(coc-format-selected)
-
-" \rn == rename symbol
-nmap <leader>rn <Plug>(coc-rename)
-
-" Add `:Format` command to format current buffer.
-" Formats the entire buffer.
-command! -nargs=0 Format :call CocAction('format')
-
-command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
-
-" Add `:Fold` command to fold current buffer.
-" folds a certain block of code awaw from view
-command! -nargs=? Fold :call CocAction('fold', <f-args>)
-
-" Add `:OR` command for organize imports of the current buffer.
-command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
-
-" Add `:Diag` command to get current list of diagnostics
-command! -nargs=0 Diag :CocList diagnostics
-
-" Remap <C-f> and <C-b> for scroll float windows/popups.
-if has('nvim-0.4.0') || has('patch-8.2.0750')
-  nnoremap <silent><nowait><expr> <S-Down> coc#float#has_scroll() ? coc#float#scroll(1) : "\<S-Down>"
-  nnoremap <silent><nowait><expr> <S-Up> coc#float#has_scroll() ? coc#float#scroll(0) : "\<S-Up>"
-  inoremap <silent><nowait><expr> <S-Down> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<S-Down>"
-  inoremap <silent><nowait><expr> <S-Up> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<S-Up>"
-  vnoremap <silent><nowait><expr> <S-Down> coc#float#has_scroll() ? coc#float#scroll(1) : "\<S-Down>"
-  vnoremap <silent><nowait><expr> <S-Up> coc#float#has_scroll() ? coc#float#scroll(0) : "\<S-Up>"
-endif
-
-" So that the status bar actually redraws when coc has a spinner in it
-autocmd User CocStatusChange redrawstatus
-      ]])
+      local configs = require("nvim-treesitter.configs")
+      configs.setup({
+        ensure_installed = { "lua", "vim", "vimdoc", "javascript", "html", "css", "typescript", "tsx", "c" },
+        sync_install = true,
+        highlight = { enable = true },
+        indent = { enable = true },
+      })
     end,
   },
   {
-    'nvim-telescope/telescope.nvim',
-    branch = '0.1.x',
+    "saghen/blink.cmp",
+    version = "1.*",
+    --@module "blink.cmp"
+    --@type blink.cmp.Config
+    opts = {
+      keymap = { preset = "enter" },
+      sources = {
+        default = { "lsp", "path", "snippets", "buffer", },
+      },
+    },
+    opts_extend = { "sources.default", },
+  },
+  {
+    "neovim/nvim-lspconfig",
+    tag = "v1.7.0",
     dependencies = {
-      'nvim-lua/plenary.nvim'
+      "saghen/blink.cmp",
+      "nvim-telescope/telescope.nvim",
+    },
+    opts = {
+      servers = {
+        gopls = {},
+        ts_ls = {
+          cmd = { "npx", "typescript-language-server", "--stdio" },
+        },
+      },
+    },
+    config = function(_, opts)
+      local lspconfig = require("lspconfig")
+      local builtin = require("telescope.builtin")
+      for server, config in pairs(opts.servers) do
+        config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
+        lspconfig[server].setup(config)
+      end
+
+      vim.api.nvim_create_autocmd("LspAttach", {
+        callback = function(args)
+          local bufnr = args.buf
+          local client = vim.lsp.get_client_by_id(args.data.client_id)
+          local function map(mode, l, r, opts)
+            opts = opts or {}
+            opts.buffer = bufnr
+            vim.keymap.set(mode, l, r, opts)
+          end
+
+          if client.server_capabilities.definitionProvider then
+            map("n", "grd", function() builtin.lsp_definitions { jump_type = "tab" } end)
+          end
+
+          if client.server_capabilities.typeDefinitionProvider then
+            map("n", "gry", function() builtin.lsp_type_definitions { jump_type = "tab" } end)
+          end
+
+          if client.server_capabilities.implementationProvider then
+            map("n", "gri", function() builtin.lsp_implementations { jump_type = "tab" } end)
+          end
+
+          if client.server_capabilities.referencesProvider then
+            map("n", "grr", builtin.lsp_references)
+          end
+
+          if client.server_capabilities.renameProvider then
+            map("n", "grn", vim.lsp.buf.rename)
+          end
+
+          if client.server_capabilities.codeActionProvider then
+            map("n", "gra", vim.lsp.buf.code_action)
+          end
+        end,
+      })
+
+      vim.api.nvim_create_autocmd("LspProgress", {
+        pattern = "*",
+        command = "redrawstatus",
+      })
+    end,
+  },
+  {
+    "stevearc/conform.nvim",
+    tag = "stable",
+    event = { "BufWritePre" },
+    cmd = { "ConformInfo" },
+    keys = {
+      { "<leader>f", function() require("conform").format({ async = true }) end, mode = "", desc = "Format buffer", },
+    },
+    --@module "conform"
+    --@type conform.setupOpts
+    opts = {
+      formatters_by_ft = {
+        css = { "prettier" },
+        go = { "goimports", "gofmt" },
+        html = { "prettier" },
+        javascript = { "prettier" },
+        typescript = { "prettier" },
+        typescriptreact = { "prettier" },
+      },
+      default_format_opts = {
+        lsp_format = "fallback",
+      },
+      format_on_save = {
+        timeout_ms = 1000,
+      },
+    },
+  },
+  {
+    "nvim-telescope/telescope.nvim",
+    branch = "0.1.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim"
     },
     opts = {
       defaults = {
@@ -199,20 +179,20 @@ autocmd User CocStatusChange redrawstatus
     },
   },
   {
-    'nvim-telescope/telescope-fzf-native.nvim',
-    branch = 'main',
-    build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release',
+    "nvim-telescope/telescope-fzf-native.nvim",
+    branch = "main",
+    build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
     config = function()
-      require('telescope').load_extension('fzf')
+      require("telescope").load_extension("fzf")
     end,
   },
   {
-    'tpope/vim-repeat',
-    branch = 'master',
+    "tpope/vim-repeat",
+    branch = "master",
   },
   {
-    'tpope/vim-surround',
-    branch = 'master',
+    "tpope/vim-surround",
+    branch = "master",
   },
   {
     'tpope/vim-fugitive',
@@ -224,15 +204,16 @@ autocmd User CocStatusChange redrawstatus
     },
   },
   {
-    'tpope/vim-rhubarb',
-    branch = 'master',
+    "tpope/vim-rhubarb",
+    branch = "master",
+    cmd = { "GBrowse" },
   },
   {
-    'lewis6991/gitsigns.nvim',
-    tag = 'v0.8.1',
+    "lewis6991/gitsigns.nvim",
+    tag = "v0.8.1",
     opts = {
       on_attach = function(bufnr)
-        local gitsigns = require('gitsigns')
+        local gitsigns = require("gitsigns")
 
         local function map(mode, l, r, opts)
           opts = opts or {}
@@ -241,37 +222,37 @@ autocmd User CocStatusChange redrawstatus
         end
 
         -- Navigation
-        map('n', ']c', function()
+        map("n", "]c", function()
           if vim.wo.diff then
-            vim.cmd.normal({']c', bang = true})
+            vim.cmd.normal({"]c", bang = true})
           else
-            gitsigns.nav_hunk('next')
+            gitsigns.nav_hunk("next")
           end
         end)
 
-        map('n', '[c', function()
+        map("n", "[c", function()
           if vim.wo.diff then
-            vim.cmd.normal({'[c', bang = true})
+            vim.cmd.normal({"[c", bang = true})
           else
-            gitsigns.nav_hunk('prev')
+            gitsigns.nav_hunk("prev")
           end
         end)
 
         -- Actions
-        map('n', '<leader>hs', gitsigns.stage_hunk)
-        map('n', '<leader>hr', gitsigns.reset_hunk)
-        map('v', '<leader>hs', function() gitsigns.stage_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
-        map('v', '<leader>hr', function() gitsigns.reset_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
-        map('n', '<leader>hS', gitsigns.stage_buffer)
-        map('n', '<leader>hu', gitsigns.undo_stage_hunk)
-        map('n', '<leader>hR', gitsigns.reset_buffer)
-        map('n', '<leader>hp', gitsigns.preview_hunk)
+        map("n", "<leader>hs", gitsigns.stage_hunk)
+        map("n", "<leader>hr", gitsigns.reset_hunk)
+        map("v", "<leader>hs", function() gitsigns.stage_hunk {vim.fn.line("."), vim.fn.line("v")} end)
+        map("v", "<leader>hr", function() gitsigns.reset_hunk {vim.fn.line("."), vim.fn.line("v")} end)
+        map("n", "<leader>hS", gitsigns.stage_buffer)
+        map("n", "<leader>hu", gitsigns.undo_stage_hunk)
+        map("n", "<leader>hR", gitsigns.reset_buffer)
+        map("n", "<leader>hp", gitsigns.preview_hunk)
       end
     }
   },
   {
-    'rhysd/conflict-marker.vim',
-    branch = 'master',
+    "rhysd/conflict-marker.vim",
+    branch = "master",
     config = function()
       vim.cmd([[
 let g:conflict_marker_enable_mappings = 0
@@ -281,24 +262,10 @@ nmap <buffer>[x <Plug>(conflict-marker-prev-hunk)
     end,
   },
   {
-    'rbong/vim-flog',
-    branch = 'master',
+    "rbong/vim-flog",
+    branch = "master",
     lazy = true,
-    cmd = { 'Flog', 'Flogsplit', 'Floggit' },
-  },
-  {
-    'nvim-treesitter/nvim-treesitter',
-    branch = 'master',
-    build = ':TSUpdate',
-    config = function()
-      local configs = require("nvim-treesitter.configs")
-      configs.setup({
-        ensure_installed = { "lua", "vim", "vimdoc", "javascript", "html", "css", "typescript", "tsx", "c" },
-        sync_install = true,
-        highlight = { enable = true },
-        indent = { enable = true },
-      })
-    end,
+    cmd = { "Flog", "Flogsplit", "Floggit" },
   },
 })
 
