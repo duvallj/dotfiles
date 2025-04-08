@@ -120,7 +120,7 @@ require("lazy").setup({
     event = { "BufWritePre" },
     cmd = { "ConformInfo" },
     keys = {
-      { "<leader>f", function() require("conform").format({ async = true }) end, mode = "", desc = "Format buffer", },
+      { "<leader>bb", function() require("conform").format({ async = true }) end, mode = "", desc = "Format buffer", },
     },
     --@module "conform"
     --@type conform.setupOpts
@@ -207,7 +207,6 @@ require("lazy").setup({
   {
     "tpope/vim-rhubarb",
     branch = "master",
-    cmd = { "GBrowse" },
   },
   {
     "lewis6991/gitsigns.nvim",
