@@ -38,9 +38,11 @@ in
         ".vimrc".source = ../../.vimrc;
       };
 
+      # TODO: add configuration options for language servers
       home.packages = with pkgs; [
         nixd
         nixfmt-rfc-style
+        vscode-langservers-extracted
       ];
     }
     (lib.mkIf cfg.serverAliases {

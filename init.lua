@@ -57,8 +57,14 @@ require("lazy").setup({
     },
     opts = {
       servers = {
+        clangd = {},
+        cssls = {},
+        eslint = {},
         gopls = {},
+        html = {},
+        jsonls = {},
         nixd = {},
+        rust_analyzer = {},
         ts_ls = {
           cmd = { "npx", "typescript-language-server", "--stdio" },
         },

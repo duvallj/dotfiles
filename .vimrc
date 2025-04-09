@@ -80,10 +80,6 @@ tnoremap <Esc> <C-\><C-n>
 " allows use of mouse
 set mouse=a
 
-" Make scrolling not go so far
-set scroll=4
-autocmd vimrc WinNew * setlocal scroll=4
-
 " makes it so colors show up correctly in tmux
 set background=dark
 " make it so colors show up correctly in cmd.exe
