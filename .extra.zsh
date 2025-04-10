@@ -18,6 +18,16 @@ function rgim {
   rg -l $@ | xim "+/$1"
 }
 
+function extract {
+  # Extract all filenames at the start of the line from the input stream
+  sed -n 's/^\([a-zA-Z0-9_/.-]*\.[a-zA-Z0-9_/.-]*\).*$/\1/p' | sort -u
+}
+
+function pbim {
+  # Extract all files from the 
+  pbpaste | extract | xim
+}
+
 function conflicts {
   git conflicts | xim
 }
