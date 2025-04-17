@@ -87,10 +87,21 @@ set termguicolors
 
 " Set the color scheme
 if !exists('g:colors_name')
-  colorscheme base16-solarflare
-  " colorscheme base16-gruvbox-dark-pale
-  " colorscheme base16-helios
-  " colorscheme base16-standardized-dark
+  " base16-solarflare is my current favorite, though I'm trying out others
+  let my_colorschemes = [
+        \ 'base16-da-one-gray',
+        \ 'base16-helios',
+        \ 'base16-precious-dark-eleven',
+        \ 'base16-selenized-black',
+        \ 'base16-solarflare',
+        \ 'base24-chalk',
+        \ 'base24-espresso',
+  \ ]
+  " let light_colorschemes = [
+  "     \ 'base16-da-one-white',
+  "     \ 'base16-precious-light-white',
+  " \ ]
+  execute 'colorscheme' my_colorschemes[rand() % len(my_colorschemes)]
 endif
 
 " Set the font to something nice
