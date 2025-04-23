@@ -14,8 +14,12 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   {
-    "vim-airline/vim-airline",
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     branch = "master",
+    opts = {
+      theme = "base16",
+    },
   },
   {
     "tinted-theming/tinted-vim",
