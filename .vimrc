@@ -92,9 +92,7 @@ if !exists('g:colors_name')
         \ 'base16-da-one-gray',
         \ 'base16-helios',
         \ 'base16-precious-dark-eleven',
-        \ 'base16-selenized-black',
         \ 'base16-solarflare',
-        \ 'base24-chalk',
         \ 'base24-espresso',
   \ ]
   " let light_colorschemes = [
