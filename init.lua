@@ -206,6 +206,10 @@ require("lazy").setup({
     branch = "master",
   },
   {
+    "tpope/vim-unimpaired",
+    branch = "master",
+  },
+  {
     'tpope/vim-fugitive',
     tag = 'v3.7',
     lazy = false,
@@ -259,17 +263,6 @@ require("lazy").setup({
         map("n", "<leader>hp", gitsigns.preview_hunk)
       end
     }
-  },
-  {
-    "rhysd/conflict-marker.vim",
-    branch = "master",
-    config = function()
-      vim.cmd([[
-let g:conflict_marker_enable_mappings = 0
-nmap <buffer>]x <Plug>(conflict-marker-next-hunk)
-nmap <buffer>[x <Plug>(conflict-marker-prev-hunk)
-]])
-    end,
   },
   {
     "rbong/vim-flog",
