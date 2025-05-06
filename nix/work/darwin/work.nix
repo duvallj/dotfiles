@@ -8,17 +8,11 @@
     # Don't use clang, because that will mess up the global install we have thru xcode
 
     # For ~/wonder
-    awscli2
     curlFull
     gnupg
-    hivemind
-    jq
-    localstack
     nats-server
     pkg-config
-    python310
-    skeema
-    sops
+    xcodes
   ];
 
   homebrew = {
@@ -35,7 +29,6 @@
       "redis"
 
       "aria2"
-      "xcodesorg/made/xcodes"
     ];
     casks = [
       "keybase"
@@ -50,7 +43,6 @@
     ];
     taps = [
       "homebrew/services"
-      "xcodesorg/made"
     ];
 
     # Don't really care about idempotency for these. If I eventually do, will

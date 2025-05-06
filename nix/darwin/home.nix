@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ../common/direnv.nix
     ../common/git.nix
     ../common/kitty.nix
     ../common/neovim.nix
