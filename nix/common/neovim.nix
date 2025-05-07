@@ -34,7 +34,6 @@ in
       };
 
       home.file = {
-        ".vim".source = ../../.vim;
         ".vimrc".source = ../../.vimrc;
       };
 

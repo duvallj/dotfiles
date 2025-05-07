@@ -47,7 +47,7 @@ make_link file .tmux.conf
 make_link file .vimrc
 make_link file init.lua "$HOME/.config/nvim/init.lua"
 make_link file coc-settings.json "$HOME/.config/nvim/coc-settings.json"
-make_link directory .vim
+# make_link directory .vim
 # make_link file .xbindkeysrc
 # make_link file .Xmodmap
 # make_link file .dmrc
