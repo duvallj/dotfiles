@@ -51,7 +51,7 @@
     background_jobs         # presence of background jobs
     # direnv                  # direnv status (https://direnv.net/)
     # asdf                    # asdf version manager (https://github.com/asdf-vm/asdf)
-    # virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
+    virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
     # anaconda                # conda environment (https://conda.io/)
     # pyenv                   # python environment (https://github.com/pyenv/pyenv)
     # goenv                   # go environment (https://github.com/syndbg/goenv)
@@ -85,7 +85,6 @@
     # gcloud                  # google cloud cli account and project (https://cloud.google.com/)
     # google_app_cred         # google application credentials (https://cloud.google.com/docs/authentication/production)
     # toolbox                 # toolbox name (https://github.com/containers/toolbox)
-    context                 # user@hostname
     # nordvpn                 # nordvpn connection status, linux only (https://nordvpn.com/)
     # ranger                  # ranger shell (https://github.com/ranger/ranger)
     # nnn                     # nnn shell (https://github.com/jarun/nnn)
@@ -94,6 +93,7 @@
     # vim_shell               # vim shell indicator (:sh)
     # midnight_commander      # midnight commander shell (https://midnight-commander.org/)
     nix_shell               # nix shell (https://nixos.org/nixos/nix-pills/developing-with-nix-shell.html)
+    context                 # user@hostname
     # vi_mode               # vi mode (you don't need this if you've enabled prompt_char)
     # vpn_ip                # virtual private network indicator
     # load                  # CPU load
