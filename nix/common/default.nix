@@ -6,6 +6,7 @@
     fd
     jq
     magic-wormhole
+    nix-output-monitor
     ripgrep
     sd
   ];
