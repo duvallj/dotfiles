@@ -13,11 +13,15 @@ let
   configuration =
     { ... }:
     {
+      imports = [
+        ./configuration.nix
+        ../common/default.nix
+      ];
+
       users.users.${username} = {
         isNormalUser = true;
         extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
       };
-      networking.hostName = hostname;
     };
 in
 {
@@ -25,7 +29,6 @@ in
     system = "x86_64-linux";
     modules = [
       configuration
-      (import ./configuration.nix)
       home-manager.nixosModules.home-manager
       {
         home-manager.useGlobalPkgs = true;
