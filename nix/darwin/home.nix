@@ -16,5 +16,5 @@
   programs.neovim.serverAliases = true;
 
   programs.zsh.powerlevel10k.enable = true;
-  programs.zsh.initExtra = builtins.readFile ../../.extra-darwin.zsh;
+  programs.zsh.initContent = builtins.readFile ../../.extra-darwin.zsh;
 }

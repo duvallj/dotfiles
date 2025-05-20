@@ -18,29 +18,31 @@
   homebrew = {
     enable = true;
     brews = [
-      "jenv"
+      "docker-compose"
       "mise"
+      "mysql-client@8.0"
+      "mysql@8.0"
       "swift-format"
       "swift-protobuf"
 
-      "kafka"
-      "mysql@8.0"
-      "mysql-client@8.0"
-      "redis"
-
       "aria2"
     ];
-    casks = [
-      "keybase"
-      "ngrok"
-      {
-        name = "tunnelblick";
-        args = {
-          appdir = "/Applications";
-          require_sha = true;
-        };
-      }
-    ];
+    casks =
+      builtins.map
+        (app: {
+          name = app;
+          args = {
+            appdir = "/Applications";
+            require_sha = true;
+          };
+        })
+        [
+          "keybase"
+          "kitty"
+          "ngrok"
+          "docker"
+          "tunnelblick"
+        ];
     taps = [
       "homebrew/services"
     ];

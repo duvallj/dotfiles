@@ -1,7 +1,8 @@
-{ ... }:
+{ lib, ... }:
 {
   # To enable these completions: run `mkdir -p ~/.docker/completions && docker completion zsh > ~/.docker/completions/_docker`
-  programs.zsh.initExtraBeforeCompInit = ''
+  # initExtraBeforeCompInit
+  programs.zsh.initContent = lib.mkOrder 550 ''
     FPATH="$HOME/.docker/completions:$FPATH"
   '';
 

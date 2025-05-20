@@ -18,10 +18,6 @@ let
     {
       imports = nix-darwin-imports;
 
-      # Auto upgrade nix package and the daemon service.
-      services.nix-daemon.enable = true;
-      # nix.package = pkgs.nix;
-
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
 
@@ -36,6 +32,8 @@ let
         name = username;
         home = "/Users/${username}";
       };
+
+      system.primaryUser = username;
     };
 in
 {

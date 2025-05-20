@@ -14,5 +14,5 @@
   programs.neovim.serverAliases = true;
 
   programs.zsh.powerlevel10k.enable = true;
-  programs.zsh.initExtra = builtins.readFile ../../.extra-nixos.zsh;
+  programs.zsh.initContent = builtins.readFile ../../.extra-nixos.zsh;
 }

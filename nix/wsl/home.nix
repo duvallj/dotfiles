@@ -9,5 +9,5 @@
     DOTFILES_WSL = 1;
   };
 
-  programs.zsh.initExtra = builtins.readFile ../../.extra-wsl.zsh;
+  programs.zsh.initContent = builtins.readFile ../../.extra-wsl.zsh;
 }

@@ -5,6 +5,9 @@
   nix-darwin-imports = [
     ../../common/default.nix
     ./work.nix
+    {
+      ids.gids.nixbld = 350;
+    }
   ];
   home-manager-import = ./home.nix;
 }

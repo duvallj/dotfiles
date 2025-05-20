@@ -6,5 +6,5 @@
     ./docker.nix
   ];
 
-  programs.zsh.initExtra = builtins.readFile ../../../.extra-darwin-work.zsh;
+  programs.zsh.initContent = builtins.readFile ../../../.extra-darwin-work.zsh;
 }
