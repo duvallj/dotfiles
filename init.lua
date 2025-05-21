@@ -54,7 +54,7 @@ require("lazy").setup({
   },
   {
     "neovim/nvim-lspconfig",
-    tag = "v1.7.0",
+    tag = "v2.1.0",
     dependencies = {
       "saghen/blink.cmp",
       "nvim-telescope/telescope.nvim",
@@ -211,7 +211,7 @@ require("lazy").setup({
   },
   {
     'tpope/vim-fugitive',
-    tag = 'v3.7',
+    branch = "master",
     lazy = false,
     keys = {
       { "<leader>gg", "<cmd>GBrowse<cr>", mode = "n", desc = "GBrowse", },
@@ -224,7 +224,7 @@ require("lazy").setup({
   },
   {
     "lewis6991/gitsigns.nvim",
-    tag = "v0.8.1",
+    tag = "v1.0.2",
     opts = {
       on_attach = function(bufnr)
         local gitsigns = require("gitsigns")
