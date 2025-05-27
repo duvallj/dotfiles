@@ -43,9 +43,6 @@
           "docker"
           "tunnelblick"
         ];
-    taps = [
-      "homebrew/services"
-    ];
 
     # Don't really care about idempotency for these. If I eventually do, will
     # move them into Nix packages instead.
