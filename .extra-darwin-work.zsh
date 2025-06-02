@@ -13,3 +13,10 @@ export PATH="${HOME}/.local/bin:${PATH}"
 export WONDER_ROOT="${HOME}/wonder/src"
 export CROAM_ENV="local"
 source "${HOME}/wonder-aliases.sh"
+
+function kill-mysql {
+  # this sucks
+  brew services stop mysql@8.0
+  ps aux | grep mysql | grep -v grep | awk '{ print $2; }' | xargs kill -9
+  brew services start mysql@8.0
+}
