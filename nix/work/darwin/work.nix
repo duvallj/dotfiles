@@ -2,6 +2,7 @@
 {
   environment.systemPackages = with pkgs; [
     htop
+    uv
 
     # For telescope-fzf-native
     cmake
