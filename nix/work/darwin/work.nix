@@ -1,11 +1,5 @@
 { pkgs, ... }:
 {
-  imports = [
-    ../../darwin/ollama.nix
-  ];
-
-  ollama.enable = true;
-
   environment.systemPackages = with pkgs; [
     htop
     uv
