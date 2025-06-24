@@ -41,7 +41,7 @@
           "keybase"
           "kitty"
           "ngrok"
-          "docker"
+          "docker-desktop"
           "tunnelblick"
         ];
 
