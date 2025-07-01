@@ -34,19 +34,19 @@ make_link file .gitconfig
 # make_link file .local/bin/runaswine
 # make_link file .local/etc/rc/FixScrollPad.sh
 # make_link file .local/etc/rc/StartNetworking.sh
-make_link file .zshrc
-mkdir -p "$HOME/.zsh_config"
-make_link file .p10k.zsh
+# make_link file .zshrc
+# mkdir -p "$HOME/.zsh_config"
+# make_link file .p10k.zsh
 # make_link file .extra-msys2.zsh .extra.zsh
 # make_link file .extra-archlinux.zsh .extra.zsh
 # make_link file .extra-wsl.zsh .extra.zsh
 # make_link file .extra-nixos.zsh .extra.zsh
-make_link directory powerlevel10k
+# make_link directory powerlevel10k
 # make_link directory .themes/Windurs10
-make_link file .tmux.conf
+# make_link file .tmux.conf
 make_link file .vimrc
 make_link file init.lua "$HOME/.config/nvim/init.lua"
-make_link file coc-settings.json "$HOME/.config/nvim/coc-settings.json"
+# make_link file coc-settings.json "$HOME/.config/nvim/coc-settings.json"
 # make_link directory .vim
 # make_link file .xbindkeysrc
 # make_link file .Xmodmap

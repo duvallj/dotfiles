@@ -6,6 +6,17 @@
 }:
 let
   cfg = config.programs.neovim;
+
+  neovimConfig = pkgs.neovimUtils.makeNeovimConfig {
+    viAlias = true;
+    vimAlias = true;
+    withNodeJs = true;
+    withPython3 = true;
+    withRuby = true;
+    wrapRc = false;
+  };
+
+  wrappedNeovim = pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped neovimConfig;
 in
 {
   options = {
@@ -20,29 +31,26 @@ in
 
   config = lib.mkMerge [
     {
-      programs.neovim = {
-        enable = true;
-        defaultEditor = true;
-        viAlias = true;
-        vimAlias = true;
-        vimdiffAlias = true;
-        withNodeJs = true;
+      # I don't use this, because I want to track these dotfiles directly from git instead.
+      # programs.neovim.enable = true;
 
-        # Doesn't work, since it needs to go at the end instead
-        # extraConfig = builtins.readFile ../../.vimrc;
-        extraLuaConfig = builtins.readFile ../../init.lua;
+      home.sessionVariables = {
+        EDITOR = "nvim";
       };
 
-      home.file = {
-        ".vimrc".source = ../../.vimrc;
+      home.shellAliases = {
+	vimdiff = "nvim -d";
       };
 
-      # TODO: add configuration options for language servers
-      home.packages = with pkgs; [
-        nixd
-        nixfmt-rfc-style
-        vscode-langservers-extracted
-      ];
+      home.packages =
+        [ wrappedNeovim ]
+        ++
+        # TODO: add configuration options for language servers
+        (with pkgs; [
+          nixd
+          nixfmt-rfc-style
+          vscode-langservers-extracted
+        ]);
     }
     (lib.mkIf cfg.serverAliases {
       home.shellAliases =

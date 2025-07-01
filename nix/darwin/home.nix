@@ -3,15 +3,12 @@
   imports = [
     ../common/direnv.nix
     ../common/git.nix
-    ../common/kitty.nix
     ../common/neovim.nix
     ../common/zsh.nix
   ];
 
   home.stateVersion = "24.05";
   programs.home-manager.enable = true;
-
-  kitty.enable = true;
 
   programs.neovim.serverAliases = true;
 
