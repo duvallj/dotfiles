@@ -8,24 +8,12 @@ set secure
 syntax enable
 " file-specific indenting
 filetype plugin indent on
-" enable spellcheck
-set spelllang=en
 
-" tab settings, use 2 spaces by default (C style)
-" this is for new files, most are autodetected
-set tabstop=8
-set softtabstop=2
-set expandtab
-set shiftwidth=2
 set smarttab
 
 " On Windows, use Unix line endings
 set fileformats=unix,dos
 set fileformat=unix
-
-" NOTE: smarttab is global, don't set it in these.
-command! -nargs=0 Tabs   :setlocal tabstop=8 softtabstop=0 noexpandtab shiftwidth=8
-command! -nargs=0 Spaces :setlocal tabstop=8 softtabstop=2   expandtab shiftwidth=2
 
 augroup vimrc
   autocmd!
@@ -36,12 +24,14 @@ augroup vimrc
   autocmd BufNewFile,BufRead *.{mts,cts} set filetype=typescript
   autocmd BufNewFile,BufRead *.{gohtml,html.jinja} set filetype=html
 
+  " default tab settings (needs to be autocmd b/c these are buffer-local)
+  autocmd FileType *           setlocal tabstop=8 softtabstop=2   expandtab shiftwidth=2 autoindent copyindent
   " language-specific settings
-  autocmd Filetype make     setlocal tabstop=4 softtabstop=0 noexpandtab shiftwidth=4
-  autocmd Filetype python   setlocal tabstop=4 softtabstop=4   expandtab shiftwidth=4
-  autocmd Filetype go       setlocal tabstop=8 softtabstop=0 noexpandtab shiftwidth=8
-  autocmd Filetype markdown setlocal spell textwidth=79
-  autocmd Filetype tex      setlocal spell
+  autocmd Filetype make        setlocal tabstop=4 softtabstop=0 noexpandtab shiftwidth=4
+  autocmd Filetype python      setlocal tabstop=4 softtabstop=4   expandtab shiftwidth=4
+  autocmd Filetype go          setlocal tabstop=8 softtabstop=0 noexpandtab shiftwidth=8
+  autocmd Filetype markdown    setlocal spell textwidth=79
+  autocmd Filetype tex         setlocal spell
 
   " tex keybindings (up arrow goes into wrap)
   autocmd Filetype tex noremap  <silent> <Up>   gk
@@ -49,6 +39,14 @@ augroup vimrc
   autocmd Filetype tex inoremap <silent> <Up>   <C-o>gk
   autocmd Filetype tex inoremap <silent> <Down> <C-o>gj
 augroup END
+
+" Commands to specifically use tabs/spaces for a given file
+command! -nargs=0 Tabs   :setlocal tabstop=8 softtabstop=0 noexpandtab shiftwidth=8
+command! -nargs=0 Spaces :setlocal tabstop=8 softtabstop=2   expandtab shiftwidth=2
+
+" see tabs
+set list
+set listchars=tab:▶·
 
 " natural backspace, linewrap settings
 set backspace=indent,eol,start
@@ -58,21 +56,17 @@ set whichwrap=<,>,[,]
 set colorcolumn=80
 highlight ColorColumn ctermbg=darkgray
 
-" lots of cool stuff to enable
+" searching
 set wildmenu
-set autoindent
-set copyindent
 set hlsearch
 set incsearch
 set showmatch
 set smartcase
+
+" left side
 set number
 set ruler
 set hidden
-
-" see tabs
-set list
-set listchars=tab:▶·
 
 " allows using <Esc> when in terminal windows
 tnoremap <Esc> <C-\><C-n>
@@ -101,8 +95,6 @@ if !exists('g:colors_name')
   " \ ]
   execute 'colorscheme' my_colorschemes[rand() % len(my_colorschemes)]
 endif
-
-" Set the font to something nice
 
 " Don't pass messages to |ins-completion-menu|
 set shortmess+=c
