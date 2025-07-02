@@ -57,7 +57,7 @@ require("lazy").setup({
     tag = "v2.1.0",
     dependencies = {
       "saghen/blink.cmp",
-      "nvim-telescope/telescope.nvim",
+      "folke/snacks.nvim",
     },
     opts = {
       servers = {
@@ -76,7 +76,6 @@ require("lazy").setup({
     },
     config = function(_, opts)
       local lspconfig = require("lspconfig")
-      local builtin = require("telescope.builtin")
       for server, config in pairs(opts.servers) do
         config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
         lspconfig[server].setup(config)
@@ -92,20 +91,26 @@ require("lazy").setup({
             vim.keymap.set(mode, l, r, opts)
           end
 
+          -- TODO: mapping to quickly open previous tag (accessible with <C-i>) in new tab.
+          -- I want this because all the following mappings, if they find something that there's only one of, jump immediately to it.
           if client.server_capabilities.definitionProvider then
-            map("n", "grd", function() builtin.lsp_definitions { jump_type = "tab" } end)
+            map("n", "grd", function() Snacks.picker.lsp_definitions() end)
+          end
+
+          if client.server_capabilities.declarationProvider then
+            map("n", "grD", function() Snacks.picker.lsp_declarations() end)
           end
 
           if client.server_capabilities.typeDefinitionProvider then
-            map("n", "gry", function() builtin.lsp_type_definitions { jump_type = "tab" } end)
+            map("n", "gry", function() Snacks.picker.lsp_type_definitions() end)
           end
 
           if client.server_capabilities.implementationProvider then
-            map("n", "gri", function() builtin.lsp_implementations { jump_type = "tab" } end)
+            map("n", "gri", function() Snacks.picker.lsp_implementations() end)
           end
 
           if client.server_capabilities.referencesProvider then
-            map("n", "grr", builtin.lsp_references)
+            map("n", "grr", function() Snacks.picker.lsp_references() end, { nowait = true })
           end
 
           if client.server_capabilities.renameProvider then
@@ -152,50 +157,56 @@ require("lazy").setup({
     },
   },
   {
-    "nvim-telescope/telescope.nvim",
-    branch = "0.1.x",
-    dependencies = {
-      "nvim-lua/plenary.nvim"
-    },
+    "folke/snacks.nvim",
+    priority = 1000,
+    lazy = false,
+    ---@type snacks.Config
     opts = {
-      defaults = {
-        mappings = {
-          i = {
-            ["<CR>"] = "select_tab",
-          },
-          n = {
-            ["<CR>"] = "select_tab",
-          },
-        },
+      bigfile = { enabled = true },
+      indent = {
+        enabled = true,
+        animate = { enabled = false },
+        scope = { enabled = false },
       },
-      extensions = {
-        fzf = {
-          fuzzy = true,
-          override_generic_sorter = true,
-          override_file_sorter = true,
-          case_mode = "smart_case",
+      picker = {
+        enabled = true,
+        win = {
+          -- input window
+          input = {
+            keys = {
+              ["<CR>"] = { "tab", mode = { "i", "n" } },
+            },
+          },
+          -- results list window
+          list = {
+            keys = {
+              ["<CR>"] = "tab",
+            },
+          },
         }
       },
+      statuscolumn = { enabled = true },
     },
+    -- See https://github.com/folke/snacks.nvim for the full list of ideas;
+    -- For now, I'm mostly keeping these binds the same as my old config.
     keys = {
-      { "<leader>ff", "<cmd>Telescope git_files<cr>", desc = "Find Files (git)", },
-      { "<leader>fd",  "<cmd>Telescope find_files<cr>", desc = "Find Files (all)", },
-      { "<leader>fg",  "<cmd>Telescope live_grep<cr>", desc = "Grep", },
-      { "<leader>f*",  "<cmd>Telescope grep_string<cr>", desc = "Grep (under cursor)", },
-      { "<leader>fb",  "<cmd>Telescope buffers<cr>", desc = "Find Buffer", },
-      { "<leader>fh",  "<cmd>Telescope help_tags<cr>", desc = "Find Help", },
-      { "<leader>fc",  "<cmd>Telescope command_history<cr>", desc = "Find Command", },
-      { "<leader>fs",  "<cmd>Telescope search_history<cr>", desc = "Find Search", },
-      { "<leader>fr",  "<cmd>Telescope resume<cr>", desc = "Resume Search", },
+      { "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
+      { "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
+      { "<leader>/", function() Snacks.picker.search_history() end, desc = "Search History" },
+      { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
+      -- find
+      { "<leader>fd", function() Snacks.picker.files() end, desc = "Find Files" },
+      { "<leader>ff", function() Snacks.picker.git_files() end, desc = "Find Git Files" },
+      { "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent" },
+      -- Grep
+      { "<leader>fg", function() Snacks.picker.grep() end, desc = "Grep" },
+      { "<leader>f*", function() Snacks.picker.grep_word() end, desc = "Visual selection or word", mode = { "n", "x" } },
+      -- LSP
+      { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
+      { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
+      -- Other
+      { "<leader>cR", function() Snacks.rename.rename_file() end, desc = "Rename File" },
     },
-  },
-  {
-    "nvim-telescope/telescope-fzf-native.nvim",
-    branch = "main",
-    build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
-    config = function()
-      require("telescope").load_extension("fzf")
-    end,
   },
   {
     "folke/trouble.nvim",
