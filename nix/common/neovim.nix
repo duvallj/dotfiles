@@ -39,7 +39,7 @@ in
       };
 
       home.shellAliases = {
-	vimdiff = "nvim -d";
+        vimdiff = "nvim -d";
       };
 
       home.packages =
@@ -47,6 +47,9 @@ in
         ++
         # TODO: add configuration options for language servers
         (with pkgs; [
+          ffmpeg-full
+          ghostscript_headless
+          imagemagick
           nixd
           nixfmt-rfc-style
           vscode-langservers-extracted

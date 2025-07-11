@@ -163,6 +163,7 @@ require("lazy").setup({
     ---@type snacks.Config
     opts = {
       bigfile = { enabled = true },
+      image = { enabled = true },
       indent = {
         enabled = true,
         animate = { enabled = false },
