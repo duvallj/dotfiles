@@ -53,7 +53,7 @@ set backspace=indent,eol,start
 set whichwrap=<,>,[,]
 
 " column to not go over
-set colorcolumn=80
+set colorcolumn=+1
 highlight ColorColumn ctermbg=darkgray
 
 " searching
