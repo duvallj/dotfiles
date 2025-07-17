@@ -15,8 +15,8 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   {
     "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
     branch = "master",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
       theme = "base16",
     },
@@ -54,7 +54,7 @@ require("lazy").setup({
   },
   {
     "neovim/nvim-lspconfig",
-    tag = "v2.1.0",
+    tag = "v2.3.0",
     dependencies = {
       "saghen/blink.cmp",
       "folke/snacks.nvim",
@@ -158,6 +158,7 @@ require("lazy").setup({
   },
   {
     "folke/snacks.nvim",
+    branch = "main",
     priority = 1000,
     lazy = false,
     ---@type snacks.Config
@@ -260,13 +261,8 @@ require("lazy").setup({
     branch = "master",
   },
   {
-    'tpope/vim-fugitive',
+    "tpope/vim-fugitive",
     branch = "master",
-    lazy = false,
-    keys = {
-      { "<leader>gg", "<cmd>GBrowse<cr>", mode = "n", desc = "GBrowse", },
-      { "<leader>gg", "<cmd>'<,'>GBrowse<cr>", mode = "v", desc = "GBrowse (visual)", },
-    },
   },
   {
     "tpope/vim-rhubarb",
@@ -313,12 +309,6 @@ require("lazy").setup({
         map("n", "<leader>hp", gitsigns.preview_hunk)
       end
     }
-  },
-  {
-    "rbong/vim-flog",
-    branch = "master",
-    lazy = true,
-    cmd = { "Flog", "Flogsplit", "Floggit" },
   },
 })
 
