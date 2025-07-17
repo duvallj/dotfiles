@@ -23,6 +23,7 @@
       "mise"
       "mysql-client@8.0"
       "mysql@8.0"
+      "poppler"
       "swift-format"
       "swift-protobuf"
 
