@@ -1,0 +1,16 @@
+{
+  "new_crpc": {
+    "prefix": "new_crpc",
+    "body": [
+      "export const crpc_${1:name} = z.object({",
+      "  kind: z.literal(\"$crpc_{1:name}\"),",
+      "});",
+      "export type crpc_${1:name} = z.infer<typeof crpc_${1:name}>;",
+      "",
+      "export const cresp_${1:name} = z.object({",
+      "  kind: z.literal(\"$cresp_{1:name}\"),",
+      "});",
+      "export type cresp_${1:name} = z.infer<typeof cresp_${1:name}>;"
+    ]
+  }
+}

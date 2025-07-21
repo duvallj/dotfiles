@@ -40,17 +40,39 @@ require("lazy").setup({
     end,
   },
   {
+    "echasnovski/mini.snippets",
+    version = "*",
+    opts = {
+      mappings = {
+        stop = "<Esc>",
+      },
+    },
+  },
+  {
     "saghen/blink.cmp",
     version = "1.*",
+    dependencies = {
+      "echasnovski/mini.snippets",
+      "rafamadriz/friendly-snippets",
+    },
     --@module "blink.cmp"
     --@type blink.cmp.Config
     opts = {
       keymap = { preset = "enter" },
+      snippets = { preset = "mini_snippets" },
       sources = {
         default = { "lsp", "path", "snippets", "buffer", },
       },
+      fuzzy = {
+        -- Always prioritize exact matches
+        sorts = {
+          'exact',
+          -- defaults
+          'score',
+          'sort_text',
+        },
+      },
     },
-    opts_extend = { "sources.default", },
   },
   {
     "neovim/nvim-lspconfig",
