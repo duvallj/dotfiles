@@ -3,7 +3,9 @@ if [[ -d /opt/homebrew ]]; then
 fi
 
 eval "$(brew shellenv)"
-export PATH="$(brew --prefix)/opt/mysql-client@8.0/bin:${PATH}"
+brew_prefix="$(brew --prefix)"
+export PATH="${brew_prefix}/opt/mysql-client@8.0/bin:${PATH}"
+export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}${PKG_CONFIG_PATH:+:}${brew_prefix}/lib/pkgconfig"
 alias my="mysql -u root -h 127.0.0.1"
 
 eval "$(mise activate zsh)"

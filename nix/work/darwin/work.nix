@@ -28,6 +28,8 @@
       "swift-protobuf"
 
       "aria2"
+      "libopusenc"
+      "libvpx"
     ];
     casks =
       builtins.map
