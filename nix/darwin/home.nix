@@ -14,4 +14,6 @@
 
   programs.zsh.powerlevel10k.enable = true;
   programs.zsh.initContent = builtins.readFile ../../.extra-darwin.zsh;
+
+  xdg.enable = true;
 }
