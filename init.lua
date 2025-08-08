@@ -40,28 +40,14 @@ require("lazy").setup({
     end,
   },
   {
-    "echasnovski/mini.snippets",
-    version = "*",
-    opts = {
-      mappings = {
-        stop = "<Esc>",
-      },
-    },
-  },
-  {
     "saghen/blink.cmp",
     version = "1.*",
-    dependencies = {
-      "echasnovski/mini.snippets",
-      "rafamadriz/friendly-snippets",
-    },
     --@module "blink.cmp"
     --@type blink.cmp.Config
     opts = {
       keymap = { preset = "enter" },
-      snippets = { preset = "mini_snippets" },
       sources = {
-        default = { "lsp", "path", "snippets", "buffer", },
+        default = { "lsp", "path", "buffer", },
       },
       fuzzy = {
         -- Always prioritize exact matches
@@ -209,7 +195,7 @@ require("lazy").setup({
           },
         }
       },
-      statuscolumn = { enabled = true },
+      statuscolumn = { enabled = false }, -- doesn't work with gitsigns.vim
     },
     -- See https://github.com/folke/snacks.nvim for the full list of ideas;
     -- For now, I'm mostly keeping these binds the same as my old config.
