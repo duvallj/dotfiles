@@ -172,6 +172,10 @@ require("lazy").setup({
     ---@type snacks.Config
     opts = {
       bigfile = { enabled = true },
+      explorer = {
+        enabled = true,
+        replace_netrw = false,
+      },
       image = { enabled = true },
       indent = {
         enabled = true,
@@ -204,6 +208,7 @@ require("lazy").setup({
       { "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
       { "<leader>/", function() Snacks.picker.search_history() end, desc = "Search History" },
       { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
+      { "<leader>e", function() Snacks.picker.explorer() end, desc = "File Explorer" },
       -- find
       { "<leader>fd", function() Snacks.picker.files() end, desc = "Find Files" },
       { "<leader>ff", function() Snacks.picker.git_files() end, desc = "Find Git Files" },
@@ -211,10 +216,22 @@ require("lazy").setup({
       -- Grep
       { "<leader>fg", function() Snacks.picker.grep() end, desc = "Grep" },
       { "<leader>f*", function() Snacks.picker.grep_word() end, desc = "Visual selection or word", mode = { "n", "x" } },
+      -- git
+      { "<leader>gs", function() Snacks.picker.git_status() end, desc = "Git Status" },
+      { "<leader>gd", function() Snacks.picker.git_diff() end, desc = "Git Diff (Hunks)" },
+      { "<leader>gl", function() Snacks.picker.git_log() end, desc = "Git Log" },
+      { "<leader>gL", function() Snacks.picker.git_log_line() end, desc = "Git Log Line" },
+      { "<leader>gf", function() Snacks.picker.git_log_file() end, desc = "Git Log File" },
       -- LSP
       { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
       { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
+      { "<leader>sd", function() Snacks.picker.diagnostics() end, desc = "Diagnostics" },
+      { "<leader>sD", function() Snacks.picker.diagnostics_buffer() end, desc = "Buffer Diagnostics" },
       -- Other
+      { "<leader>sj", function() Snacks.picker.jumps() end, desc = "Jumps" },
+      { "<leader>sl", function() Snacks.picker.loclist() end, desc = "Location List" },
+      { "<leader>sq", function() Snacks.picker.qflist() end, desc = "Quickfix List" },
+      { "<leader>su", function() Snacks.picker.undo() end, desc = "Undo" },
       { "<leader>cR", function() Snacks.rename.rename_file() end, desc = "Rename File" },
     },
   },

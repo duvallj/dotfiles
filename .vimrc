@@ -136,5 +136,12 @@ nnoremap <leader>po :tabedit <C-r>+<cr>
 " Open file from default clipboard
 nnoremap <leader>pp :tabedit <C-r>"<cr>
 
+" better tab navigation commands
+noremap ]<Tab> <cmd>tabnext<cr>
+noremap [<Tab> <cmd>tabprevious<cr>
+
+" quickly open current window in new tab
+noremap <C-w><C-n> <cmd>tab split<cr>
+
 " ocamlformat
 set rtp^="$HOME/.opam/default/share/ocp-indent/vim"
