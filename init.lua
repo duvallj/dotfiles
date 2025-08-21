@@ -13,7 +13,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  {
+ {
     "nvim-lualine/lualine.nvim",
     branch = "master",
     dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -27,16 +27,55 @@ require("lazy").setup({
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    branch = "master",
+    version = false, -- last release is way too old and doesn't work on Windows
     build = ":TSUpdate",
-    config = function()
-      local configs = require("nvim-treesitter.configs")
-      configs.setup({
-        ensure_installed = { "lua", "vim", "vimdoc", "javascript", "html", "css", "typescript", "tsx", "c" },
-        sync_install = true,
-        highlight = { enable = true },
-        indent = { enable = true },
-      })
+    event = { "VeryLazy" },
+    lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
+    init = function(plugin)
+      -- PERF: add nvim-treesitter queries to the rtp and it's custom query predicates early
+      -- This is needed because a bunch of plugins no longer `require("nvim-treesitter")`, which
+      -- no longer trigger the **nvim-treesitter** module to be loaded in time.
+      -- Luckily, the only things that those plugins need are the custom queries, which we make available
+      -- during startup.
+      require("lazy.core.loader").add_to_rtp(plugin)
+      require("nvim-treesitter.query_predicates")
+    end,
+    cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
+    ---@type TSConfig
+    ---@diagnostic disable-next-line: missing-fields
+    opts = {
+      highlight = { enable = true },
+      indent = { enable = true },
+      ensure_installed = {
+        "bash",
+        "c",
+        "diff",
+        "html",
+        "javascript",
+        "jsdoc",
+        "json",
+        "jsonc",
+        "lua",
+        "luadoc",
+        "luap",
+        "markdown",
+        "markdown_inline",
+        "printf",
+        "python",
+        "query",
+        "regex",
+        "toml",
+        "tsx",
+        "typescript",
+        "vim",
+        "vimdoc",
+        "xml",
+        "yaml",
+      },
+    },
+    ---@param opts TSConfig
+    config = function(_, opts)
+      require("nvim-treesitter.configs").setup(opts)
     end,
   },
   {
@@ -241,35 +280,97 @@ require("lazy").setup({
     opts = {}, -- for default options, refer to the configuration section for custom setup.
     cmd = "Trouble",
     keys = {
+      { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)" },
+      { "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer Diagnostics (Trouble)" },
+      { "<leader>cs", "<cmd>Trouble symbols toggle focus=false<cr>", desc = "Symbols (Trouble)" },
+      { "<leader>cl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", desc = "LSP Definitions / references / ... (Trouble)" },
+      { "<leader>xL", "<cmd>Trouble loclist toggle<cr>", desc = "Location List (Trouble)" },
+      { "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", desc = "Quickfix List (Trouble)" },
       {
-        "<leader>xx",
-        "<cmd>Trouble diagnostics toggle<cr>",
-        desc = "Diagnostics (Trouble)",
+        "[q",
+        function()
+          if require("trouble").is_open() then
+            require("trouble").prev({ skip_groups = true, jump = true })
+          else
+            local ok, err = pcall(vim.cmd.cprev)
+            if not ok then
+              vim.notify(err, vim.log.levels.ERROR)
+            end
+          end
+        end,
+        desc = "Previous Trouble/Quickfix Item",
       },
       {
-        "<leader>xX",
-        "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-        desc = "Buffer Diagnostics (Trouble)",
+        "]q",
+        function()
+          if require("trouble").is_open() then
+            require("trouble").next({ skip_groups = true, jump = true })
+          else
+            local ok, err = pcall(vim.cmd.cnext)
+            if not ok then
+              vim.notify(err, vim.log.levels.ERROR)
+            end
+          end
+        end,
+        desc = "Next Trouble/Quickfix Item",
+      },
+    },
+  },
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    opts_extend = { "spec" },
+    opts = {
+      preset = "helix",
+      defaults = {},
+      spec = {
+        {
+          mode = { "n", "v" },
+          { "<leader><tab>", group = "tabs" },
+          { "<leader>c", group = "code" },
+          { "<leader>f", group = "file/find" },
+          { "<leader>g", group = "git" },
+          { "<leader>h", group = "hunks" },
+          { "<leader>s", group = "search" },
+          { "<leader>x", group = "diagnostics/quickfix", icon = { icon = "󱖫 ", color = "green" } },
+          { "[", group = "prev" },
+          { "]", group = "next" },
+          { "g", group = "goto" },
+          { "z", group = "fold" },
+          {
+            "<leader>b",
+            group = "buffer",
+            expand = function()
+              return require("which-key.extras").expand.buf()
+            end,
+          },
+          {
+            "<leader>w",
+            group = "windows",
+            proxy = "<c-w>",
+            expand = function()
+              return require("which-key.extras").expand.win()
+            end,
+          },
+          -- better descriptions
+          { "gx", desc = "Open with system app" },
+        },
+      },
+    },
+    keys = {
+      {
+        "<leader>?",
+        function()
+          require("which-key").show({ global = false })
+        end,
+        desc = "Buffer Keymaps (which-key)",
       },
       {
-        "<leader>cs",
-        "<cmd>Trouble symbols toggle focus=false<cr>",
-        desc = "Symbols (Trouble)",
-      },
-      {
-        "<leader>cl",
-        "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-        desc = "LSP Definitions / references / ... (Trouble)",
-      },
-      {
-        "<leader>xL",
-        "<cmd>Trouble loclist toggle<cr>",
-        desc = "Location List (Trouble)",
-      },
-      {
-        "<leader>xQ",
-        "<cmd>Trouble qflist toggle<cr>",
-        desc = "Quickfix List (Trouble)",
+        "<c-w><space>",
+        function()
+          require("which-key").show({ keys = "<c-w>", loop = true })
+        end,
+        desc = "Window Hydra Mode (which-key)",
       },
     },
   },
@@ -313,7 +414,7 @@ require("lazy").setup({
           else
             gitsigns.nav_hunk("next")
           end
-        end)
+        end, { desc = "Next Hunk" })
 
         map("n", "[c", function()
           if vim.wo.diff then
@@ -321,17 +422,19 @@ require("lazy").setup({
           else
             gitsigns.nav_hunk("prev")
           end
-        end)
+        end, { desc = "Prev Hunk" })
+        map("n", "]H", function() gitsigns.nav_hunk("last") end, { desc = "Last Hunk" })
+        map("n", "[H", function() gitsigns.nav_hunk("first") end, { desc = "First Hunk" })
 
         -- Actions
-        map("n", "<leader>hs", gitsigns.stage_hunk)
-        map("n", "<leader>hr", gitsigns.reset_hunk)
-        map("v", "<leader>hs", function() gitsigns.stage_hunk {vim.fn.line("."), vim.fn.line("v")} end)
-        map("v", "<leader>hr", function() gitsigns.reset_hunk {vim.fn.line("."), vim.fn.line("v")} end)
-        map("n", "<leader>hS", gitsigns.stage_buffer)
-        map("n", "<leader>hu", gitsigns.undo_stage_hunk)
-        map("n", "<leader>hR", gitsigns.reset_buffer)
-        map("n", "<leader>hp", gitsigns.preview_hunk)
+        map("n", "<leader>hs", gitsigns.stage_hunk, { desc = "Stage Hunk" })
+        map("n", "<leader>hr", gitsigns.reset_hunk, { desc = "Reset Hunk" })
+        map("v", "<leader>hs", function() gitsigns.stage_hunk {vim.fn.line("."), vim.fn.line("v")} end, { desc = "Stage Hunk" })
+        map("v", "<leader>hr", function() gitsigns.reset_hunk {vim.fn.line("."), vim.fn.line("v")} end, { desc = "Reset Hunk" })
+        map("n", "<leader>hS", gitsigns.stage_buffer, { desc = "Stage Buffer" })
+        map("n", "<leader>hu", gitsigns.undo_stage_hunk, { desc = "Undo Stage Hunk" })
+        map("n", "<leader>hR", gitsigns.reset_buffer, { desc = "Reset Buffer" })
+        map("n", "<leader>hp", gitsigns.preview_hunk, { desc = "Preview Hunk" })
       end
     }
   },
