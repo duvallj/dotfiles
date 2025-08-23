@@ -115,7 +115,7 @@ require("lazy").setup({
         html = {},
         jsonls = {},
         nixd = {},
-        rust_analyzer = {},
+        -- rust_analyzer = {}, -- Configured by rustaceanvim instead
         ts_ls = {
           cmd = { "npx", "typescript-language-server", "--stdio" },
         },
@@ -200,6 +200,52 @@ require("lazy").setup({
       },
       format_on_save = {
         timeout_ms = 1000,
+      },
+    },
+  },
+  {
+    'mrcjkb/rustaceanvim',
+    version = '^6', -- Recommended
+    lazy = false, -- This plugin is already lazy
+  },
+  {
+    'mfussenegger/nvim-dap',
+    version = "0.11",
+    cmd = {
+      "DapToggleBreakpoint",
+      "DapNew",
+      "DapContinue",
+      "DapStepOver",
+      "DapStepInto",
+    },
+    keys = {
+      { "<F5>", function() require("dap").continue() end, desc = "Continue" },
+      { "<F4>", function() require("dap").restart() end, desc = "Restart Debugging" },
+      { "<F3>", function() require("dap").terminate() end, desc = "Stop Debugging" },
+      { "<F6>", function() require("dap").pause() end, desc = "Pause Debugging" },
+      { "<F10>", function() require("dap").step_over() end, desc = "Step Over" },
+      { "<F11>", function() require("dap").step_into() end, desc = "Step Into" },
+      { "<F12>", function() require("dap").step_out() end, desc = "Step Out" },
+      { "<F9>", function() require("dap").toggle_breakpoint() end, desc = "Toggle Breakpoint" },
+      { "<leader>dr", function() require("dap").repl.open() end , desc = "Open Repl" },
+      { "<leader>dl", function() require("dap").run_last() end, desc = "Run Last Debugged" },
+      { "<leader>dh", function() require("dap.ui.widgets").hover() end, desc = "Hover (Debugging)" },
+      { "<leader>dp", function() require("dap.ui.widgets").preview() end, desc = "Preview (Debugging)" },
+      {
+        "<leader>df",
+        function()
+          local widgets = require("dap.ui.widgets")
+          widgets.centered_float(widgets.frames)
+        end,
+        desc = "Frames (Debugging)",
+      },
+      {
+        "<leader>ds",
+        function()
+          local widgets = require("dap.ui.widgets")
+          widgets.centered_float(widgets.scopes)
+        end,
+        desc = "Scopes (Debugging)",
       },
     },
   },
@@ -328,6 +374,7 @@ require("lazy").setup({
           mode = { "n", "v" },
           { "<leader><tab>", group = "tabs" },
           { "<leader>c", group = "code" },
+          { "<leader>d", group = "debugging" },
           { "<leader>f", group = "file/find" },
           { "<leader>g", group = "git" },
           { "<leader>h", group = "hunks" },
