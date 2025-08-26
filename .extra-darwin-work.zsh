@@ -22,3 +22,8 @@ function kill-mysql {
   ps aux | grep mysql | grep -v grep | awk '{ print $2; }' | xargs kill -9
   brew services start mysql@8.0
 }
+
+function goinstall {
+  go install golang.org/x/tools/gopls@latest
+  go install github.com/go-delve/delve/cmd/dlv@latest
+}

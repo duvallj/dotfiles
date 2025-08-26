@@ -52,6 +52,7 @@ in
           imagemagick
           nixd
           nixfmt-rfc-style
+          vscode-js-debug
           vscode-langservers-extracted
         ]);
     }

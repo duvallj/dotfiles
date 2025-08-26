@@ -204,13 +204,20 @@ require("lazy").setup({
     },
   },
   {
-    'mrcjkb/rustaceanvim',
-    version = '^6', -- Recommended
-    lazy = false, -- This plugin is already lazy
-  },
-  {
     'mfussenegger/nvim-dap',
     version = "0.11",
+    config = function()
+      local dap = require("dap")
+      dap.adapters["pwa-chrome"] = {
+        type = "server",
+        host = "localhost",
+        port = "${port}",
+        executable = {
+          command = "js-debug",
+          args = { "${port}" },
+        },
+      }
+    end,
     cmd = {
       "DapToggleBreakpoint",
       "DapNew",
@@ -247,6 +254,47 @@ require("lazy").setup({
         end,
         desc = "Scopes (Debugging)",
       },
+      {
+        "<leader>djl", function()
+          local link = vim.fn.input("Enter link: ")
+          require("dap").run({
+            type = "pwa-chrome",
+            request = "launch",
+            name = "Open Link",
+            url = link,
+          })
+        end,
+        desc = "Open Link & Debug (Javascript)",
+        ft = {
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact",
+        }
+      },
+    },
+  },
+  {
+    'mrcjkb/rustaceanvim',
+    version = '^6', -- Recommended
+    lazy = false, -- This plugin is already lazy
+  },
+  {
+    'leoluz/nvim-dap-go',
+    version = false,
+    opts = {
+      dap_configurations = {
+        {
+          type = "go",
+          name = "Attach remote",
+          mode = "remote",
+          request = "attach",
+        },
+      },
+    },
+    keys = {
+      { "<leader>dgt", function() require("dap-go").debug_test() end, desc = "Debug Test (Go)", ft = "go" },
+      { "<leader>dgl", function() require("dap-go").debug_last_test() end, desc = "Debug Last Test (Go)", ft = "go" },
     },
   },
   {
