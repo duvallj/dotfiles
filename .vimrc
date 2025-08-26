@@ -29,6 +29,7 @@ augroup vimrc
   " language-specific settings
   autocmd Filetype make        setlocal tabstop=4 softtabstop=0 noexpandtab shiftwidth=4
   autocmd Filetype python      setlocal tabstop=4 softtabstop=4   expandtab shiftwidth=4
+  autocmd Filetype rust        setlocal tabstop=4 softtabstop=4   expandtab shiftwidth=4
   autocmd Filetype go          setlocal tabstop=8 softtabstop=0 noexpandtab shiftwidth=8
   autocmd Filetype markdown    setlocal spell textwidth=79
   autocmd Filetype tex         setlocal spell
