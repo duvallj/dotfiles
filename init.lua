@@ -217,6 +217,14 @@ require("lazy").setup({
           args = { "${port}" },
         },
       }
+      dap.adapters["pwa-node"] = dap.adapters["pwa-chrome"]
+
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "dap-repl",
+        callback = function()
+          require("blink.cmp.completion.windows.menu").auto_show = false
+        end,
+      })
     end,
     cmd = {
       "DapToggleBreakpoint",
@@ -271,6 +279,24 @@ require("lazy").setup({
           "typescript",
           "typescriptreact",
         }
+      },
+      {
+        "<leader>dja", function()
+        local ws = vim.fn.input("Enter websocket address: ")
+          require("dap").run({
+            type = "pwa-node",
+            request = "attach",
+            name = "Attach",
+            websocketAddress = ws,
+          })
+        end,
+        desc = "Attach & Debug (Javascript)",
+        ft = {
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact",
+        },
       },
     },
   },
