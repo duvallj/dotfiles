@@ -80,21 +80,40 @@ set background=dark
 " make it so colors show up correctly in cmd.exe
 set termguicolors
 
+" base16-helios is my current favorite, though I'm trying out others
+" Maybe I'll do per-filetype colorschemes someday? For the most popular
+" filetypes.
+let g:normal_colorschemes = [
+    \ 'base16-da-one-gray',
+    \ 'base16-decaf',
+    \ 'base16-eighties',
+    \ 'base16-helios',
+    \ 'base16-precious-dark-eleven',
+    \ 'base16-tomorrow-night',
+    \ 'base16-solarflare',
+    \ 'base24-espresso',
+\ ]
+command Colo execute 'colorscheme' normal_colorschemes[rand() % len(normal_colorschemes)]
+
+let g:light_colorschemes = [
+    \ 'base16-da-one-white',
+    \ 'base16-equilibrium-light',
+    \ 'base16-ia-light',
+    \ 'base16-precious-light-white',
+\ ]
+command ColoLight execute 'colorscheme' light_colorschemes[rand() % len(light_colorschemes)]
+
+let bad_colorschemes = [
+    \ 'base16-horizon-dark',
+    \ 'base24-borland',
+    \ 'base24-ic-green-ppl',
+    \ 'base24-ic-orange-ppl',
+\ ]
+command ColoBad execute 'colorscheme' bad_colorschemes[rand() % len(bad_colorschemes)]
+
 " Set the color scheme
 if !exists('g:colors_name')
-  " base16-solarflare is my current favorite, though I'm trying out others
-  let my_colorschemes = [
-        \ 'base16-da-one-gray',
-        \ 'base16-helios',
-        \ 'base16-precious-dark-eleven',
-        \ 'base16-solarflare',
-        \ 'base24-espresso',
-  \ ]
-  " let light_colorschemes = [
-  "     \ 'base16-da-one-white',
-  "     \ 'base16-precious-light-white',
-  " \ ]
-  execute 'colorscheme' my_colorschemes[rand() % len(my_colorschemes)]
+  Colo
 endif
 
 " Don't pass messages to |ins-completion-menu|
