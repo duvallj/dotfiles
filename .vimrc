@@ -93,6 +93,8 @@ let g:normal_colorschemes = [
     \ 'base16-tomorrow-night',
     \ 'base16-solarflare',
     \ 'base24-espresso',
+    \ 'habamax',
+    \ 'sorbet',
 \ ]
 command Colo execute 'colorscheme' normal_colorschemes[rand() % len(normal_colorschemes)]
 
@@ -109,6 +111,9 @@ let bad_colorschemes = [
     \ 'base24-borland',
     \ 'base24-ic-green-ppl',
     \ 'base24-ic-orange-ppl',
+    \ 'blue',
+    \ 'unokai',
+    \ 'wildcharm',
 \ ]
 command ColoBad execute 'colorscheme' bad_colorschemes[rand() % len(bad_colorschemes)]
 
