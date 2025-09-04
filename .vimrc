@@ -22,16 +22,17 @@ augroup vimrc
   autocmd BufNewFile,BufRead *.asm set filetype=nasm
   autocmd BufNewFile,BufRead *.{mjs,cjs} set filetype=javascript
   autocmd BufNewFile,BufRead *.{mts,cts} set filetype=typescript
-  autocmd BufNewFile,BufRead *.{gohtml,html.jinja} set filetype=html
+  autocmd BufNewFile,BufRead *.{gohtml,html.jinja,html.j2} set filetype=html
 
   " default tab settings (needs to be autocmd b/c these are buffer-local)
   autocmd FileType *           setlocal tabstop=8 softtabstop=2   expandtab shiftwidth=2 autoindent copyindent
   " language-specific settings
+  autocmd Filetype glsl        setlocal tabstop=4 softtabstop=0 noexpandtab shiftwidth=4
+  autocmd Filetype go          setlocal tabstop=8 softtabstop=0 noexpandtab shiftwidth=8
   autocmd Filetype make        setlocal tabstop=4 softtabstop=0 noexpandtab shiftwidth=4
+  autocmd Filetype markdown    setlocal spell textwidth=79
   autocmd Filetype python      setlocal tabstop=4 softtabstop=4   expandtab shiftwidth=4
   autocmd Filetype rust        setlocal tabstop=4 softtabstop=4   expandtab shiftwidth=4
-  autocmd Filetype go          setlocal tabstop=8 softtabstop=0 noexpandtab shiftwidth=8
-  autocmd Filetype markdown    setlocal spell textwidth=79
   autocmd Filetype tex         setlocal spell
 
   " tex keybindings (up arrow goes into wrap)
