@@ -41,10 +41,10 @@
           };
         })
         [
+          "docker-desktop"
           "keybase"
           "kitty"
           "ngrok"
-          "docker-desktop"
           "tunnelblick"
         ];
 
