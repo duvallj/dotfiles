@@ -10,9 +10,9 @@ in
 {
   config = lib.mkIf cfg.enable {
     programs.direnv = {
-      package = pkgs.lixPackageSets.stable.nix-direnv;
       enableZshIntegration = true;
       nix-direnv.enable = true;
+      nix-direnv.package = pkgs.lixPackageSets.stable.nix-direnv;
     };
   };
 }
