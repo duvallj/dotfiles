@@ -1,10 +1,14 @@
-{ ... }:
+{ lib, config, ... }:
+let
+  cfg = config.programs.direnv;
+in
 {
-  programs = {
-    direnv = {
-      enable = true;
-      enableZshIntegration = true;
-      nix-direnv.enable = true;
+  config = lib.mkIf cfg.enable {
+    programs = {
+      direnv = {
+        enableZshIntegration = true;
+        nix-direnv.enable = true;
+      };
     };
   };
 }

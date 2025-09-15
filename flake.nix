@@ -6,10 +6,6 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.2-1.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin/nix-darwin-25.05";
@@ -20,7 +16,27 @@
   outputs =
     inputs:
     let
-      importSubmodule = path: import path inputs;
+      inputs' = inputs // {
+        # From https://lix.systems/add-to-config/#flake-based-configurations
+        # Applies to both nix-darwin and nixos
+        lix-module =
+          { pkgs, ... }:
+          {
+            nixpkgs.overlays = [
+              (final: prev: {
+                inherit (final.lixPackageSets.stable)
+                  nixpkgs-review
+                  # nix-direnv
+                  nix-eval-jobs
+                  nix-fast-build
+                  colmena
+                  ;
+              })
+            ];
+            nix.package = pkgs.lixPackageSets.stable.lix;
+          };
+      };
+      importSubmodule = path: import path inputs';
       submodules = [
         ./nix/hosts/hyper-v1
         ./nix/hosts/jacks-macbook-pro
