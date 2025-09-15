@@ -26,7 +26,7 @@
               (final: prev: {
                 inherit (final.lixPackageSets.stable)
                   nixpkgs-review
-                  # nix-direnv
+                  # nix-direnv # Broken, instructions need to be updated probably
                   nix-eval-jobs
                   nix-fast-build
                   colmena
