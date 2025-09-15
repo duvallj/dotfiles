@@ -22,7 +22,7 @@ in
   options = {
     programs.neovim = {
       serverAliases = lib.mkOption {
-        default = true;
+        default = false;
         description = "Whether to enable RPC aliases";
         type = lib.types.bool;
       };
@@ -42,9 +42,10 @@ in
         vimdiff = "nvim -d";
       };
 
-      home.packages =
-        [ wrappedNeovim ]
-        ++
+      home.packages = [
+        wrappedNeovim
+      ]
+      ++
         # TODO: add configuration options for language servers
         (with pkgs; [
           ffmpeg-full

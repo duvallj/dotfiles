@@ -26,15 +26,22 @@ in
             unsetopt beep
             bindkey -e
           '')
-          (builtins.readFile ../../.extra.zsh)
+          (builtins.readFile ../../../.extra.zsh)
         ];
       };
+
+      home.packages = with pkgs; [
+        eza
+        fd
+        ripgrep
+        sd
+      ];
     }
     (lib.mkIf cfg.powerlevel10k.enable {
       home.packages = [
         pkgs.zsh-powerlevel10k
       ];
-      home.file.".p10k.zsh".source = ../../.p10k.zsh;
+      home.file.".p10k.zsh".source = ../../../.p10k.zsh;
       programs.zsh.initContent = lib.mkMerge [
         # initExtraFirst
         (lib.mkBefore ''

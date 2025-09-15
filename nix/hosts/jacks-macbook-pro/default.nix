@@ -1,10 +1,9 @@
-(import ../../darwin/mk-default.nix) {
+(import ../../modules/nix-darwin/mk-default.nix) {
   username = "jackduvall";
   hostname = "Jacks-MacBook-Pro";
   hostPlatform = "aarch64-darwin";
   nix-darwin-imports = [
-    ../../common/default.nix
-    ./work.nix
+    ../../modules/nix-darwin/work
     {
       ids.gids.nixbld = 350;
     }

@@ -1,10 +1,9 @@
-(import ../../darwin/mk-default.nix) {
+(import ../../modules/nix-darwin/mk-default.nix) {
   username = "jackduvall";
   hostname = "Seans-MacBook-Pro";
   hostPlatform = "x86_64-darwin";
   nix-darwin-imports = [
-    ../../common/default.nix
-    ./work.nix
+    ../../modules/nix-darwin/work
   ];
   home-manager-import = ./home.nix;
 }

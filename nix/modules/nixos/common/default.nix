@@ -2,13 +2,9 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    eza
-    fd
     jq
     magic-wormhole
     nix-output-monitor
-    ripgrep
-    sd
   ];
 
   # Necessary for using flakes on this system.

@@ -22,11 +22,12 @@
     let
       importSubmodule = path: import path inputs;
       submodules = [
-        ./nix/darwin/default.nix
-        ./nix/work/darwin/default-jack.nix
-        ./nix/work/darwin/default-sean.nix
-        ./nix/nixos/default.nix
-        ./nix/wsl/default.nix
+        ./nix/hosts/hyper-v1
+        ./nix/hosts/jacks-macbook-pro
+        ./nix/hosts/mac-mini
+        ./nix/hosts/seans-macbook-pro
+        ./nix/hosts/wsl
+        ./nix/hosts/zephyrus
       ];
     in
     builtins.foldl' (inputs.nixpkgs.lib.recursiveUpdate) { } (builtins.map importSubmodule submodules);

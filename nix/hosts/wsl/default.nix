@@ -14,7 +14,6 @@ let
     {
       imports = [
         (import ./nixos-wsl.nix)
-        ../common/default.nix
       ];
 
       wsl.enable = true;
