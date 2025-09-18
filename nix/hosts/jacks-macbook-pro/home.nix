@@ -9,4 +9,6 @@
   programs.home-manager.enable = true;
 
   xdg.enable = true;
+
+  programs.jujutsu.nonManagedEnable = true;
 }
