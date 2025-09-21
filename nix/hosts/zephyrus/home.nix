@@ -1,10 +1,7 @@
-{ ... }:
+{ pkgs, ... }:
 {
   imports = [
-    ../../modules/home-manager/direnv.nix
-    ../../modules/home-manager/git.nix
-    ../../modules/home-manager/neovim.nix
-    ../../modules/home-manager/zsh.nix
+    ../../modules/home-manager
   ];
 
   home.username = "me";
@@ -22,6 +19,10 @@
   # Let Home Manager install and manage itself
   programs.home-manager.enable = true;
 
-  programs.zsh.powerlevel10k.enable = true;
+  programs.jujutsu.nonManagedEnable = true;
   programs.zsh.initContent = builtins.readFile ../../../.extra-zephyrus.zsh;
+
+  home.packages = with pkgs; [
+    nix-output-monitor
+  ];
 }
