@@ -167,7 +167,7 @@ noremap ]<Tab> <cmd>tabnext<cr>
 noremap [<Tab> <cmd>tabprevious<cr>
 
 " quickly open current window in new tab
-noremap <C-w><C-n> <cmd>tab split<cr>
+noremap <C-w>n <cmd>tab split<cr>
 
 " ocamlformat
 set rtp^="$HOME/.opam/default/share/ocp-indent/vim"

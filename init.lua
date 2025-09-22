@@ -355,7 +355,7 @@ require("lazy").setup({
       -- find
       { "<leader>fd", function() Snacks.picker.files() end, desc = "Find Files" },
       { "<leader>ff", function() Snacks.picker.git_files() end, desc = "Find Git Files" },
-      { "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent" },
+      { "<leader>fr", function() Snacks.picker.resume() end, desc = "Resume" },
       -- Grep
       { "<leader>fg", function() Snacks.picker.grep() end, desc = "Grep" },
       { "<leader>f*", function() Snacks.picker.grep_word() end, desc = "Visual selection or word", mode = { "n", "x" } },
@@ -373,6 +373,7 @@ require("lazy").setup({
       -- Other
       { "<leader>sj", function() Snacks.picker.jumps() end, desc = "Jumps" },
       { "<leader>sl", function() Snacks.picker.loclist() end, desc = "Location List" },
+      { "<leader>sm", function() Snacks.picker.marks() end, desc = "Marks" },
       { "<leader>sq", function() Snacks.picker.qflist() end, desc = "Quickfix List" },
       { "<leader>su", function() Snacks.picker.undo() end, desc = "Undo" },
       { "<leader>cR", function() Snacks.rename.rename_file() end, desc = "Rename File" },
