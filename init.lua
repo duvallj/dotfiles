@@ -341,23 +341,7 @@ require("lazy").setup({
         animate = { enabled = false },
         scope = { enabled = false },
       },
-      picker = {
-        enabled = true,
-        win = {
-          -- input window
-          input = {
-            keys = {
-              ["<CR>"] = { "tab", mode = { "i", "n" } },
-            },
-          },
-          -- results list window
-          list = {
-            keys = {
-              ["<CR>"] = "tab",
-            },
-          },
-        }
-      },
+      picker = { enabled = true },
       statuscolumn = { enabled = false }, -- doesn't work with gitsigns.vim
     },
     -- See https://github.com/folke/snacks.nvim for the full list of ideas;
