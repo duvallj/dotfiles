@@ -2,11 +2,9 @@
 	diffc = diff --stat -w
 	diffcs = diff --stat -w --staged
 	showc = show --stat -w
-	showcs = show --stat -w --staged
 	difft = difftool
 	diffts = difftool --staged
 	showt = "!f() { GIT_EXTERNAL_DIFF=difft git show --ext-diff $@; }; f"
-	showts = "!f() { GIT_EXTERNAL_DIFF=difft git show --ext-diff --staged $@; }; f"
 	a = add .
 	cm = commit -m
 	ca = commit --amend
