@@ -84,7 +84,7 @@ require("lazy").setup({
     --@module "blink.cmp"
     --@type blink.cmp.Config
     opts = {
-      keymap = { preset = "enter" },
+      keymap = { preset = "default" }, -- <C-Space> to show, <C-y> to accept, <C-e> to exit
       sources = {
         default = { "lsp", "path", "buffer", },
       },
