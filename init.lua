@@ -13,6 +13,10 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+  {
+    "tinted-theming/tinted-vim",
+    branch = "main",
+  },
  {
     "nvim-lualine/lualine.nvim",
     branch = "master",
@@ -20,10 +24,6 @@ require("lazy").setup({
     opts = {
       theme = "base16",
     },
-  },
-  {
-    "tinted-theming/tinted-vim",
-    branch = "main",
   },
   {
     "nvim-treesitter/nvim-treesitter",
@@ -351,7 +351,6 @@ require("lazy").setup({
       { "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
       { "<leader>/", function() Snacks.picker.search_history() end, desc = "Search History" },
       { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
-      { "<leader>e", function() Snacks.picker.explorer() end, desc = "File Explorer" },
       -- find
       { "<leader>fd", function() Snacks.picker.files() end, desc = "Find Files" },
       { "<leader>ff", function() Snacks.picker.git_files() end, desc = "Find Git Files" },
@@ -481,6 +480,17 @@ require("lazy").setup({
     },
   },
   {
+    "stevearc/oil.nvim",
+    ---@module 'oil'
+    ---@type oil.SetupOpts
+    opts = {},
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    lazy = false,
+    keys = {
+      { "-", "<cmd>Oil<cr>", desc = "Open parent directory of window", mode = "n" },
+    },
+  },
+  {
     "tpope/vim-repeat",
     branch = "master",
   },
@@ -489,16 +499,20 @@ require("lazy").setup({
     branch = "master",
   },
   {
+    -- Only used for [n and ]n to navigate git hunks
     "tpope/vim-unimpaired",
     branch = "master",
   },
   {
+    -- Used for :Git blame
     "tpope/vim-fugitive",
     branch = "master",
   },
   {
+    -- Used for :GBrowse
     "tpope/vim-rhubarb",
     branch = "master",
+    dependencies = { "tpope/vim-fugitive" },
   },
   {
     "lewis6991/gitsigns.nvim",
