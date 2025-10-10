@@ -1,4 +1,6 @@
 alias ls="eza"
+alias lf="eza --hyperlink"
+alias rg="rg --hyperlink-format=default"
 
 function replace {
   rg -l "$1" $3 | xargs sd "$1" "$2"
