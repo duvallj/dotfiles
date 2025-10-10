@@ -9,11 +9,16 @@ syntax enable
 " file-specific indenting
 filetype plugin indent on
 
-set smarttab
-
 " On Windows, use Unix line endings
 set fileformats=unix,dos
 set fileformat=unix
+
+" persistent-undo
+set undofile
+autocmd BufWritePre /tmp/* setlocal noundofile
+
+" tab settings
+set smarttab
 
 augroup vimrc
   autocmd!
