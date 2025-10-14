@@ -1,23 +1,30 @@
-alias ls="eza"
-alias lf="eza --hyperlink"
-alias rg="rg --hyperlink-format=default"
+alias rg="command rg --hyperlink-format=default"
+alias fd="command fd --hyperlink=auto"
+# TODO: use --hyperlink=auto once it supports that
+function ls {
+  if [ -t 1 ]; then
+    command eza --hyperlink "$@"
+  else
+    command eza "$@"
+  fi
+}
 
 function replace {
   rg -l "$1" $3 | xargs sd "$1" "$2"
 }
 
 function xim {
-  xargs nvim -p $@
+  xargs nvim -p "$@"
 }
 
 function fdim {
-  fd $@ | xim
+  fd "$@" | xim
 }
 
 function rgim {
   # List all files with that search, and also search for that pattern within nvim
   # Assumes the pattern is the first argument
-  rg -l $@ | xim "+/$1"
+  rg -l "$@" | xim "+/$1"
 }
 
 function extract {
@@ -35,5 +42,5 @@ function conflicts {
 }
 
 function cam {
-  git a && git cm $@
+  git a && git cm "$@"
 }
