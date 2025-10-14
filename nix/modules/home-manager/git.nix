@@ -15,6 +15,7 @@ in
     # Configuration handled by setup.sh
     home.packages = with pkgs; [
       difftastic
+      mergiraf
       git
       git-lfs
     ];
