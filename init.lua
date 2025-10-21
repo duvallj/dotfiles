@@ -81,8 +81,8 @@ require("lazy").setup({
   {
     "saghen/blink.cmp",
     version = "1.*",
-    --@module "blink.cmp"
-    --@type blink.cmp.Config
+    ---@module "blink.cmp"
+    ---@type blink.cmp.Config
     opts = {
       keymap = { preset = "default" }, -- <C-Space> to show, <C-y> to accept, <C-e> to exit
       sources = {
@@ -184,8 +184,8 @@ require("lazy").setup({
     keys = {
       { "<leader>bb", function() require("conform").format({ async = true }) end, mode = "", desc = "Format buffer", },
     },
-    --@module "conform"
-    --@type conform.setupOpts
+    ---@module "conform"
+    ---@type conform.setupOpts
     opts = {
       formatters_by_ft = {
         css = { "prettier" },
@@ -450,11 +450,7 @@ require("lazy").setup({
     "tpope/vim-surround",
     branch = "master",
   },
-  {
-    -- Only used for [n and ]n to navigate git hunks
-    "tpope/vim-unimpaired",
-    branch = "master",
-  },
+  -- TODO: write a version of vim-unimpaired for ]n and [n
   {
     -- Used for :Git blame
     "tpope/vim-fugitive",
@@ -466,6 +462,7 @@ require("lazy").setup({
     branch = "master",
     dependencies = { "tpope/vim-fugitive" },
   },
+  -- TODO: quick version of :GBrowse that's accessible in both normal and visual modes
   {
     "lewis6991/gitsigns.nvim",
     tag = "v1.0.2",
@@ -495,8 +492,8 @@ require("lazy").setup({
             gitsigns.nav_hunk("prev")
           end
         end, { desc = "Prev Hunk" })
-        map("n", "]H", function() gitsigns.nav_hunk("last") end, { desc = "Last Hunk" })
-        map("n", "[H", function() gitsigns.nav_hunk("first") end, { desc = "First Hunk" })
+        map("n", "]C", function() gitsigns.nav_hunk("last") end, { desc = "Last Hunk" })
+        map("n", "[C", function() gitsigns.nav_hunk("first") end, { desc = "First Hunk" })
 
         -- Actions
         map("n", "<leader>hs", gitsigns.stage_hunk, { desc = "Stage Hunk" })
