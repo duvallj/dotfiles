@@ -450,7 +450,6 @@ require("lazy").setup({
     "tpope/vim-surround",
     branch = "master",
   },
-  -- TODO: write a version of vim-unimpaired for ]n and [n
   {
     -- Used for :Git blame
     "tpope/vim-fugitive",

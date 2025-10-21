@@ -167,9 +167,23 @@ nnoremap <leader>po :tabedit <C-r>+<cr>
 " Open file from default clipboard
 nnoremap <leader>pp :tabedit <C-r>"<cr>
 
-" better tab navigation commands
-noremap ]<Tab> <cmd>tabnext<cr>
+" better tab navigation commands (from vim-unimpaired)
 noremap [<Tab> <cmd>tabprevious<cr>
+noremap ]<Tab> <cmd>tabnext<cr>
+
+" better hunk navigation (like vim-unimpaired but respects count)
+function! s:Context(reverse, count) abort
+  let i = 0
+  let count = a:count > 0 ? a:count : 1
+  while i < count
+    call search('^\(@@ .* @@\|[<=>|]\{7}[<=>|]\@!\)', a:reverse ? 'b' : '')
+    let i += 1
+  endwhile
+endfunction
+
+" TODO: document these somehow
+noremap [n <cmd>call <SID>Context(1, v:count)<cr>
+noremap ]n <cmd>call <SID>Context(0, v:count)<cr>
 
 " quickly open current window in new tab
 noremap <C-w>n <cmd>tab split<cr>
