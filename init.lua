@@ -207,18 +207,6 @@ require("lazy").setup({
     'mfussenegger/nvim-dap',
     version = "0.11",
     config = function()
-      local dap = require("dap")
-      dap.adapters["pwa-chrome"] = {
-        type = "server",
-        host = "localhost",
-        port = "${port}",
-        executable = {
-          command = "js-debug",
-          args = { "${port}" },
-        },
-      }
-      dap.adapters["pwa-node"] = dap.adapters["pwa-chrome"]
-
       vim.api.nvim_create_autocmd("FileType", {
         pattern = "dap-repl",
         callback = function()
@@ -261,42 +249,6 @@ require("lazy").setup({
           widgets.centered_float(widgets.scopes)
         end,
         desc = "Scopes (Debugging)",
-      },
-      {
-        "<leader>djl", function()
-          local link = vim.fn.input("Enter link: ")
-          require("dap").run({
-            type = "pwa-chrome",
-            request = "launch",
-            name = "Open Link",
-            url = link,
-          })
-        end,
-        desc = "Open Link & Debug (Javascript)",
-        ft = {
-          "javascript",
-          "javascriptreact",
-          "typescript",
-          "typescriptreact",
-        }
-      },
-      {
-        "<leader>dja", function()
-        local ws = vim.fn.input("Enter websocket address: ")
-          require("dap").run({
-            type = "pwa-node",
-            request = "attach",
-            name = "Attach",
-            websocketAddress = ws,
-          })
-        end,
-        desc = "Attach & Debug (Javascript)",
-        ft = {
-          "javascript",
-          "javascriptreact",
-          "typescript",
-          "typescriptreact",
-        },
       },
     },
   },
