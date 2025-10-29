@@ -15,4 +15,6 @@
 
   programs.zsh.powerlevel10k.enable = true;
   programs.zsh.initContent = builtins.readFile ../../.extra-nixos.zsh;
+
+  fonts.fontconfig.enable = false;
 }
