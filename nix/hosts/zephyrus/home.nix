@@ -25,5 +25,10 @@
   home.packages = with pkgs; [
     nix-output-monitor
     wgsl-analyzer
+
+    # fonts
+    nerd-fonts.jetbrains-mono
   ];
+
+  fonts.fontconfig.enable = true;
 }
