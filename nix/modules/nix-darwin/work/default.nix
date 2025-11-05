@@ -19,6 +19,10 @@
   homebrew = {
     enable = true;
     brews = [
+      # Programs that really want to stay up-to-date
+      "gh"
+
+      # Required for ~/wonder, also need to be global because of that
       "docker-compose"
       "mise"
       "mysql-client@8.0"
@@ -27,6 +31,7 @@
       "swift-format"
       "swift-protobuf"
 
+      # Libraries for ~/wonder, also need to be global because of that
       "aria2"
       "libopusenc"
       "libvpx"
@@ -41,9 +46,12 @@
           };
         })
         [
+          # Programs that I want to stay up-to-date
+          "kitty"
+
+          # Required for ~/wonder
           "docker-desktop"
           "keybase"
-          "kitty"
           "ngrok"
           "tunnelblick"
         ];
