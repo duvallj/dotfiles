@@ -283,10 +283,6 @@ require("lazy").setup({
     ---@type snacks.Config
     opts = {
       bigfile = { enabled = true },
-      explorer = {
-        enabled = true,
-        replace_netrw = false,
-      },
       image = { enabled = true },
       indent = {
         enabled = true,
@@ -522,6 +518,16 @@ vim.api.nvim_create_autocmd({ "VimLeave", "VimSuspend" }, {
   end,
 })
 
+-- Make it so moving files in oil.nvim causes LSP updates
+-- TODO: put this in the main configuration somehow?
+vim.api.nvim_create_autocmd("User", {
+  pattern = "OilActionsPost",
+  callback = function(event)
+    if event.data.actions[1].type == "move" then
+      Snacks.rename.on_rename_file(event.data.actions[1].src_url, event.data.actions[1].dest_url)
+    end
+  end,
+})
 
 vim.cmd([[
 set runtimepath^=~/.vim
