@@ -11,6 +11,7 @@ in
   options = {
     programs.zsh = {
       powerlevel10k.enable = lib.mkEnableOption "Whether to enable powerlevel10k for zsh";
+      kittyExtra.enable = lib.mkEnableOption "Whether to enable extra shell integrations for kitty";
     };
   };
 
@@ -58,6 +59,9 @@ in
             [[ ! -f "''${HOME}/.p10k.zsh" ]] || source "''${HOME}/.p10k.zsh"
           ''
         ];
+      })
+      (lib.mkIf cfg.kittyExtra.enable {
+        programs.zsh.initContent = lib.mkAfter (builtins.readFile ../../../.extra-kitty.zsh);
       })
     ]
   );

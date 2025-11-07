@@ -17,6 +17,7 @@
   programs.neovim.nonManagedEnable = lib.mkDefault true;
   programs.zsh.enable = lib.mkDefault true;
   programs.zsh.powerlevel10k.enable = lib.mkDefault config.programs.zsh.enable;
+  programs.zsh.kittyExtra.enable = lib.mkDefault config.programs.zsh.enable;
 
   fonts.fontconfig.enable = lib.mkDefault true;
 }

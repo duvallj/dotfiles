@@ -10,6 +10,7 @@
   };
 
   programs.zsh.initContent = builtins.readFile ../../.extra-wsl.zsh;
+  programs.zsh.kittyExtra.enable = false;
 
   fonts.fontconfig.enable = false;
 }

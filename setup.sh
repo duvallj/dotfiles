@@ -21,9 +21,10 @@ make_link () {
     if [[ ($link_type == "file" && -f $dest_file) || ($link_type == "directory" && -d $dest_file) ]]
     then
       dest_file_backup="$dest_file.backup"
-      echo "Backing up \"$dest_file\" ..."
+      echo "Backing up \"$dest_file\"..."
       mv "$dest_file" "$dest_file.backup"
     fi
+    echo "Linking \"$dest_file\"..."
     mkdir -p $(dirname $dest_file)
     ln -sf $source_file $dest_file
   fi
@@ -32,6 +33,7 @@ make_link () {
 make_link file .gitconfig
 # make_link file .local/bin/humanlight.sh
 # make_link file .local/bin/runaswine
+make_link file .local/bin/nvim
 # make_link file .local/etc/rc/FixScrollPad.sh
 # make_link file .local/etc/rc/StartNetworking.sh
 # make_link file .zshrc
