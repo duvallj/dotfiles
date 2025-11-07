@@ -14,18 +14,36 @@ function replace {
 }
 
 function xim {
-  xargs nvim -p "$@"
+  extra_args="-p"
+  if [[ "$1" == "-k" ]]; then
+    shift
+    extra_args="-k"
+  fi
+  xargs nvim ${extra_args} "$@"
 }
+alias xkm="xim -k"
 
 function fdim {
-  fd "$@" | xim
+  extra_args=""
+  if [[ "$1" == "-k" ]]; then
+    shift
+    extra_args="-k"
+  fi
+  fd "$@" | xim ${extra_args}
 }
+alias fdkm="fdim -k"
 
 function rgim {
+  extra_args=""
+  if [[ "$1" == "-k" ]]; then
+    shift
+    extra_args="-k"
+  fi
   # List all files with that search, and also search for that pattern within nvim
   # Assumes the pattern is the first argument
-  rg -l "$@" | xim "+/$1"
+  rg -l "$@" | xim ${extra_args} "+/$1"
 }
+alias rgkm="rgim -k"
 
 function extract {
   # Extract all filenames at the start of the line from the input stream
@@ -36,6 +54,7 @@ function pbim {
   # Extract all files from the 
   pbpaste | extract | xim "$@"
 }
+alias pbkm="pbim -k"
 
 function conflicts {
   git conflicts | xim "$@"
