@@ -40,7 +40,6 @@
       submodules = [
         ./nix/hosts/hyper-v1
         ./nix/hosts/jacks-macbook-pro
-        ./nix/hosts/mac-mini
         ./nix/hosts/mammal
         ./nix/hosts/seans-macbook-pro
         ./nix/hosts/wsl
