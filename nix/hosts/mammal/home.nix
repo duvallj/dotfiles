@@ -21,6 +21,8 @@
 
   programs.jujutsu.nonManagedEnable = true;
   programs.zsh.initContent = builtins.readFile ../../../.extra-mammal.zsh;
+  # I don't plan on doing a lot of editing from this machine really, so don't need this
+  programs.zsh.kittyExtra.enable = false;
 
   home.packages = with pkgs; [
   ];

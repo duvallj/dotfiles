@@ -42,7 +42,6 @@ in
         home.packages = [
           pkgs.zsh-powerlevel10k
         ];
-        home.file.".p10k.zsh".source = ../../../.p10k.zsh;
         programs.zsh.initContent = lib.mkMerge [
           # initExtraFirst
           (lib.mkBefore ''
