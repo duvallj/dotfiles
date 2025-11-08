@@ -23,6 +23,8 @@ set smarttab
 augroup vimrc
   autocmd!
 
+  autocmd BufWritePre /tmp/* setlocal noundofile
+
   " extra filetype detection
   autocmd BufNewFile,BufRead *.asm set filetype=nasm
   autocmd BufNewFile,BufRead *.{mjs,cjs} set filetype=javascript
