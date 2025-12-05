@@ -23,6 +23,11 @@ require("lazy").setup({
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
       theme = "base16",
+      extensions = {
+        "nvim-dap-ui",
+        "oil",
+        "trouble",
+      },
     },
   },
   {
@@ -95,6 +100,13 @@ require("lazy").setup({
           -- defaults
           'score',
           'sort_text',
+        },
+      },
+      completion = {
+        menu = {
+          auto_show = function()
+            return vim.bo.filetype ~= "dap-repl"
+          end
         },
       },
     },
@@ -208,14 +220,11 @@ require("lazy").setup({
     version = "0.11",
     dependencies = { "rcarriga/nvim-dap-ui", "nvim-neotest/nvim-nio" },
     config = function()
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = "dap-repl",
-        callback = function()
-          require("blink.cmp.completion.windows.menu").auto_show = false
-        end,
-      })
+      vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
 
       local dap, dapui = require("dap"), require("dapui")
+      dapui.setup({})
+
       dap.listeners.before.attach.dapui_config = function()
         dapui.open()
       end
@@ -228,6 +237,64 @@ require("lazy").setup({
       dap.listeners.before.event_exited.dapui_config = function()
         dapui.close()
       end
+
+      -- Javascript debug adapters
+      -- TODO: abstract this out into module somewhere
+      for _, adapterType in ipairs({ "node", "chrome" }) do
+
+        local pwaType = "pwa-" .. adapterType
+
+        if not dap.adapters[pwaType] then
+          dap.adapters[pwaType] = {
+            type = "server",
+            host = "localhost",
+            port = "${port}",
+            executable = {
+              command = "js-debug",
+              args = { "${port}" },
+            },
+          }
+        end
+
+        -- Define adapters without the "pwa-" prefix for VSCode compatibility
+        if not dap.adapters[adapterType] then
+          dap.adapters[adapterType] = function(cb, config)
+            local nativeAdapter = dap.adapters[pwaType]
+
+            config.type = pwaType
+
+            if type(nativeAdapter) == "function" then
+              nativeAdapter(cb, config)
+            else
+              cb(nativeAdapter)
+            end
+          end
+        end
+      end
+
+      local js_filetypes = {
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+      };
+      for _, language in ipairs(js_filetypes) do
+        local runtimeExecutable = nil
+        if language:find("typescript") then
+          runtimeExecutable = vim.fn.executable("tsx") == 1 and "tsx" or "ts-node"
+        end
+        local configurations = dap.configurations[language] or {}
+        table.insert(configurations, {
+          type = "pwa-node",
+          request = "launch",
+          name = "Launch File",
+          program = "${file}",
+          cwd = "${workspaceFolder}",
+          sourceMaps = true,
+          runtimeExecutable = runtimeExecutable,
+      })
+      dap.configurations[language] = configurations
+      end
     end,
     cmd = {
       "DapToggleBreakpoint",
@@ -237,34 +304,24 @@ require("lazy").setup({
       "DapStepInto",
     },
     keys = {
-      { "<F5>", function() require("dap").continue() end, desc = "Continue" },
-      { "<F4>", function() require("dap").restart() end, desc = "Restart Debugging" },
-      { "<F3>", function() require("dap").terminate() end, desc = "Stop Debugging" },
-      { "<F6>", function() require("dap").pause() end, desc = "Pause Debugging" },
-      { "<F10>", function() require("dap").step_over() end, desc = "Step Over" },
-      { "<F11>", function() require("dap").step_into() end, desc = "Step Into" },
-      { "<F12>", function() require("dap").step_out() end, desc = "Step Out" },
-      { "<F9>", function() require("dap").toggle_breakpoint() end, desc = "Toggle Breakpoint" },
+      { "<leader>ds", function() require("dap").terminate() end, desc = "Stop Debugging (F3)" },
+      { "<F3>",       function() require("dap").terminate() end, desc = "Stop Debugging" },
+      { "<F4>",       function() require("dap").restart() end, desc = "Restart Debugging" },
+      { "<leader>dc", function() require("dap").continue() end, desc = "Continue (F5)" },
+      { "<F5>",       function() require("dap").continue() end, desc = "Continue" },
+      { "<F6>",       function() require("dap").pause() end, desc = "Pause Debugging" },
+      { "<leader>db", function() require("dap").toggle_breakpoint() end, desc = "Toggle Breakpoint (F9)" },
+      { "<F9>",       function() require("dap").toggle_breakpoint() end, desc = "Toggle Breakpoint" },
+      { "<leader>dn", function() require("dap").step_over() end, desc = "Step Over (F10)" },
+      { "<F10>",      function() require("dap").step_over() end, desc = "Step Over" },
+      { "<leader>di", function() require("dap").step_into() end, desc = "Step Into (F11)" },
+      { "<F11>",      function() require("dap").step_into() end, desc = "Step Into" },
+      { "<leader>do", function() require("dap").step_out() end, desc = "Step Out (F12)" },
+      { "<F12>",      function() require("dap").step_out() end, desc = "Step Out" },
       { "<leader>dr", function() require("dap").repl.open() end , desc = "Open Repl" },
       { "<leader>dl", function() require("dap").run_last() end, desc = "Run Last Debugged" },
       { "<leader>dh", function() require("dap.ui.widgets").hover() end, desc = "Hover (Debugging)" },
       { "<leader>dp", function() require("dap.ui.widgets").preview() end, desc = "Preview (Debugging)" },
-      {
-        "<leader>df",
-        function()
-          local widgets = require("dap.ui.widgets")
-          widgets.centered_float(widgets.frames)
-        end,
-        desc = "Frames (Debugging)",
-      },
-      {
-        "<leader>ds",
-        function()
-          local widgets = require("dap.ui.widgets")
-          widgets.centered_float(widgets.scopes)
-        end,
-        desc = "Scopes (Debugging)",
-      },
     },
   },
   {
