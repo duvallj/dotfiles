@@ -206,6 +206,7 @@ require("lazy").setup({
   {
     'mfussenegger/nvim-dap',
     version = "0.11",
+    dependencies = { "rcarriga/nvim-dap-ui", "nvim-neotest/nvim-nio" },
     config = function()
       vim.api.nvim_create_autocmd("FileType", {
         pattern = "dap-repl",
@@ -213,6 +214,20 @@ require("lazy").setup({
           require("blink.cmp.completion.windows.menu").auto_show = false
         end,
       })
+
+      local dap, dapui = require("dap"), require("dapui")
+      dap.listeners.before.attach.dapui_config = function()
+        dapui.open()
+      end
+      dap.listeners.before.launch.dapui_config = function()
+        dapui.open()
+      end
+      dap.listeners.before.event_terminated.dapui_config = function()
+        dapui.close()
+      end
+      dap.listeners.before.event_exited.dapui_config = function()
+        dapui.close()
+      end
     end,
     cmd = {
       "DapToggleBreakpoint",
@@ -253,11 +268,6 @@ require("lazy").setup({
     },
   },
   {
-    'mrcjkb/rustaceanvim',
-    version = '^6', -- Recommended
-    lazy = false, -- This plugin is already lazy
-  },
-  {
     'leoluz/nvim-dap-go',
     version = false,
     opts = {
@@ -274,6 +284,11 @@ require("lazy").setup({
       { "<leader>dgt", function() require("dap-go").debug_test() end, desc = "Debug Test (Go)", ft = "go" },
       { "<leader>dgl", function() require("dap-go").debug_last_test() end, desc = "Debug Last Test (Go)", ft = "go" },
     },
+  },
+  {
+    'mrcjkb/rustaceanvim',
+    version = '^6', -- Recommended
+    lazy = false, -- This plugin is already lazy
   },
   {
     "folke/snacks.nvim",
