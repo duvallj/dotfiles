@@ -128,6 +128,17 @@ require("lazy").setup({
         jsonls = {},
         nixd = {},
         -- rust_analyzer = {}, -- Configured by rustaceanvim instead
+        tinymist = {
+          settings = {
+            formatterMode = "typstyle",
+            formatterProseWrap = true,
+            formatterPrintWidth = 80,
+            formatterIndentSize = 2,
+
+            exportPdf = "onSave",
+            semanticTokens = "disable",
+          },
+        },
         ts_ls = {
           cmd = { "npx", "typescript-language-server", "--stdio" },
         },
@@ -347,6 +358,12 @@ require("lazy").setup({
     'mrcjkb/rustaceanvim',
     version = '^6', -- Recommended
     lazy = false, -- This plugin is already lazy
+  },
+  {
+    "chomosuke/typst-preview.nvim",
+    ft = "typst",
+    version = "1.*",
+    opts = {},
   },
   {
     "folke/snacks.nvim",
