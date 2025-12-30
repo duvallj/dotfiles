@@ -29,7 +29,6 @@
       "mysql@8.0"
       "poppler"
       "swift-format"
-      "swift-protobuf"
 
       # Libraries for ~/wonder, also need to be global because of that
       "aria2"
