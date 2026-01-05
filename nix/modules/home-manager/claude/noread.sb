@@ -32,6 +32,7 @@
   (subpath "/private/etc")
   (subpath "/System")
   (subpath "/nix")
+  (subpath "/run")
   )
 
 ;; === IMPORTANT === MODIFY this section to include ALL directories leading to claude workdir ===
@@ -48,6 +49,8 @@
     (literal (string-append (param "HOME_DIR") "/.gitconfig"))
     ;; Nix configuration
     (subpath (string-append (param "HOME_DIR") "/.config/nix"))
+    ;; Mise programs
+    (subpath (string-append (param "HOME_DIR") "/.local"))
 )
 
 ;; Allow process execution and forking (children inherit policy)
@@ -125,6 +128,10 @@
 
     ;; Gemini configuraiton
     (subpath (string-append (param "HOME_DIR") "/.gemini"))
+
+    ;; NPM
+    (literal (string-append (param "HOME_DIR") "/.npmrc"))
+    (subpath (string-append (param "HOME_DIR") "/.npm"))
 
     ;; Standard I/O devices
     (literal "/dev/stdout")
