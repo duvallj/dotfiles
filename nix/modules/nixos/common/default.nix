@@ -1,5 +1,5 @@
 # Base system configuration for all platforms
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   environment.systemPackages = with pkgs; [
     jq
@@ -16,4 +16,11 @@
   programs.zsh.enable = true;
   # Completions for system packages as well
   environment.pathsToLink = [ "/usr/share/zsh" ];
+
+  # Allow some nonfree packages
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    builtins.elem (lib.getName pkg) [
+      "claude-code"
+    ];
 }

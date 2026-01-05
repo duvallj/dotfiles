@@ -1,0 +1,154 @@
+#!/usr/bin/env bash
+
+set -uo pipefail
+
+function usage() {
+    cat >&2 <<EOF
+Usage: $0 [--target-dir <dir>] [--write-profile-file <file>] [--no-workaround] [--] <program> <arguments>
+
+Options:
+  --target-dir <dir>            Directory to generate claude workaround rules "(allow file-read* literal(..))" for. (default: .)
+  --write-profile-file <file>   Write sandbox-exec profile to specified file. (default: temp file in ~/.config/claude-sandbox)
+  --no-workaround               Don't generate workaround rules, maybe use this when claude-code is fixed!
+  -h, --help                    Show this help message
+
+Example:
+  $0 --target-dir /path/to/dir --write-profile-file profile.sb
+EOF
+    exit 1
+}
+
+
+function escape_for_sandbox() {
+    local path="$1"
+    # Escape backslashes first, then double quotes
+    path="${path//\\/\\\\}"
+    path="${path//\"/\\\"}"
+    echo "$path"
+}
+
+function generate_workaround_allow_read_rules() {
+    local tgt_dir="$1"
+
+    # Ensure path starts with /
+    if [[ ! "${tgt_dir}" =~ ^/ ]]; then
+        echo "path ${tgt_dir} didn't start with /"
+        exit 1
+    fi
+
+    local components=()
+    IFS='/' read -ra components <<< "${tgt_dir}"
+
+    local current_path=""
+    local all_rules=""
+
+    for component in "${components[@]}"; do
+        if [[ -z "${component}" ]]; then
+            # Handle leading / or consecutive //
+            if [[ -z "${current_path}" ]]; then
+                current_path="/"
+            fi
+            continue
+        fi
+
+        if [[ "${current_path}" == "/" ]]; then
+            current_path="/$component"
+        else
+            current_path="$current_path/$component"
+        fi
+
+        # Escape the path for sandbox profile
+        local escaped_path
+        escaped_path="$(escape_for_sandbox "${current_path}")"
+
+        # Use `literal` to allow only *listing* directory contents:
+        # Reading files in directory is still forbidden
+        all_rules+="(allow file-read* (literal \"${escaped_path}\"))"$'\n'
+    done
+
+    echo "${all_rules}"
+}
+
+# Array to accumulate positional arguments
+POSITIONAL_ARGS=()
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --target-dir)
+            TARGET_DIR="$2"
+            shift 2
+            ;;
+        --write-profile-file)
+            WRITE_PROFILE_FILE="$2"
+            shift 2
+            ;;
+        --no-workaround)
+            NO_WORKAROUND=1
+            shift 1
+            ;;
+        -h|--help)
+            usage
+            ;;
+        --)
+            # Stop parsing options, collect remaining args
+            shift
+            break
+            ;;
+        -*)
+            echo "Error: Unknown option: $1" >&2
+            echo "" >&2
+            usage
+            ;;
+        *)
+            # Non-option argument, stop parsing options
+            break
+            ;;
+    esac
+done
+
+# Collect all remaining arguments as positional arguments
+while [[ $# -gt 0 ]]; do
+    POSITIONAL_ARGS+=("$1")
+    shift
+done
+
+# Default to bash if no command provided
+if [[ ${#POSITIONAL_ARGS[@]} -eq 0 ]]; then
+    POSITIONAL_ARGS=("bash")
+fi
+
+# Detect if already running inside a sandbox (nested sandboxing is not supported on macOS)
+if sandbox-exec -p '(version 1)(allow default)' true 2>/dev/null; [ $? -eq 71 ]; then
+    echo "Error: Already running inside a sandbox. Nested sandboxing is not supported on macOS." >&2
+    echo "If you're running inside claude-sandbox, you cannot nest another sandbox." >&2
+    exit 1
+fi
+
+TARGET_DIR="${TARGET_DIR:-$(pwd)}"
+TARGET_DIR="$(realpath "${TARGET_DIR}" 2>/dev/null)"
+WRITE_PROFILE_FILE="${WRITE_PROFILE_FILE:-$( (mkdir -p "${HOME}/.config/claude-sandbox" && mktemp "${HOME}/.config/claude-sandbox/profile.sb.XXXXXXXXXX") 2>/dev/null || mktemp "/tmp/claude-sandbox-profile.sb.XXXXXXXXXX")}"
+NO_WORKAROUND="${NO_WORKAROUND:-0}"
+
+if [[ "${NO_WORKAROUND}" == 0 ]]; then
+    WORKAROUND_RULES="$(generate_workaround_allow_read_rules "${TARGET_DIR}")"
+
+    # append generated rules
+    {
+        echo "${NOREAD_SB_CONTENT}"
+        echo ""
+        echo ";; Generated allow-read rules for: ${TARGET_DIR}"
+        echo ";; for some reason claude-code needs list access to all parent directories of TARGET_DIR"
+        echo ";; - it doesn't need access to read the contents of directories, only the directories"
+        echo ";; themselves. Otherwise it will set PATH to "" and disable colored output"
+        echo "${WORKAROUND_RULES}"
+    } > "${WRITE_PROFILE_FILE}"
+else
+    echo "${NOREAD_SB_CONTENT}" > "${WRITE_PROFILE_FILE}"
+fi
+
+# Trap to clean up the temp file on exit
+# shellcheck disable=SC2064
+trap "rm -f '${WRITE_PROFILE_FILE}'" EXIT
+
+echo sandbox-exec -f "${WRITE_PROFILE_FILE}" -D "TARGET_DIR=${TARGET_DIR}" -D "TMP_DIR=/tmp" -D "HOME_DIR=${HOME}" -D "CACHE_DIR=${HOME}/.cache" "${POSITIONAL_ARGS[@]}"
+sandbox-exec -f "${WRITE_PROFILE_FILE}" -D "TARGET_DIR=${TARGET_DIR}" -D "TMP_DIR=/tmp" -D "HOME_DIR=${HOME}" -D "CACHE_DIR=${HOME}/.cache" "${POSITIONAL_ARGS[@]}"

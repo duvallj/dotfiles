@@ -10,5 +10,6 @@
 
   xdg.enable = true;
 
+  programs.claude.sandbox.enable = true;
   programs.jujutsu.nonManagedEnable = true;
 }

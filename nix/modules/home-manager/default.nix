@@ -1,6 +1,7 @@
 { lib, config, ... }:
 {
   imports = [
+    ./claude/default.nix
     ./direnv.nix
     ./docker.nix
     ./fonts.nix
@@ -10,6 +11,8 @@
     ./zsh.nix
   ];
 
+  programs.claude.firejail.enable = lib.mkDefault false;
+  programs.claude.sandbox.enable = lib.mkDefault false;
   programs.direnv.enable = lib.mkDefault true;
   programs.docker.nonManagedEnable = lib.mkDefault false;
   programs.git.nonManagedEnable = lib.mkDefault true;
