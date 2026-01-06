@@ -129,12 +129,12 @@ TARGET_DIR="$(realpath "${TARGET_DIR}" 2>/dev/null)"
 WRITE_PROFILE_FILE="${WRITE_PROFILE_FILE:-$( (mkdir -p "${HOME}/.config/claude-sandbox" && mktemp "${HOME}/.config/claude-sandbox/profile.sb.XXXXXXXXXX") 2>/dev/null || mktemp "/tmp/claude-sandbox-profile.sb.XXXXXXXXXX")}"
 NO_WORKAROUND="${NO_WORKAROUND:-0}"
 
+NOREAD_SB="${NOREAD_SB:-$NIX_NOREAD_SB}"
 if [[ "${NO_WORKAROUND}" == 0 ]]; then
     WORKAROUND_RULES="$(generate_workaround_allow_read_rules "${TARGET_DIR}")"
-
     # append generated rules
     {
-        echo "${NOREAD_SB_CONTENT}"
+        cat "${NOREAD_SB}"
         echo ""
         echo ";; Generated allow-read rules for: ${TARGET_DIR}"
         echo ";; for some reason claude-code needs list access to all parent directories of TARGET_DIR"
@@ -143,7 +143,7 @@ if [[ "${NO_WORKAROUND}" == 0 ]]; then
         echo "${WORKAROUND_RULES}"
     } > "${WRITE_PROFILE_FILE}"
 else
-    echo "${NOREAD_SB_CONTENT}" > "${WRITE_PROFILE_FILE}"
+    cat "${NOREAD_SB}" > "${WRITE_PROFILE_FILE}"
 fi
 
 # Trap to clean up the temp file on exit
