@@ -22,7 +22,8 @@
 )
 
 ;; allow directories required to launch claude-code
-(allow file-read*
+;; file-read-metadata is required for certain programs to resolve $PATH
+(allow file-read* file-read-metadata
   (subpath "/usr")
   (subpath "/bin")
   (subpath "/opt")
@@ -31,9 +32,17 @@
   (subpath "/etc")
   (subpath "/private/etc")
   (subpath "/System")
+
+  ;; Mise programs
+  (subpath (string-append (param "HOME_DIR") "/.local"))
+
+  ;; Nix programs
+  (subpath (string-append (param "HOME_DIR") "/.nix-profile"))
   (subpath "/nix")
   (subpath "/run")
-  )
+
+  (literal "/Applications")
+)
 
 ;; === IMPORTANT === MODIFY this section to include ALL directories leading to claude workdir ===
 ;; for some reason claude-code needs list access to all parent directories of TARGET_DIR
@@ -41,7 +50,10 @@
 ;; themselves. Otherwise it will set PATH to "" and disable colored output
 (allow file-read*
   (literal "/")
-  )
+  (literal "/Users")
+  (literal (param "HOME_DIR"))
+  (literal (string-append (param "HOME_DIR") "/wonder"))
+)
 
 (allow file-read*
     ;; Git configuration (for commits)
@@ -49,8 +61,6 @@
     (literal (string-append (param "HOME_DIR") "/.gitconfig"))
     ;; Nix configuration
     (subpath (string-append (param "HOME_DIR") "/.config/nix"))
-    ;; Mise programs
-    (subpath (string-append (param "HOME_DIR") "/.local"))
 )
 
 ;; Allow process execution and forking (children inherit policy)
@@ -121,6 +131,9 @@
     (subpath (param "CACHE_DIR"))
     (subpath (string-append (param "HOME_DIR") "/.cache"))
 
+    ;; NeoVim state
+    (subpath (string-append (param "HOME_DIR") "/.local/state/nvim"))
+
     ;; Claude configuration
     (subpath (string-append (param "HOME_DIR") "/.claude"))
     (literal (string-append (param "HOME_DIR") "/.claude.json"))
@@ -128,10 +141,6 @@
 
     ;; Gemini configuraiton
     (subpath (string-append (param "HOME_DIR") "/.gemini"))
-
-    ;; NPM
-    (literal (string-append (param "HOME_DIR") "/.npmrc"))
-    (subpath (string-append (param "HOME_DIR") "/.npm"))
 
     ;; Standard I/O devices
     (literal "/dev/stdout")
@@ -192,14 +201,71 @@
 
 ;; Specifically allow login keychain
 (allow file-read*
-    (literal (string-append (param "HOME_DIR") "/Library/Keychains/login.keychain-db"))
+  (literal (string-append (param "HOME_DIR") "/Library/Keychains/login.keychain-db"))
 )
 
 ;; Critical: Allow communication with securityd (keychain daemon)
 (allow mach-lookup
-    (global-name "com.apple.SecurityServer")
-    (global-name "com.apple.securityd")
-    (global-name "com.apple.securityd.xpc")
+  (global-name "com.apple.SecurityServer")
+  (global-name "com.apple.securityd")
+  (global-name "com.apple.securityd.xpc")
+)
+
+;; Node development permissions
+(allow file-read* file-write* file-write-create file-read-metadata file-ioctl
+  ;; NPM
+  (literal (string-append (param "HOME_DIR") "/.npmrc"))
+  (subpath (string-append (param "HOME_DIR") "/.npm"))
+
+  ;; GYP
+  (subpath (string-append (param "HOME_DIR") "/.electron-gyp"))
+)
+
+;; Xcode development permissions
+
+;; Required for /usr/bin/clang and other tool shims to locate actual developer tools
+;; (allow mach-lookup
+;;     (global-name "com.apple.dt.xcode_select.tool-shim-public")  ; Xcode tool shim service
+;;     (global-name "com.apple.dt.XcodeCacheService")  ; Xcode cache service
+;;     (global-name "com.apple.dt.CommandLineTools")  ; Command line tools
+;; )
+
+;; Allow reading xcode-select configuration (required for tool shims)
+;; (allow file-read* file-read-metadata
+;;   (literal "/var/db/xcode_select_link")  ; Symlink to active developer directory
+;;   (literal "/Library/Preferences/com.apple.dt.Xcode.plist")  ; Xcode preferences
+;; )
+
+(allow file-read* file-read-metadata
+  (subpath "/Applications/Xcode.app")
+  (subpath "/Library/Developer")
+  (subpath (string-append (param "HOME_DIR") "/Library/Developer"))
+)
+
+(allow file-read* file-write* file-write-create file-read-metadata file-ioctl
+  (subpath (string-append (param "HOME_DIR") "/Library/Preferences"))
+  (subpath (string-append (param "HOME_DIR") "/Library/Caches"))
+)
+
+(allow file-ioctl file-read-metadata file-read-data file-write-data  (literal "/dev/fsevents"))
+
+;; IPC shared memory - required for dyld shared cache access
+(allow ipc-posix-shm-read* ipc-posix-shm-write-data
+  (ipc-posix-name-regex #"^/tmp/")
+  (ipc-posix-name-regex #"^apple\.")
+  (ipc-posix-name-regex #"^com\.apple\.")
+)
+
+;; Shared memory regions
+(allow ipc-posix-shm-read-data
+  (ipc-posix-name "apple.shm.notification_center")
+  (ipc-posix-name-regex #"^apple\.cfprefs\.")
+)
+
+;; Allow reading dyld shared cache
+(allow file-read-data
+  (subpath "/System/Library/dyld")
+  (subpath "/usr/lib/dyld")
 )
 
 ;; Java/Scala development permissions
@@ -212,39 +278,36 @@
 
 ;; Java-specific sysctl reads
 (allow sysctl-read
-    (sysctl-name "security.mac.lockdown_mode_state")
-    (sysctl-name "kern.bootargs")
-    (sysctl-name "kern.osvariant_status")
-    (sysctl-name "kern.argmax")
-    (sysctl-name "hw.ephemeral_storage")
-    (sysctl-name "hw.optional.armv8_crc32")
-    (sysctl-name "hw.optional.arm.FEAT_LSE")
-    (sysctl-name "hw.optional.armv8_1_atomics")
-    (sysctl-name "hw.optional.arm.FEAT_SHA512")
-    (sysctl-name "hw.optional.armv8_2_sha512")
-    (sysctl-name "hw.optional.arm.FEAT_SHA3")
-    (sysctl-name "hw.optional.armv8_2_sha3")
-    (sysctl-name "net.routetable.0.0.3.0")
+  (sysctl-name "security.mac.lockdown_mode_state")
+  (sysctl-name "kern.argmax")
+  (sysctl-name "kern.bootargs")
+  (sysctl-name "kern.safeboot")
+  (sysctl-name "kern.osvariant_status")
+  (sysctl-name "hw.ephemeral_storage")
+  (sysctl-name "hw.optional.armv8_crc32")
+  (sysctl-name "hw.optional.arm.FEAT_LSE")
+  (sysctl-name "hw.optional.armv8_1_atomics")
+  (sysctl-name "hw.optional.arm.FEAT_SHA512")
+  (sysctl-name "hw.optional.armv8_2_sha512")
+  (sysctl-name "hw.optional.arm.FEAT_SHA3")
+  (sysctl-name "hw.optional.armv8_2_sha3")
+  (sysctl-name "net.routetable.0.0.3.0")
+  (sysctl-name "vm.footprint_suspend")
 )
 
 ;; Java needs to read dtracehelper
 (allow file-read-data (literal "/dev/dtracehelper"))
-
-;: ;; Java needs IPC shared memory for notification center
-;; (allow ipc-posix-shm-read-data
-;;     (ipc-posix-name "apple.shm.notification_center")
-;; )
 
 ;; Java needs system sockets (domain:32 is AF_NDRV for network device raw access)
 (allow system-socket)
 
 ;; Java needs to read metadata on certain directories
 (allow file-read-metadata
-    (literal "/dev")
-    (literal "/private")
-    (literal "/Library")
-    (literal (string-append (param "HOME_DIR") "/Library"))
-    (literal (string-append (param "HOME_DIR") "/Library/Caches"))
+  (literal "/dev")
+  (literal "/private")
+  (literal "/Library")
+  (literal (string-append (param "HOME_DIR") "/Library"))
+  (literal (string-append (param "HOME_DIR") "/Library/Caches"))
 )
 
 (allow file-read-data
@@ -253,26 +316,26 @@
 
 ;; Java needs to read various preference files
 (allow file-read*
-    (literal "/Library/Preferences/Logging/com.apple.diagnosticd.filter.plist")
-    (literal "/Library/Preferences/.GlobalPreferences.plist")
-    (literal "/Library/Preferences/com.apple.networkd.plist")
-    (literal (string-append (param "HOME_DIR") "/Library/Preferences/.GlobalPreferences.plist"))
-    (literal (string-append (param "HOME_DIR") "/Library/Preferences/.GlobalPreferences_m.plist"))
-    (regex (string-append "^" (param "HOME_DIR") "/Library/Preferences/ByHost/\\.GlobalPreferences\\..*\\.plist$"))
+  (literal "/Library/Preferences/Logging/com.apple.diagnosticd.filter.plist")
+  (literal "/Library/Preferences/.GlobalPreferences.plist")
+  (literal "/Library/Preferences/com.apple.networkd.plist")
+  (literal (string-append (param "HOME_DIR") "/Library/Preferences/.GlobalPreferences.plist"))
+  (literal (string-append (param "HOME_DIR") "/Library/Preferences/.GlobalPreferences_m.plist"))
+  (regex (string-append "^" (param "HOME_DIR") "/Library/Preferences/ByHost/\\.GlobalPreferences\\..*\\.plist$"))
 )
 
 ;; read/write ~/.sbt & coursier caches
 (allow file-read* file-write*
-    (subpath (string-append (param "HOME_DIR") "/.sbt"))
-    (subpath (string-append (param "HOME_DIR") "/.ivy2"))
-    (subpath (string-append (param "HOME_DIR") "/.m2"))
-    (subpath (string-append (param "HOME_DIR") "/.jgit"))
-    (subpath (string-append (param "HOME_DIR") "/.config/jgit"))
-    (subpath (string-append (param "HOME_DIR") "/Library/Caches/Coursier"))
+  (subpath (string-append (param "HOME_DIR") "/.sbt"))
+  (subpath (string-append (param "HOME_DIR") "/.ivy2"))
+  (subpath (string-append (param "HOME_DIR") "/.m2"))
+  (subpath (string-append (param "HOME_DIR") "/.jgit"))
+  (subpath (string-append (param "HOME_DIR") "/.config/jgit"))
+  (subpath (string-append (param "HOME_DIR") "/Library/Caches/Coursier"))
 )
 
 ;; read [~]/Library/Java
 (allow file-read*
-    (subpath (string-append (param "HOME_DIR") "/Library/Java"))
-    (subpath "/Library/Java")
+  (subpath (string-append (param "HOME_DIR") "/Library/Java"))
+  (subpath "/Library/Java")
 )
