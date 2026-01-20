@@ -33,10 +33,7 @@ require("lazy").setup({
   {
     "kevinhwang91/nvim-hlslens",
     branch = "main",
-    opts = {
-      -- Make it so the virtual text only shows when the cursor is on a match
-      calm_down = true,
-    },
+    opts = {},
     keys = {
       { "n", "<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>" },
       { "N", "<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>" },
@@ -44,6 +41,7 @@ require("lazy").setup({
       { "#", "#<Cmd>lua require('hlslens').start()<CR>" },
       { "g*", "g*<Cmd>lua require('hlslens').start()<CR>" },
       { "g#", "g#<Cmd>lua require('hlslens').start()<CR>" },
+      { "<leader>l", "<Cmd>nohlsearch<CR>", desc = ":nohlsearch" },
     },
   },
   {
