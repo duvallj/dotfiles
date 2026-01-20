@@ -173,6 +173,10 @@ nnoremap <leader>pp :tabedit <C-r>"<cr>
 noremap [<Tab> <cmd>tabprevious<cr>
 noremap ]<Tab> <cmd>tabnext<cr>
 
+" better window navigation commands (my own invention)
+noremap [w <C-w>W
+noremap ]w <C-w>w
+
 " better hunk navigation (like vim-unimpaired but respects count)
 function! s:Context(reverse, count) abort
   let i = 0
