@@ -1,3 +1,7 @@
 alias rbs="home-manager --flake \"${HOME}/dotfiles#Zephyrus\" switch"
 
+function pbpaste {
+  wl-paste "$@"
+}
+
 export PATH="${HOME}/.local/bin:${PATH}"

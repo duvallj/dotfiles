@@ -23,6 +23,7 @@
   programs.zsh.initContent = builtins.readFile ../../../.extra-zephyrus.zsh;
 
   home.packages = with pkgs; [
+    magic-wormhole
     mpv
     nix-output-monitor
     wgsl-analyzer
