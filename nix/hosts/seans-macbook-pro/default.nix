@@ -4,6 +4,7 @@
   hostPlatform = "x86_64-darwin";
   nix-darwin-imports = [
     ../../modules/nix-darwin/work
+    ../../modules/nixos/common
   ];
-  home-manager-import = ./home.nix;
+  home-manager-import = ../jacks-macbook-pro/home.nix;
 }
