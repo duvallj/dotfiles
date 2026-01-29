@@ -127,7 +127,7 @@ require("lazy").setup({
   },
   {
     "neovim/nvim-lspconfig",
-    tag = "v2.3.0",
+    tag = "v2.5.0",
     dependencies = {
       "saghen/blink.cmp",
       "folke/snacks.nvim",
@@ -160,10 +160,9 @@ require("lazy").setup({
       },
     },
     config = function(_, opts)
-      local lspconfig = require("lspconfig")
       for server, config in pairs(opts.servers) do
-        config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
-        lspconfig[server].setup(config)
+        vim.lsp.config(server, config)
+        vim.lsp.enable(server)
       end
 
       vim.api.nvim_create_autocmd("LspAttach", {
