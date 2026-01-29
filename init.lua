@@ -135,6 +135,7 @@ require("lazy").setup({
     opts = {
       servers = {
         clangd = {},
+        codebook = {},
         cssls = {},
         eslint = {},
         gopls = {},
