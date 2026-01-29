@@ -9,6 +9,12 @@ function ls {
   fi
 }
 
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ......="cd ../../../../.."
+
 function replace {
   rg -l "$1" $3 | xargs sd "$1" "$2"
 }
