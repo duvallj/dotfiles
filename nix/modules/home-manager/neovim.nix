@@ -42,13 +42,13 @@ in
           vimdiff = "nvim -d";
         };
 
-        home.packages =
-          [
-            wrappedNeovim
-          ]
-          ++
+        home.packages = [
+          wrappedNeovim
+        ]
+        ++
           # TODO: add configuration options for language servers
           (with pkgs; [
+            clang-analyzer
             ffmpeg-full
             ghostscript_headless
             imagemagick

@@ -136,26 +136,10 @@ require("lazy").setup({
       servers = {
         clangd = {},
         cssls = {},
-        eslint = {},
-        gopls = {},
         html = {},
         jsonls = {},
         nixd = {},
         -- rust_analyzer = {}, -- Configured by rustaceanvim instead
-        tinymist = {
-          settings = {
-            formatterMode = "typstyle",
-            formatterProseWrap = true,
-            formatterPrintWidth = 80,
-            formatterIndentSize = 2,
-
-            exportPdf = "onSave",
-            semanticTokens = "disable",
-          },
-        },
-        ts_ls = {
-          cmd = { "npx", "typescript-language-server", "--stdio" },
-        },
       },
     },
     config = function(_, opts)
