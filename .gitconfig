@@ -8,7 +8,7 @@
 	a = add .
 	cm = commit -m
 	ca = commit --amend
-	c = checkout
+	cane = commit --amend --no-edit
 	conflicts = diff --name-only --diff-filter=U --relative
 	ignore = update-index --assume-unchanged
 	unignore = update-index --no-assume-unchanged
