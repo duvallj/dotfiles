@@ -48,7 +48,7 @@ in
         ++
           # TODO: add configuration options for language servers
           (with pkgs; [
-            clang-analyzer
+            clang-tools
             ffmpeg-full
             ghostscript_headless
             imagemagick
