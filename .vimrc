@@ -92,23 +92,23 @@ set termguicolors
 " Maybe I'll do per-filetype colorschemes someday? For the most popular
 " filetypes.
 let g:normal_colorschemes = [
-    \ 'base16-da-one-gray',
-    \ 'base16-decaf',
-    \ 'base16-eighties',
-    \ 'base16-helios',
-    \ 'base16-precious-dark-eleven',
-    \ 'base16-tomorrow-night',
-    \ 'base16-solarflare',
     \ 'base24-espresso',
+    \ 'base16-helios',
 \ ]
+    " \ 'base16-da-one-gray',
+    " \ 'base16-decaf',
+    " \ 'base16-eighties',
+    " \ 'base16-precious-dark-eleven',
+    " \ 'base16-tomorrow-night',
+    " \ 'base16-solarflare',
 command Colo execute 'colorscheme' normal_colorschemes[rand() % len(normal_colorschemes)]
 
 let g:light_colorschemes = [
     \ 'base16-da-one-white',
     \ 'base16-equilibrium-light',
-    \ 'base16-ia-light',
-    \ 'base16-precious-light-white',
 \ ]
+    " \ 'base16-ia-light',
+    " \ 'base16-precious-light-white',
 command ColoLight execute 'colorscheme' light_colorschemes[rand() % len(light_colorschemes)]
 
 let bad_colorschemes = [
