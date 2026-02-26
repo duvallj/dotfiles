@@ -1,4 +1,4 @@
-alias rg="command rg --hyperlink-format=default"
+alias rg="command rg --hyperlink-format=default --vimgrep"
 alias fd="command fd --hyperlink=auto"
 # TODO: use --hyperlink=auto once it supports that
 function ls {

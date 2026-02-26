@@ -8,9 +8,19 @@ if command -v kitten &> /dev/null; then
   pipe="${XDG_CACHE_HOME:-${HOME}/.cache}/nvim/server-${KITTY_TAB_ID}.pipe"
   if [ -S "${pipe}" ]; then
     if [ "$1" = "-k" ] || [ "$1" = "--kitty-remote" ]; then
-      # Run command in existing instance
       shift
-      nvim --server "${pipe}" --remote-tab "$@"
+      # Open file in existing instance
+      keys=""
+      for arg in "$@"; do
+        if [[ "$arg" =~ \+[0-9]+ ]]; then
+          # Line number argument, MUST come after file
+          keys+=":${arg#+}<CR>"
+        else
+          # Argument is filename
+          keys+=":tabedit $arg<CR>"
+        fi
+      done
+      nvim --server "${pipe}" --remote-send "${keys}"
     else
       # Launch new, non-remote instance
       nvim "$@"
