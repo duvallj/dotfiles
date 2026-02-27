@@ -38,9 +38,9 @@ make_link file .local/bin/nvim
 # make_link file .local/etc/rc/StartNetworking.sh
 # make_link file .zshrc
 # mkdir -p "$HOME/.zsh_config"
-make_link file .p10k.zsh
-# make_link file .extra-msys2.zsh .extra.zsh
-# make_link file .extra-archlinux.zsh .extra.zsh
+make_link file .zshrc.p10k
+# make_link file .zshrc.extra-msys2 .zshrc.extra
+# make_link file .zshrc.extra-archlinux .zshrc.extra
 # make_link directory powerlevel10k
 # make_link directory .themes/Windurs10
 # make_link file .tmux.conf

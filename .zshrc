@@ -32,9 +32,9 @@ compinit -d "${ZSH_ROOT}/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
 source "${HOME}/powerlevel10k/powerlevel10k.zsh-theme"
 
 # Source platform-specific variables
-source "${HOME}/.extra.zsh"
+source "${HOME}/.zshrc.extra"
 
 #End on lines added by me, the user
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f "${HOME}/.p10k.zsh" ]] || source "${HOME}/.p10k.zsh"
+# To customize prompt, run `p10k configure` or edit ~/.zshrc.p10k.
+[[ ! -f "${HOME}/.zshrc.p10k" ]] || source "${HOME}/.zshrc.p10k"

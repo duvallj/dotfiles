@@ -1,8 +1,22 @@
-alias rg="command rg --hyperlink-format=default --vimgrep"
-alias fd="command fd --hyperlink=auto"
+function rg {
+  extra_args=()
+  if [ -t 0 ]; then
+    # If stdin is from the terminal, output in vimgrep
+    # (If stdin is _not_ from the terminal, we don't want to apply any custom formatting)
+    extra_args+="--vimgrep"
+  fi
+  # rg automatically turns off hyperlinks if stdout isn't connected to the terminal
+  command rg --hyperlink-format=default "${extra_args[@]}" "$@"
+}
+
+function fd {
+  command fd --hyperlink=auto "$@"
+}
+
 # TODO: use --hyperlink=auto once it supports that
 function ls {
   if [ -t 1 ]; then
+    # If stdout is connected to the terminal, output terminal hyperlinks
     command eza --hyperlink "$@"
   else
     command eza "$@"
@@ -77,3 +91,10 @@ function staged {
 function cam {
   git a && git cm "$@"
 }
+
+function prune {
+  header="${1:-jack}"
+  git branch --list | rg -v "^[*+]|${header}" | xargs git branch -D
+  git remote prune origin | sed -n -E "/${header}/ s/.*(${header}.*)/\\1/p" | xargs git branch -D
+}
+

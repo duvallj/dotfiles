@@ -1,0 +1,14 @@
+LAST_PATH=""
+
+path_changed_hook() {
+  if (( $+commands[kitten] )) && [[ "$PATH" != "$LAST_PATH" ]]; then
+    # Update the user variable with the latest value for $PATH
+    kitten @ set-user-vars "PATH=$PATH"
+    
+    # Update the watcher so it doesn't trigger again until the next change
+    LAST_PATH="$PATH"
+  fi
+}
+
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd path_changed_hook

@@ -27,7 +27,7 @@ in
               unsetopt beep
               bindkey -e
             '')
-            (builtins.readFile ../../../.extra.zsh)
+            (builtins.readFile ../../../.zshrc.extra)
           ];
         };
 
@@ -54,13 +54,14 @@ in
           '')
           ''
             source "${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme"
-            # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-            [[ ! -f "''${HOME}/.p10k.zsh" ]] || source "''${HOME}/.p10k.zsh"
+            # To customize prompt, run `p10k configure` or edit ~/.zshrc.p10k.
+            [[ ! -f "''${HOME}/.zshrc.p10k" ]] || source "''${HOME}/.zshrc.p10k"
           ''
         ];
       })
       (lib.mkIf cfg.kittyExtra.enable {
-        programs.zsh.initContent = lib.mkAfter (builtins.readFile ../../../.extra-kitty.zsh);
+        programs.zsh.initContent = lib.mkAfter (builtins.readFile ../../../.zshrc.extra-kitty);
+        programs.zsh.profileExtra = lib.mkAfter (builtins.readFile ../../../.zprofile.extra-kitty);
       })
     ]
   );
