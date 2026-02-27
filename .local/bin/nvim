@@ -4,7 +4,10 @@
 export PATH=$(echo $PATH | sed -E -e "s|${HOME}/.local/bin(:\|$)||")
 
 if command -v kitten &> /dev/null; then
-  # If running in Kitty, get the tab id for a remote Neovim instance
+  # If running in Kitty, get the tab id for a remote Neovim instance 
+  if [[ ! -v KITTY_TAB_ID ]]; then
+    export KITTY_TAB_ID="$(kitten @ ls --match "id:${KITTY_WINDOW_ID}" 2> /dev/null | jq '.[0].tabs[0].id')"
+  fi
   pipe="${XDG_CACHE_HOME:-${HOME}/.cache}/nvim/server-${KITTY_TAB_ID}.pipe"
   if [ -S "${pipe}" ]; then
     if [ "$1" = "-k" ] || [ "$1" = "--kitty-remote" ]; then
@@ -21,6 +24,17 @@ if command -v kitten &> /dev/null; then
         fi
       done
       nvim --server "${pipe}" --remote-send "${keys}"
+      # Focus the window that has the editor in it
+      focus_window_id=$(
+        # First, list all windows in the same tab as this one
+        kitten @ ls --match-tab "id:${KITTY_TAB_ID}" |
+        # Then, look for the one with a neovim instance.
+        # This needs to be done separately because:
+        # 1. `kitten @ ls` doesn't support --match (window) and --match-tab at the same time
+        # 2. `kitten @ focus-window` doesn't support matching tab at all.
+        jq -r '[.[0].tabs[0].windows.[] | select(.user_vars | has("in_editor")) | .id].[0]' 
+      )
+      kitten @ focus-window -m "id:${focus_window_id}"
     else
       # Launch new, non-remote instance
       nvim "$@"
