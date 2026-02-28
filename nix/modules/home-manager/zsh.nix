@@ -61,7 +61,6 @@ in
       })
       (lib.mkIf cfg.kittyExtra.enable {
         programs.zsh.initContent = lib.mkAfter (builtins.readFile ../../../.zshrc.extra-kitty);
-        programs.zsh.profileExtra = lib.mkAfter (builtins.readFile ../../../.zprofile.extra-kitty);
       })
     ]
   );

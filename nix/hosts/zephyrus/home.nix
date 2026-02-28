@@ -20,7 +20,7 @@
   programs.home-manager.enable = true;
 
   programs.jujutsu.nonManagedEnable = true;
-  programs.zsh.initContent = builtins.readFile ../../../.extra-zephyrus.zsh;
+  programs.zsh.initContent = builtins.readFile ../../../.zshrc.extra-zephyrus;
 
   home.packages = with pkgs; [
     magic-wormhole
