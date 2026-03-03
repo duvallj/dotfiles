@@ -45,18 +45,20 @@ in
         home.packages = [
           wrappedNeovim
         ]
-        ++
-          # TODO: add configuration options for language servers
-          (with pkgs; [
-            clang-tools
-            ffmpeg-full
-            ghostscript_headless
-            imagemagick
-            nixd
-            nixfmt-rfc-style
-            vscode-js-debug
-            vscode-langservers-extracted
-          ]);
+        ++ (with pkgs; [
+          # For viewing images with Snacks.nvim
+          ffmpeg-full
+          ghostscript_headless
+          imagemagick
+          # For treesitter
+          tree-sitter
+          # TODO: add more configuration options for language servers
+          clang-tools
+          nixd
+          nixfmt-rfc-style
+          vscode-js-debug
+          vscode-langservers-extracted
+        ]);
       }
       (lib.mkIf cfg.serverAliases {
         home.shellAliases =
