@@ -68,6 +68,7 @@ require("lazy").setup({
       ensure_installed = {
         "bash",
         "c",
+        "css",
         "diff",
         "html",
         "javascript",
@@ -83,6 +84,7 @@ require("lazy").setup({
         "python",
         "query",
         "regex",
+        "styled",
         "toml",
         "tsx",
         "typescript",
@@ -136,6 +138,7 @@ require("lazy").setup({
       servers = {
         clangd = {},
         cssls = {},
+        gopls = {},
         html = {},
         jsonls = {},
         nixd = {},
