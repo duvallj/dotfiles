@@ -61,6 +61,10 @@ set listchars=tab:▶·
 set backspace=indent,eol,start
 set whichwrap=<,>,[,]
 
+" Open all folds by default (use zM to close all folds)
+set foldlevel=99
+set foldlevelstart=99
+
 " column to not go over
 set colorcolumn=+1
 highlight ColorColumn ctermbg=darkgray

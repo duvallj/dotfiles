@@ -88,7 +88,7 @@ require("lazy").setup({
     opts = {
       highlight = { enable = true },
       indent = { enable = true },
-      folds = { enable = false },
+      folds = { enable = true },
       ensure_installed = {
         "bash",
         "c",
@@ -121,7 +121,7 @@ require("lazy").setup({
     config = function(_, opts)
       local TS = require("nvim-treesitter")
 
-      TS.setup(ops)
+      TS.setup(opts)
       TS_refresh_installed()
 
       local to_install = vim.tbl_filter(function(lang)
@@ -147,16 +147,16 @@ require("lazy").setup({
             local f = opts[feat] or {}
             return f.enable ~= false
               and not (type(f.disable) == "table" and vim.tbl_contains(f.disable, lang))
-              and TS_have_query(ft, query)
+              and TS_have(ft, query)
           end
 
           if enabled("highlight", "highlights") then
-            vim.treesitter.start(ev.buf)
+            vim.treesitter.start(ev.buf, lang)
           end
 
-          if enabled("ident", "idents") then
+          if enabled("indent", "indents") then
             -- TODO: do I need the TS_have(nil, "indents") check?
-            vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+            vim.bo[ev.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
           end
 
           if enabled("folds", "folds") then
