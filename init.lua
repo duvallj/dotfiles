@@ -734,8 +734,17 @@ require("lazy").setup({
   },
 })
 
+
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+  group = vim.api.nvim_create_augroup("KittySetWindowTitleBufEnter", { clear = true }),
+  callback = function()
+    local title = "nvim " .. vim.fn.expand("%:t")
+    io.stdout:write("\x1b]2;" .. title .. "\x1b\\")
+  end,
+})
+
 -- Let kitty know when nvim is open
-vim.api.nvim_create_autocmd({ "VimEnter", "VimResume" }, {
+vim.api.nvim_create_autocmd({ "VimEnter", "VimResume", "UIEnter" }, {
   group = vim.api.nvim_create_augroup("KittySetVarVimEnter", { clear = true }),
   callback = function()
     io.stdout:write("\x1b]1337;SetUserVar=in_editor=MQo\007")
