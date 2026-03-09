@@ -58,6 +58,7 @@ in
           nixfmt-rfc-style
           vscode-js-debug
           vscode-langservers-extracted
+          (callPackage ../../packages/cspell-lsp { })
         ]);
       }
       (lib.mkIf cfg.serverAliases {
