@@ -52,7 +52,7 @@ in
         home-manager.useUserPackages = true;
         home-manager.users.${username} = (import ./home.nix);
       }
-      lix-module.nixosModules.default
+      lix-module
     ];
   };
 }

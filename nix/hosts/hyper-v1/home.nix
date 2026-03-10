@@ -1,10 +1,7 @@
 { ... }:
 {
   imports = [
-    ../common/direnv.nix
-    ../common/git.nix
-    ../common/neovim.nix
-    ../common/zsh.nix
+    ../../modules/home-manager
     ./packages.nix
   ];
 
@@ -13,9 +10,8 @@
 
   programs.neovim.serverAliases = true;
 
-  programs.zsh.powerlevel10k.enable = true;
   programs.zsh.kittyExtra.enable = false;
-  programs.zsh.initContent = builtins.readFile ../../.extra-nixos.zsh;
+  programs.zsh.initContent = builtins.readFile ../../../.zshrc.extra-hyper-v1;
 
   fonts.fontconfig.enable = false;
 }

@@ -1,7 +1,7 @@
 { lib, config, ... }:
 {
   imports = [
-    ./claude/default.nix
+    ./claude
     ./direnv.nix
     ./docker.nix
     ./fonts.nix

@@ -8,14 +8,14 @@
 }:
 let
   username = "me";
-  hostname = "nixos";
+  hostname = "hyper-v1";
 
   configuration =
     { ... }:
     {
       imports = [
         ./configuration.nix
-        ../common/default.nix
+        ../../modules/nixos/common
       ];
 
       users.users.${username} = {
@@ -36,7 +36,7 @@ in
         home-manager.backupFileExtension = "backup";
         home-manager.users.${username} = import ./home.nix;
       }
-      lix-module.nixosModules.default
+      lix-module
     ];
   };
 }
