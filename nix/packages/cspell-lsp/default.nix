@@ -14,7 +14,7 @@ buildNpmPackage (finalAttrs: {
     owner = "vlabo";
     repo = "cspell-lsp";
     rev = "v${finalAttrs.version}";
-    hash = "sha256-mypKJb3/MOp2ldOQq1KgfrHotuAXCP2nRWGLhVJeR/I=";
+    hash = "sha256-ZLZMVw0uvr4rQ9SKMVj1Sjoj+QeK2UL3RWsnzNRdPwI=";
   };
 
   npmDepsHash = "sha256-XYgtV3XMEriMjC06QfudL0fyoTY1PobnpUf4PQGOA2U=";
