@@ -277,7 +277,6 @@ require("lazy").setup({
     opts = {
       servers = {
         clangd = {},
-        cspell_ls = {},
         cssls = {},
         gopls = {},
         html = {},
