@@ -2,7 +2,7 @@
   username,
   hostname,
   hostPlatform,
-  nix-darwin-imports,
+  configuration,
   home-manager-import,
 }:
 {
@@ -13,11 +13,9 @@
   ...
 }:
 let
-  configuration =
+  base-configuration =
     { ... }:
     {
-      imports = nix-darwin-imports;
-
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
 
@@ -39,7 +37,7 @@ in
 {
   darwinConfigurations.${hostname} = nix-darwin.lib.darwinSystem {
     modules = [
-      configuration
+      base-configuration
       home-manager.darwinModules.home-manager
       {
         home-manager.useGlobalPkgs = true;
@@ -47,6 +45,9 @@ in
         home-manager.users.${username} = import home-manager-import;
       }
       lix-module
+      ../nix-darwin
+      ../nixos/common
+      configuration
     ];
   };
 

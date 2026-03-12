@@ -2,12 +2,6 @@
   username = "jackduvall";
   hostname = "Jacks-MacBook-Pro";
   hostPlatform = "aarch64-darwin";
-  nix-darwin-imports = [
-    ../../modules/nix-darwin/work
-    ../../modules/nixos/common
-    {
-      ids.gids.nixbld = 350;
-    }
-  ];
+  configuration = ./nix-darwin.nix;
   home-manager-import = ./home.nix;
 }
