@@ -15,6 +15,8 @@
 	ignored = !git ls-files -v | grep "^[[:lower:]]"
 [branch]
 	sort = committerdate
+[commit]
+	gpgsign = true
 [core]
 	editor = nvim
 	autocrlf = false
@@ -43,6 +45,7 @@
 	defaultBranch = main
 [log]
 	date = local
+	showSignature = true
 [merge]
 	ff = true
 	conflictStyle = diff3
@@ -64,3 +67,4 @@
 [user]
 	name = Jack Duvall
 	email = 10897431+duvallj@users.noreply.github.com
+	signingkey = CD3C3FB7CBB23212
