@@ -8,7 +8,7 @@ if command -v kitten &> /dev/null; then
   if [[ ! -v KITTY_TAB_ID ]]; then
     export KITTY_TAB_ID="$(kitten @ ls --match "id:${KITTY_WINDOW_ID}" 2> /dev/null | jq '.[0].tabs[0].id')"
   fi
-  pipe="${XDG_CACHE_HOME:-${HOME}/.cache}/nvim/server-${KITTY_TAB_ID}.pipe"
+  pipe="${XDG_CACHE_HOME:-${HOME}/.cache}/nvim/server-${KITTY_PID}-${KITTY_TAB_ID}.pipe"
   if [ -S "${pipe}" ]; then
     if [ "$1" = "-k" ] || [ "$1" = "--kitty-remote" ]; then
       shift
