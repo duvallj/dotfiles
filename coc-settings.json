@@ -1,0 +1,24 @@
+{
+  "coc.preferences.jumpCommand": "tabe",
+  "coc.preferences.formatOnSave": true,
+  "rust-analyzer.updates.channel": "stable",
+  "rust-analyzer.cargo.features": "all",
+  "clangd.enabled": true,
+  "inlayHint.enable": true,
+  "inlayHint.display": true,
+  "tsserver.maxTsServerMemory": 10240,
+  "tsserver.useLocalTsdk": true,
+  "typescript.inlayHints.enumMemberValues.enabled": true,
+  "eslint.execArgv": ["--max-old-space-size=10240"],
+  "languageserver": {
+    "ocaml-lsp": {
+      "command": "opam",
+      "args": ["exec", "--", "ocamllsp"],
+      "filetypes": ["ocaml", "reason"]
+    },
+    "nixd": {
+      "command": "nixd",
+      "filetypes": ["nix"]
+    }
+  }
+}

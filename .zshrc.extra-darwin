@@ -1,0 +1,1 @@
+alias rbs="sudo darwin-rebuild switch --flake \"${HOME}/dotfiles\""

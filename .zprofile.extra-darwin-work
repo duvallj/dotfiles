@@ -1,0 +1,16 @@
+if [[ -d /opt/homebrew ]]; then
+  export PATH="${PATH}:/opt/homebrew/bin"
+fi
+
+eval "$(brew shellenv)"
+brew_prefix="$(brew --prefix)"
+export PATH="${brew_prefix}/opt/mysql-client@8.0/bin:${PATH}"
+export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}${PKG_CONFIG_PATH:+:}${brew_prefix}/lib/pkgconfig"
+
+eval "$(mise activate zsh)"
+export PATH="${HOME}/.local/bin:${PATH}"
+# go path automatically managed by mise
+
+export WONDER_ROOT="${HOME}/wonder/src"
+export CROAM_ENV="local"
+source "${HOME}/wonder-aliases.sh"

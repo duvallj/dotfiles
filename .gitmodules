@@ -1,0 +1,6 @@
+[submodule "powerlevel10k"]
+	path = powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k.git
+[submodule ".themes/Windurs10"]
+	path = .themes/Windurs10
+	url = https://github.com/duvallj/Windurs10.git

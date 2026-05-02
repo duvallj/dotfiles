@@ -1,0 +1,17 @@
+{ ... }:
+{
+  imports = [
+    ../../modules/home-manager
+    ../../modules/home-manager/work
+  ];
+
+  home.stateVersion = "24.05";
+  programs.home-manager.enable = true;
+
+  xdg.enable = true;
+
+  programs.claude.sandbox.enable = true;
+  programs.claude.sandbox.nonManaged = true;
+  programs.jujutsu.nonManagedEnable = true;
+  programs.neovim.lsp.cspell = true;
+}
