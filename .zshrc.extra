@@ -76,6 +76,12 @@ function pbim {
 }
 alias pbkm="pbim -k"
 
+function fzim {
+  # Get files to edit with fzf
+  fzf -m | xim "$@"
+}
+alias fzkm="fzim -k"
+
 function conflicts {
   git conflicts | xim "$@"
 }

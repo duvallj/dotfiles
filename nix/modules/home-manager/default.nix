@@ -5,6 +5,7 @@
     ./direnv.nix
     ./docker.nix
     ./fonts.nix
+    ./fzf.nix
     ./git.nix
     ./jujutsu.nix
     ./neovim.nix
@@ -12,6 +13,7 @@
   ];
 
   programs.direnv.enable = lib.mkDefault true;
+  programs.fzf.enable = lib.mkDefault true;
   programs.git.nonManagedEnable = lib.mkDefault true;
   programs.neovim.nonManagedEnable = lib.mkDefault true;
   programs.zsh.enable = lib.mkDefault true;
