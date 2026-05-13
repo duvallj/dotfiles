@@ -92,19 +92,20 @@ set background=dark
 " make it so colors show up correctly in cmd.exe
 set termguicolors
 
-" base16-helios is my current favorite, though I'm trying out others
 " Maybe I'll do per-filetype colorschemes someday? For the most popular
 " filetypes.
 let g:normal_colorschemes = [
     \ 'base24-espresso',
-    \ 'base16-helios',
+    \ 'base16-da-one-gray',
+    \ 'base16-decaf',
+    \ 'base16-eighties',
+    \ 'base16-precious-dark-eleven',
+    \ 'base16-tomorrow-night',
+    \ 'base16-solarflare',
 \ ]
-    " \ 'base16-da-one-gray',
-    " \ 'base16-decaf',
-    " \ 'base16-eighties',
-    " \ 'base16-precious-dark-eleven',
-    " \ 'base16-tomorrow-night',
-    " \ 'base16-solarflare',
+    " I _don't_ want my nvim panes to be the same color as normal panes
+    " actually
+    " \ 'base16-helios',
 command Colo execute 'colorscheme' normal_colorschemes[rand() % len(normal_colorschemes)]
 
 let g:light_colorschemes = [
@@ -130,7 +131,8 @@ command ColoBad execute 'colorscheme' bad_colorschemes[rand() % len(bad_colorsch
 
 " Set the color scheme
 if !exists('g:colors_name')
-  Colo
+  " This is my definite favorite, though others in :Colo are nice too
+  colorscheme base24-espresso
 endif
 
 " Don't pass messages to |ins-completion-menu|
