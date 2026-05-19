@@ -341,6 +341,25 @@ require("lazy").setup({
     end,
   },
   {
+    "rachartier/tiny-inline-diagnostic.nvim",
+    branch = "main",
+    event = "VeryLazy",
+    priority = 1000,
+    opts = {
+      preset = "powerline",
+      options = {
+        show_source = { if_many = true },
+        use_icons_from_diagnostic = true,
+        multilines = { enabled = true },
+        add_messages = { display_count = true },
+      },
+    },
+    config = function(_, opts)
+      require("tiny-inline-diagnostic").setup(opts)
+      vim.diagnostic.config({ virtual_text = false }) -- Disable Neovim's default virtual text diagnostics
+    end,
+  },
+  {
     "stevearc/conform.nvim",
     tag = "stable",
     event = { "BufWritePre" },
@@ -498,7 +517,7 @@ require("lazy").setup({
   },
   {
     'mrcjkb/rustaceanvim',
-    version = '^9', -- Recommended
+    version = '^8', -- Recommended
     lazy = false, -- This plugin is already lazy
   },
   {
